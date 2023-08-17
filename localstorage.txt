@@ -1,0 +1,34 @@
+var ps;
+if(localStorage.getItem("ps") === null){
+	ps = 0;
+	localStorage.setItem("ps", ps);
+}
+else{
+	ps = localStorage.getItem("ps");
+}
+
+var a;
+if(localStorage.getItem("a") === null){
+	a = -7500;
+	localStorage.setItem("a", a);
+}
+else{
+	a = localStorage.getItem("a");
+}
+var y;
+if(localStorage.getItem("y") === null){
+	y = -1200;
+	localStorage.setItem("y", y);
+}
+else{
+	y = localStorage.getItem("y");
+}
+var b;
+if(localStorage.getItem("b") === null){
+	b = 0;
+	localStorage.setItem("b", b);
+}
+else{
+	b = localStorage.getItem("b");
+}
+document.getElementById("universe").style.transform = "translateY("+y+"px) translateZ("+ a +"px) perspective("+ (a * -2) +"px) translateX(" + b + "px)";

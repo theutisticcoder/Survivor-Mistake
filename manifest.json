@@ -1,0 +1,15 @@
+{
+  "name": "Invisible War",
+  "short_name": "Invisible War",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "An FPS game with a twist.",
+  "icons": [
+    {
+      "src": "Dirt.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

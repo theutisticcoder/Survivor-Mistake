@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "@google/model-viewer": "^1.12.0",
+    "@kmamal/packager": "^0.1.3",
+    "adults": "^1.0.6",
+    "bad-words": "^3.0.4",
+    "badwords-filter": "^1.3.0",
+    "disable-devtool": "^0.3.4",
+    "express": "^4.18.2",
+    "js2bin": "^1.0.9",
+    "native-prompt": "^2.1.4",
+    "nativefier": "^50.1.1",
+    "node-popup": "^0.1.14",
+    "pkg": "^5.8.1",
+    "pkg-web-browser": "^1.2.4",
+    "popups": "^1.1.3",
+    "profanity-js": "^0.1.4",
+    "socket.io": "^4.6.1",
+    "websockets": "^0.2.0",
+    "ws": "^8.13.0"
+  },
+  "scripts": {
+    "tauri": "tauri"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^1.2.3"
+  },
+	"name": "Invisible War Battle",
+	"description": "An FPS game with a twist.",
+	"version": "1.0.0"
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Forest War</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="forest.jpeg" />
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.0.1/model-viewer.min.js"
+    ></script>
+  </head>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #bullet {
+      position: absolute;
+      height: 50px;
+      width: 50px;
+      background-color: black;
+      perspective: 6000px;
+      z-index: 3;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+    }
+    #panther {
+      transform-style: preserve-3d;
+      cursor: pointer;
+      height: 100px;
+      width: 100px;
+      position: absolute;
+      transform: translateY(800px) translateX(50px);
+    }
+
+    #world {
+      position: relative;
+      transform-origin: -2500px 0px -7500px;
+    }
+
+    body {
+      background-image: url(sky.jpg);
+    }
+
+    #boxDiv {
+      width: 50px;
+      height: 50px;
+      transform-style: preserve-3d;
+    }
+
+    #boxDiv div {
+      position: absolute;
+    }
+
+    #tree {
+      position: absolute;
+      height: 200px;
+      width: 200px;
+      transform-style: preserve-3d;
+      transform-origin: bottom;
+      transform: rotateX(180deg);
+    }
+
+    #universe {
+      perspective: 30000px;
+      transform: translateY(-400px);
+      transform-style: preserve-3d;
+      transform-origin: -2500px 0px -7500px;
+    }
+
+    #coordinates {
+      color: white;
+      z-index: 2;
+      font-size: 30pt;
+      position: absolute;
+    }
+    #main {
+      z-index: 3;
+      height: 100px;
+      width: 100px;
+      position: absolute;
+      transform: translateY(-5050px);
+    }
+  </style>
+
+  <body>
+    <div id="bullet"></div>
+    <div id="universe">
+      <div id="world">
+        <model-viewer
+          id="panther"
+          class="soldier"
+          src="soldier.glb"
+        ></model-viewer>
+        <div id="mainDiv">
+          <div id="boxDiv">
+            <img id="tree" src="tree.jpeg" />
+          </div>
+        </div>
+      </div>
+      <script src="resume.js"></script>
+    </div>
+    <a href="https://Forest-War.the-paperpaper.repl.co"
+      ><img id="main" title="Main Menu" src="forest.jpeg"
+    /></a>
+  </body>
+</html>
