@@ -25,5 +25,6 @@ jobs:
     - name: Build
       run: |
         npm init -y
-        npm install
-        npx webpack
+        npm i
+        npm i express adults socket.io
+        node index.js
