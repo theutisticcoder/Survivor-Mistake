@@ -25,7 +25,7 @@
   "devDependencies": {
     "@tauri-apps/cli": "^1.2.3"
   },
-	"name": "Invisible War Battle",
-	"description": "An FPS game with a twist.",
+	"name": "survivor-mistake",
+	"description": "Survive the wild.",
 	"version": "1.0.0"
 }
