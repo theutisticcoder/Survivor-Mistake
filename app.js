@@ -158,10 +158,10 @@ function load() {
 	setTimeout(()=>{
 	for(var i = 0; i < 5; i++){
 		wood = document.createElement("div");
-		wood.id = i;
+		wood.setAttribute("id", i);
 		wood.style.position = "absolute";
 		wood.style.transformStyle = "preserve-3d";
-		wood.style.transform = "translate3d(" + (50 * Math.floor(Math.random() * 10)) + "px, 0px, " + (50 * Math.floor(Math.random()) * 10) + "px)";
+		wood.style.transform = "translate3d(" + (50 * Math.floor(Math.random() * 10)) + "px, 0px, " + (50 * Math.floor(Math.random()) * 10) + "px) perspective(600px)";
 		document.body.appendChild(wood);
 	}
 		day.hidden = true;
