@@ -231,26 +231,61 @@ function load() {
 					alert("Scraps found!");
 					document.body.removeChild(document.getElementById("0"));
 					task.value--;
+					if(task.value === 0){
+						task.value = 5;
+						alert("Huh, maybe I should press x to build my house.");
+						if(e.key == x){
+							alert("House built!");
+						}
+					}
 				}
 				if(-matrix4.m41 === wood2.m41 && matrix4.m43 === wood2.m43){
 					alert("Scraps found!");
 					document.body.removeChild(document.getElementById("1"));
 					task.value--;
+					if(task.value === 0){
+						task.value = 5;
+						alert("Huh, maybe I should press x to build my house.");
+						if(e.key == x){
+							alert("House built!");
+						}
+					}
 				}
 				if(-matrix4.m41 === wood3.m41 && matrix4.m43 === wood3.m43){
 					alert("Scraps found!");
 					document.body.removeChild(document.getElementById("2"));
 					task.value--;
+					if(task.value === 0){
+						task.value = 5;
+						alert("Huh, maybe I should press x to build my house.");
+						if(e.key == x){
+							alert("House built!");
+						}
+					}
 				}
 				if(-matrix4.m41 === wood4.m41 && matrix4.m43 === wood4.m43){
 					alert("Scraps found!");
 					document.body.removeChild(document.getElementById("3"));
 					task.value--;
+					if(task.value === 0){
+						task.value = 5;
+						alert("Huh, maybe I should press x to build my house.");
+						if(e.key == x){
+							alert("House built!");
+						}
+					}
 				}
 				if(-matrix4.m41 === wood5.m41 && matrix4.m43 === wood5.m43){
 					alert("Scraps found!");
 					document.body.removeChild(document.getElementById("4"));
 					task.value--;
+					if(task.value === 0){
+						task.value = 5;
+						alert("Huh, maybe I should press x to build my house.");
+						if(e.key == x){
+							alert("House built!");
+						}
+					}
 				}
 
 			}
