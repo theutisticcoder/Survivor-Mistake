@@ -160,6 +160,7 @@ function load() {
 		wood = document.createElement("div");
 		wood.id = i;
 		wood.style.position = "absolute";
+		wood.style.transformStyle = "preserve-3d";
 		wood.style.transform = "translate3d(" + (50 * Math.floor(Math.random() * 10)) + "px, 0px, " + (50 * Math.floor(Math.random()) * 10) + "px)";
 		document.getElementById("universe").appendChild(wood);
 	}
