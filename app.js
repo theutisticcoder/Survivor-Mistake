@@ -166,7 +166,12 @@ function load() {
 	}
 		day.hidden = true;
 		
-		document.addEventListener("keydown", function(e) {
+
+			wood1 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("0")).transform);
+			wood2 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("1")).transform);
+			wood3 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("2")).transform);
+			wood4 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("3")).transform);
+			wood5 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("4")).transform);		document.addEventListener("keydown", function(e) {
 			
 		matrix4 = new WebKitCSSMatrix(
 			window.getComputedStyle(document.getElementById("universe")).transform
@@ -178,11 +183,21 @@ function load() {
 		b = parseInt(b);
 		y = parseInt(y);
 		var worldclone;
+			if(document.getElementById("0") != null){
 			wood1 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("0")).transform);
-	wood2 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("1")).transform);
-	wood3 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("2")).transform);
-	wood4 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("3")).transform);
-	wood5 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("4")).transform);
+			}
+			if(document.getElementById("1") != null){
+			wood2 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("1")).transform);
+			}
+			if(document.getElementById("2") != null){
+			wood3 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("2")).transform);
+			}
+			if(document.getElementById("3") != null){
+			wood4 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("3")).transform);
+			}	
+			if(document.getElementById("4") != null){
+			wood5 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("4")).transform);
+			}				
 		if (e.key == "ArrowUp") {
 			e.preventDefault();
 			a += 50;
