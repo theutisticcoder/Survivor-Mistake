@@ -162,7 +162,7 @@ function load() {
 		wood.style.position = "absolute";
 		wood.style.transformStyle = "preserve-3d";
 		wood.style.transform = "translate3d(" + (50 * Math.floor(Math.random() * 10)) + "px, 0px, " + (50 * Math.floor(Math.random()) * 10) + "px)";
-		document.getElementById("universe").appendChild(wood);
+		document.body.appendChild(wood);
 	}
 		day.hidden = true;
 		
@@ -214,23 +214,23 @@ function load() {
 			if(e.key == " "){
 				if(-matrix4.m41 === wood1.m41 && matrix4.m43 === wood1.m43){
 					alert("Scraps found!");
-					document.getElementById("universe").removeChild(document.getElementById("0"));
+					document.body.removeChild(document.getElementById("0"));
 				}
 				if(-matrix4.m41 === wood2.m41 && matrix4.m43 === wood2.m43){
 					alert("Scraps found!");
-					document.getElementById("universe").removeChild(document.getElementById("1"));
+					document.body.removeChild(document.getElementById("1"));
 				}
 				if(-matrix4.m41 === wood3.m41 && matrix4.m43 === wood3.m43){
 					alert("Scraps found!");
-					document.getElementById("universe").removeChild(document.getElementById("2"));
+					document.body.removeChild(document.getElementById("2"));
 				}
 				if(-matrix4.m41 === wood4.m41 && matrix4.m43 === wood4.m43){
 					alert("Scraps found!");
-					document.getElementById("universe").removeChild(document.getElementById("3"));
+					document.body.removeChild(document.getElementById("3"));
 				}
 				if(-matrix4.m41 === wood5.m41 && matrix4.m43 === wood5.m43){
 					alert("Scraps found!");
-					document.getElementById("universe").removeChild(document.getElementById("4"));
+					document.body.removeChild(document.getElementById("4"));
 				}
 
 			}
