@@ -20,7 +20,8 @@
     "ws": "^8.13.0"
   },
   "scripts": {
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "test": "node ."
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.2.3"
