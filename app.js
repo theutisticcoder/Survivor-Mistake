@@ -164,11 +164,6 @@ function load() {
 		wood.style.transform = "translate3d(" + (50 * Math.floor(Math.random() * 10)) + "px, 0px, " + (50 * Math.floor(Math.random()) * 10) + "px)";
 		document.getElementById("universe").appendChild(wood);
 	}
-	wood1 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("0")).transform);
-	wood2 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("1")).transform);
-	wood3 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("2")).transform);
-	wood4 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("3")).transform);
-	wood5 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("4")).transform);
 		day.hidden = true;
 		
 		document.addEventListener("keydown", function(e) {
@@ -183,6 +178,11 @@ function load() {
 		b = parseInt(b);
 		y = parseInt(y);
 		var worldclone;
+			wood1 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("0")).transform);
+	wood2 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("1")).transform);
+	wood3 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("2")).transform);
+	wood4 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("3")).transform);
+	wood5 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("4")).transform);
 		if (e.key == "ArrowUp") {
 			e.preventDefault();
 			a += 50;
