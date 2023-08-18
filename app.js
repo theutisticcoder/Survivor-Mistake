@@ -213,23 +213,23 @@ function load() {
 			if(e.key == " "){
 				if(matrix4.m41 === wood1.m41 && matrix4.m43 === wood1.m43){
 					alert("Scraps found!");
-					document.getElementById("universe").removeChild(document.getElementById("1"));
+					document.getElementById("universe").removeChild(document.getElementById("0"));
 				}
 				if(matrix4.m41 === wood2.m41 && matrix4.m43 === wood2.m43){
 					alert("Scraps found!");
-					document.getElementById("universe").removeChild(document.getElementById("2"));
+					document.getElementById("universe").removeChild(document.getElementById("1"));
 				}
 				if(matrix4.m41 === wood3.m41 && matrix4.m43 === wood3.m43){
 					alert("Scraps found!");
-					document.getElementById("universe").removeChild(document.getElementById("3"));
+					document.getElementById("universe").removeChild(document.getElementById("2"));
 				}
 				if(matrix4.m41 === wood4.m41 && matrix4.m43 === wood4.m43){
 					alert("Scraps found!");
-					document.getElementById("universe").removeChild(document.getElementById("4"));
+					document.getElementById("universe").removeChild(document.getElementById("3"));
 				}
 				if(matrix4.m41 === wood5.m41 && matrix4.m43 === wood5.m43){
 					alert("Scraps found!");
-					document.getElementById("universe").removeChild(document.getElementById("5"));
+					document.getElementById("universe").removeChild(document.getElementById("4"));
 				}
 
 			}
