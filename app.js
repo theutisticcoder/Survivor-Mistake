@@ -139,6 +139,12 @@ socket.on("gameover", (killed) => {
 var t;
 var day = document.createElement("h1");
 var daynumber = 1;
+var wood;
+var wood1;
+var wood2;
+var wood3;
+var wood4;
+var wood5;
 function load() {
 	document.getElementById("heli").pause();
 	document.getElementById("boom").play();
@@ -149,9 +155,23 @@ function load() {
 	day.style.top = "50%";
 	day.style.left = "50%";
 	document.body.appendChild(day);
-	setTimeout(()=> {
+	setTimeout(()=>
+	for(let i = 0; i < 5; i++){
+		wood = document.createElement("div");
+		wood.id = i;
+		wood.style.position = "absolute";
+		wood.style.transform = "translate3d(" + (50 * Math.floor(Math.random() * 10)) + "px, 0px, " + (50 * Math.floor(Math.random()) * 10) + "px)";
+		document.getElementById("universe").appendChild(wood);
+	}
+	wood1 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("0")).transform);
+	wood2 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("1")).transform);
+	wood3 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("2")).transform);
+	wood4 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("3")).transform);
+	wood5 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("4")).transform);
 		day.hidden = true;
+		
 		document.addEventListener("keydown", function(e) {
+			
 		matrix4 = new WebKitCSSMatrix(
 			window.getComputedStyle(document.getElementById("universe")).transform
 		);
@@ -190,6 +210,29 @@ function load() {
 			document.getElementById("universe").style.transform =
 				"translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" +(a + 5000) +"px)";
 		}
+			if(e.key == " "){
+				if(matrix4.m41 === wood1.m41 && matrix4.m43 === wood1.m43){
+					alert("Scraps found!");
+					document.getElementById("universe").removeChild(document.getElementById("1"));
+				}
+				if(matrix4.m41 === wood2.m41 && matrix4.m43 === wood2.m43){
+					alert("Scraps found!");
+					document.getElementById("universe").removeChild(document.getElementById("2"));
+				}
+				if(matrix4.m41 === wood3.m41 && matrix4.m43 === wood3.m43){
+					alert("Scraps found!");
+					document.getElementById("universe").removeChild(document.getElementById("3"));
+				}
+				if(matrix4.m41 === wood4.m41 && matrix4.m43 === wood4.m43){
+					alert("Scraps found!");
+					document.getElementById("universe").removeChild(document.getElementById("4"));
+				}
+				if(matrix4.m41 === wood5.m41 && matrix4.m43 === wood5.m43){
+					alert("Scraps found!");
+					document.getElementById("universe").removeChild(document.getElementById("5"));
+				}
+
+			}
 	});
 	document.getElementById("universe").hidden = false;
 	document.getElementById("text").hidden = false;
