@@ -156,7 +156,7 @@ function load() {
 	day.style.left = "50%";
 	document.body.appendChild(day);
 	setTimeout(()=>{
-	for(let i = 0; i < 5; i++){
+	for(var i = 0; i < 5; i++){
 		wood = document.createElement("div");
 		wood.id = i;
 		wood.style.position = "absolute";
