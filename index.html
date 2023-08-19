@@ -18,8 +18,7 @@
 		transform-origin: -2500px 0px -7500px;
 	}
 	h1{
-		position: absolute;
-		color: white;
+		
 	}
 	#soldier{
 		position: absolute;
@@ -63,6 +62,9 @@
 	}
 	#tasks{
 		left: 75%;
+		position: absolute;
+		color: white;
+		z-index: 2;
 	}
 	#c {
 		color: black;
@@ -299,7 +301,7 @@
 		<audio id="boom" src="Boom.mp3"></audio>
 <div id="text">
 		<p>Health</p>
-	<p id="healthp">Tasks</p>
+	<p id="healthp"></p>
 <progress id="health" value="5" max="5"></progress>
 	<h1 id="tasks">Tasks: Make Shelter</h1>
 	<progress value="5" max="5" id="enemyhealth"></progress>
