@@ -275,11 +275,11 @@ function load() {
 				}
 
 			}
-				if(house == true){
-					if(e.key == x){
+				
+					if(e.key == "x" && house == true){
 						alert("House built!");
 					}
-				}
+				
 	});
 	document.getElementById("universe").hidden = false;
 	document.getElementById("text").hidden = false;
