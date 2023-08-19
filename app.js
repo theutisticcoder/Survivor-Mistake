@@ -269,7 +269,7 @@ function load() {
 					task.value--;
 					if(task.value === 0){
 						task.value = 5;
-						alert("Huh, maybe I should press x to build my house.");
+						alert("Huh, maybe I should press x to build my house where I am.");
 						house = true;
 					}
 				}
@@ -278,6 +278,7 @@ function load() {
 				
 					if(e.key == "x" && house == true){
 						alert("House built!");
+						house = false;
 					}
 				
 	});
