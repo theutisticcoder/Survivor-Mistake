@@ -187,6 +187,10 @@ function load() {
 						health.max = 10;
 						health.value = 10;
 					}
+					else{
+						health.value = 5;
+						health.max = 5;
+					}
 				}
 		a = parseInt(a);
 		b = parseInt(b);
@@ -295,7 +299,7 @@ function load() {
 						shelter.style.top = "200px";
 						shelter.style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" +(a + 5000) +"px)";
 						document.getElementById("universe").appendChild(shelter);
-						sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(sehlter).transform);
+						sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(shelter).transform);
 					}
 				
 	});
