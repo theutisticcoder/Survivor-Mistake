@@ -11,6 +11,7 @@ var players = [];
 var main;
 var link;
 var a = 0;
+var sheltermatrix;
 var playerb = 0;
 var playera = 0;
 var b = 0;
@@ -150,7 +151,7 @@ var wood5;
 function load() {
 	document.getElementById("heli").pause();
 	document.getElementById("boom").play();
-	day.innerHTML = "Day " + daynumber;
+	day.innerHTML = "Day " + daynumber ". Use arrow keys to move and  space to search for resources.";
 	document.body.style.background = "black";
 	day.style.color = "white";
 	day.style.position = "absolute";
@@ -179,8 +180,14 @@ function load() {
 			window.getComputedStyle(document.getElementById("universe")).transform
 		);
 		sol1 = document.getElementById("panther");
-		document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${-matrix4.m43}`;
+		document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
 		socket.emit("move", matrix4);
+				if(sheltermatrix){
+					if(-matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43){
+						health.max = 10;
+						health.value = 10;
+					}
+				}
 		a = parseInt(a);
 		b = parseInt(b);
 		y = parseInt(y);
@@ -230,7 +237,7 @@ function load() {
 		}
 			if(e.key == " "){
 				if(-matrix4.m41 === wood1.m41 && matrix4.m43 === wood1.m43){
-					alert("Scraps found!");
+					alert("Wood found!");
 					task.value--;
 					if(task.value === 0){
 						task.value = 5;
@@ -239,7 +246,7 @@ function load() {
 					}
 				}
 				if(-matrix4.m41 === wood2.m41 && matrix4.m43 === wood2.m43){
-					alert("Scraps found!");
+					alert("Wood found!");
 					task.value--;
 					if(task.value === 0){
 						task.value = 5;
@@ -248,7 +255,7 @@ function load() {
 					}
 				}
 				if(-matrix4.m41 === wood3.m41 && matrix4.m43 === wood3.m43){
-					alert("Scraps found!");
+					alert("Wood found!");
 					task.value--;
 					if(task.value === 0){
 						task.value = 5;
@@ -257,7 +264,7 @@ function load() {
 					}
 				}
 				if(-matrix4.m41 === wood4.m41 && matrix4.m43 === wood4.m43){
-					alert("Scraps found!");
+					alert("Wood found!");
 					task.value--;
 					if(task.value === 0){
 						task.value = 5;
@@ -266,7 +273,7 @@ function load() {
 					}
 				}
 				if(-matrix4.m41 === wood5.m41 && matrix4.m43 === wood5.m43){
-					alert("Scraps found!");
+					alert("Wood found!");
 					task.value--;
 					if(task.value === 0){
 						task.value = 5;
@@ -288,6 +295,7 @@ function load() {
 						shelter.style.top = "200px";
 						shelter.style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" +(a + 5000) +"px)";
 						document.getElementById("universe").appendChild(shelter);
+						sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(sehlter).transform);
 					}
 				
 	});
