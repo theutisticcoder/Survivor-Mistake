@@ -1,3 +1,4 @@
+var house = false;
 var task = document.getElementById("enemyhealth");
 var x;
 var socket = io.connect();
@@ -233,9 +234,7 @@ function load() {
 					if(task.value === 0){
 						task.value = 5;
 						alert("Huh, maybe I should press x to build my house.");
-						if(e.key == x){
-							alert("House built!");
-						}
+						house = true;
 					}
 				}
 				if(-matrix4.m41 === wood2.m41 && matrix4.m43 === wood2.m43){
@@ -244,9 +243,7 @@ function load() {
 					if(task.value === 0){
 						task.value = 5;
 						alert("Huh, maybe I should press x to build my house.");
-						if(e.key == x){
-							alert("House built!");
-						}
+						house = true;
 					}
 				}
 				if(-matrix4.m41 === wood3.m41 && matrix4.m43 === wood3.m43){
@@ -255,9 +252,7 @@ function load() {
 					if(task.value === 0){
 						task.value = 5;
 						alert("Huh, maybe I should press x to build my house.");
-						if(e.key == x){
-							alert("House built!");
-						}
+						house = true;
 					}
 				}
 				if(-matrix4.m41 === wood4.m41 && matrix4.m43 === wood4.m43){
@@ -266,9 +261,7 @@ function load() {
 					if(task.value === 0){
 						task.value = 5;
 						alert("Huh, maybe I should press x to build my house.");
-						if(e.key == x){
-							alert("House built!");
-						}
+						house = true;
 					}
 				}
 				if(-matrix4.m41 === wood5.m41 && matrix4.m43 === wood5.m43){
@@ -277,13 +270,16 @@ function load() {
 					if(task.value === 0){
 						task.value = 5;
 						alert("Huh, maybe I should press x to build my house.");
-						if(e.key == x){
-							alert("House built!");
-						}
+						house = true;
 					}
 				}
 
 			}
+				if(house == true){
+					if(e.key == x){
+						alert("House built!");
+					}
+				}
 	});
 	document.getElementById("universe").hidden = false;
 	document.getElementById("text").hidden = false;
