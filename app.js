@@ -183,7 +183,7 @@ function load() {
 		document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
 		socket.emit("move", matrix4);
 				if(sheltermatrix){
-					if(-matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43){
+					if(matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43){
 						health.max = 10;
 						health.value = 10;
 					}
