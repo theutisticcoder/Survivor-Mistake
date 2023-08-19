@@ -182,16 +182,7 @@ function load() {
 		sol1 = document.getElementById("panther");
 		document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
 		socket.emit("move", matrix4);
-				if(sheltermatrix){
-					if(matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43){
-						health.max = 10;
-						health.value = 10;
-					}
-					else{
-						health.value = 5;
-						health.max = 5;
-					}
-				}
+				
 		a = parseInt(a);
 		b = parseInt(b);
 		y = parseInt(y);
@@ -301,6 +292,16 @@ function load() {
 						document.getElementById("universe").appendChild(shelter);
 						sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(shelter).transform);
 					}
+				if(sheltermatrix){
+					if(matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43){
+						health.max = 10;
+						health.value = 10;
+					}
+					else{
+						health.value = 5;
+						health.max = 5;
+					}
+				}
 				
 	});
 	document.getElementById("universe").hidden = false;
