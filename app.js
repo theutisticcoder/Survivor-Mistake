@@ -318,7 +318,11 @@ function load() {
 				}
 					
 				}
-				
+				if(e.key == "s" && e.key == "n" && e.key == "a" && e.key == "p"){
+					document.getElementsByClassName("tree").forEach(tree => {
+						tree.hidden = true;
+					});
+				}
 				
 				
 	});
