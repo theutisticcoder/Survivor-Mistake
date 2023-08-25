@@ -299,7 +299,7 @@ function load() {
 						shelter.style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" +(a + 5000) +"px)";
 						document.getElementById("universe").appendChild(shelter);
 						sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(shelter).transform);
-						alert("Hint: If you are in your house, you have double your health.");
+						alert("Hint: If you ENTER your house, you have double your health.");
 					}
 				if(sheltermatrix){
 					
