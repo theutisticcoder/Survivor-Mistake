@@ -69,7 +69,12 @@ io.on("connection", (socket) => {
       socket.to(Array.from(socket.rooms)[1]).emit("joined", user);
     }
 	});
-  
+  socket.on("message", message => {
+		for(var x = 0; x< logins.length; x++){
+			if(socket.rooms.has(rooms[x])){
+				socket.to(rooms[x]).emit("newmessage", {message: message.message, user: message.user});
+			}
+		}
   socket.on("disconnecting", () => {
     people--;
     
