@@ -380,8 +380,10 @@ var message, p2, p, newmessage;
 				newmessage = message;
 				p.innerHTML = newmessage;
 				p.style.left = "80%";
+p.style.color = "black";
 				p.style.position = "relative";
-				p.style.width = "20%";
+			p.style.zIndex = "101";
+			p.style.width = "20vw";
 				socket.emit("message", {message: newmessage, user: username});
 				document.getElementById("messages").appendChild(p);
 			}
