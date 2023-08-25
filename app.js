@@ -5,7 +5,8 @@ var shelter;
 var socket = io.connect();
 var img = new Image(2000, 2000);
 img.src = "inside.jpg";
-img.style.zIndex = "50";
+img.style.zIndex = "500";
+img.style.position = "absolute";
 document.body.appendChild(img);
 img.hidden = true;
 var fight = false;
@@ -301,12 +302,12 @@ function load() {
 				if(sheltermatrix){
 					
 					if(e.key == "Enter" && matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43){
-						if(img.hidden === true){
+						if(img.hidden == true){
 					img.hidden = false;
 					health.max = 10;
 					health.value = 10;
 						}
-						else if(img.hidden === false){
+						else if(img.hidden == false){
 					img.hidden = true;
 					health.max = 5;
 					health.value = 5;
