@@ -70,11 +70,8 @@ io.on("connection", (socket) => {
     }
 	});
   socket.on("message", message => {
-		for(var x = 0; x< logins.length; x++){
-			if(socket.rooms.has(rooms[x])){
-				socket.to(rooms[x]).emit("newmessage", {message: message.message, user: message.user});
-			}
-		}
+		
+				socket.to(Array.from(socket.rooms)[1]).emit("newmessage", {message: message.message, user: message.user});
   });
   socket.on("disconnecting", () => {
     people--;
