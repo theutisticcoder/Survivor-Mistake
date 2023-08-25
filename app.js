@@ -7,6 +7,7 @@ var img = new Image();
 img.src = "inside.jpg";
 img.height = "2000";
 img.width = "2000";
+img.style.zIndex = "50";
 document.body.appendChild(img);
 img.hidden = true;
 var fight = false;
