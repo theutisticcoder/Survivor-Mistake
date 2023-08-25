@@ -50,8 +50,8 @@ var person;
 var roomnumber = 0;
 var otherplayer;
 function choose() {
-	person = prompt("Choose an username!");
-	socket.emit("username", person);
+	username = prompt("Choose an username!");
+	socket.emit("username", username);
 }
 document.getElementById("dialog").hidden = false;
 document.getElementById("universe").hidden = true;
@@ -157,6 +157,7 @@ var wood3;
 var wood4;
 var wood5;
 function load() {
+	choose();
 	document.getElementById("heli").pause();
 	document.getElementById("boom").play();
 	day.innerHTML = "Day " + daynumber + ". Use arrow keys to move and  space to search for resources.";
@@ -369,3 +370,27 @@ function load() {
 	
 
 }
+var message, p2, p, newmessage;
+	
+	document.getElementById("message").onkeydown = (e)=> {
+		if(e.key == "Enter"){
+				message = document.getElementById("message").value;
+				document.getElementById("message").value = "";
+				p = document.createElement("p");
+				newmessage = message;
+				p.innerHTML = newmessage;
+				p.style.left = "80%";
+				p.style.position = "relative";
+				p.style.width = "20%";
+				socket.emit("message", {message: newmessage, user: username});
+				document.getElementById("messages").appendChild(p);
+			}
+		};
+		socket.on('newmessage', messagenew => {
+			p = document.createElement("p");
+				newmessage = messagenew.user + ": " + messagenew.message;
+				p.innerHTML = newmessage;
+				p.style.width = "20%";
+				p.style.position = "relative";
+				document.getElementById("messages").appendChild(p);
+		});
