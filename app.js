@@ -392,5 +392,6 @@ var message, p2, p, newmessage;
 				p.innerHTML = newmessage;
 				p.style.width = "20%";
 				p.style.position = "relative";
+			p.style.zIndex = "101";
 				document.getElementById("messages").appendChild(p);
 		});
