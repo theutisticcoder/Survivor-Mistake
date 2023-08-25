@@ -390,7 +390,7 @@ var message, p2, p, newmessage;
 			p = document.createElement("p");
 				newmessage = messagenew.user + ": " + messagenew.message;
 				p.innerHTML = newmessage;
-				p.style.width = "20%";
+				p.style.width = "20vw";
 				p.style.position = "relative";
 			p.style.zIndex = "101";
 				document.getElementById("messages").appendChild(p);
