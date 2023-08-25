@@ -75,6 +75,7 @@ io.on("connection", (socket) => {
 				socket.to(rooms[x]).emit("newmessage", {message: message.message, user: message.user});
 			}
 		}
+  });
   socket.on("disconnecting", () => {
     people--;
     
