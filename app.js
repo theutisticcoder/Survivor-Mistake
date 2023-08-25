@@ -9,7 +9,7 @@ img.style.height = "100vh";
 img.style.width = "100vw";
 img.style.zIndex = "500";
 img.style.position = "absolute";
-document.body.appendChild(img);
+document.getElementById("universe").appendChild(img);
 img.hidden = true;
 var fight = false;
 var username;
