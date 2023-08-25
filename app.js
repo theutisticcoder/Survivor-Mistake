@@ -3,6 +3,12 @@ var task = document.getElementById("enemyhealth");
 var x;
 var shelter;
 var socket = io.connect();
+var img = new Image();
+img.src = "inside.jpg";
+img.height = "2000";
+img.width = "2000";
+document.body.appendChild(img);
+img.hidden = true;
 var fight = false;
 var username;
 var users = [];
@@ -291,17 +297,27 @@ function load() {
 						shelter.style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" +(a + 5000) +"px)";
 						document.getElementById("universe").appendChild(shelter);
 						sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(shelter).transform);
+						alert("Hint: If you are in your house, you have double your health.");
 					}
 				if(sheltermatrix){
-					if(matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43){
-						health.max = 10;
-						health.value = 10;
-					}
-					else{
-						health.value = 5;
-						health.max = 5;
-					}
+					
+					if(e.key == "Enter" && matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43){
+						if(img.hidden === true){
+					img.hidden = false;
+					health.max = 10;
+					health.value = 10;
+						}
+						else if(img.hidden === false){
+					img.hidden = true;
+					health.max = 5;
+					health.value = 5;
+						}
+						
 				}
+					
+				}
+				
+				
 				
 	});
 	document.getElementById("universe").hidden = false;
