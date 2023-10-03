@@ -43,7 +43,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm 
+    - run: npm ci
     - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v2
     - name: Deploy to GitHub Pages
