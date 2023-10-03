@@ -1,13 +1,13 @@
 {
-  "name": "Invisible War",
-  "short_name": "Invisible War",
+  "name": "Survivor Mistake",
+  "short_name": "Survivor Mistake",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#fff",
-  "description": "An FPS game with a twist.",
+  "description": "Survive a month in the woods.",
   "icons": [
     {
-      "src": "Dirt.png",
+      "src": "shack.png",
       "sizes": "512x512",
       "type": "image/png"
     }
