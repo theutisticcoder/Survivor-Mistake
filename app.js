@@ -63,7 +63,7 @@ var deer = new Image(200, 200);
 deer.hidden = true;
 			document.body.appendChild(deer);
 function hunt(e) {
-	if (e.key == "h") {
+	if (e.key == "h" && document.activeElement != document.getElementById("message")) {
 		alert("Click to get the deer in time.");
 		
 			deer.hidden = false;
@@ -305,7 +305,7 @@ function load() {
 					"translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
 			}
 			if(e.key == "x" && task.value === 0 && daynumber === 2){
-				alert("The fire will burn for half the day. press x whenever you have enough wood and need to cook your food.");
+				alert("The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food.");
 				task.value = 5;
 				task.max = 5;
 			}
@@ -373,7 +373,7 @@ function load() {
 				alert("Hint: If you ENTER your house, you have double your health.");
 				tasks.innerHTML = "Find food";
 				alert("Go bring some food back home. Go hunting for food in a space by pressing 'h'.");
-				document.getElementById("universe").onkeydown = hunt;
+				document.onkeydown = hunt;
 			}
 			if (sheltermatrix) {
 
