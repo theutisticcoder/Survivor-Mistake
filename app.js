@@ -93,13 +93,13 @@ document.getElementById("ok").onclick = () => {
 
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
+	intro.play();
+	intro.onended = load;
 	document.getElementById("heli").play();
-speechSynthesis.speak(new SpeechSynthesisUtterance("Hello Player 1. Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!"));
 	var room = prompt("Choose a private room name.");
 	var password = prompt("Choose a password.");
 	socket.emit("roomname", room);
 	socket.emit("password", password);
-		load();
 
 };
 document.getElementById("neither").onclick = () => {
@@ -107,7 +107,7 @@ document.getElementById("neither").onclick = () => {
 	document.body.style.background = "url(sky.jpg)";
 	
 	document.getElementById("heli").play();
-speechSynthesis.speak(new SpeechSynthesisUtterance("Hello Player 1. Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!"));	
+intro.play(); 	intro.onended = load;
 	const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
 	link = "";
 	for (var i = 0; i < 40; i++) {
@@ -115,19 +115,17 @@ speechSynthesis.speak(new SpeechSynthesisUtterance("Hello Player 1. Welcome to S
 	}
 	socket.emit("self", link);
 	console.log(link);
-	load();
 };
 document.getElementById("no").onclick = () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	
 	document.getElementById("heli").play();
-speechSynthesis.speak(new SpeechSynthesisUtterance("Hello Player 1. Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!"));	
+intro.play(); 	intro.onended = load;
 	var roomname = prompt("Enter the room name.");
 	socket.emit("room", roomname);
 	var pass = prompt("Enter the room's password.");
 	socket.emit("pass", pass);
-		load();
 
 }
 socket.on("usernotadded", () => {
