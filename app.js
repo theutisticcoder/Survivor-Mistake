@@ -111,7 +111,7 @@ document.getElementById("neither").onclick = () => {
 	
 	document.getElementById("heli").play();
 speechSynthesis.speak(ss);
-	if(ss.paused == true){
+	if(window.speechSynthesis.paused == true){
 		const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
 	link = "";
 	for (var i = 0; i < 40; i++) {
