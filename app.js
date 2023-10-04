@@ -4,7 +4,7 @@ var tasks = document.getElementById("tasks");
 var x;
 var fire;
 var ss;
-fire = new Image(50, 50);
+fire = new Image(500, 500);
 fire.src = "fire.png";
 fire.zIndex = "400";
 fire.style.left = "50px";
