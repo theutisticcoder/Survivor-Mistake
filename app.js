@@ -212,7 +212,8 @@ function time(){
 			alert("It is night time. Go run around riskingly, or sleep safely in your shelter");
 		night = true;
 	}
-	else if(night == true){universe.hidden = true;
+	else if(night == true){
+		universe.hidden = true;
 	 day.hidden = false;
 												 food -= 10;
 												 if(food < 0){
@@ -230,6 +231,7 @@ function time(){
 													 day.innerHTML = "Day " + daynumber + ". Look around the area for wood. 6 wood will help you make a fire to cook your meat.";
 													 task.max = 6;
 													 task.value = 6;
+													 tasks.innerHTML = "Make Fire";
 												 }
 		alert("Wake up sleepyhead! You must go live this month!")
 		night = false;
