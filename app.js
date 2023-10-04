@@ -93,8 +93,7 @@ document.getElementById("ok").onclick = () => {
 
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
-	intro.play();
-	intro.onended = load;
+	speechSynthesis.speak(new SpeechSynthesisUtterance("Hello Player 1. Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!"));	
 	document.getElementById("heli").play();
 	var room = prompt("Choose a private room name.");
 	var password = prompt("Choose a password.");
@@ -105,23 +104,28 @@ document.getElementById("ok").onclick = () => {
 document.getElementById("neither").onclick = () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
-	
+	choose();
 	document.getElementById("heli").play();
-intro.play(); 	intro.onended = load;
-	const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+speechSynthesis.speak(new SpeechSynthesisUtterance("Hello "+ username +". Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!"));
+	if(speechSynthesis.paused == true){
+		const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
 	link = "";
 	for (var i = 0; i < 40; i++) {
 		link += characters.charAt(Math.floor(Math.random() * characters.length));
 	}
 	socket.emit("self", link);
 	console.log(link);
+		load();
+	}
+
+	
 };
 document.getElementById("no").onclick = () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	
 	document.getElementById("heli").play();
-intro.play(); 	intro.onended = load;
+speechSynthesis.speak(new SpeechSynthesisUtterance("Hello Player 1. Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!"));	
 	var roomname = prompt("Enter the room name.");
 	socket.emit("room", roomname);
 	var pass = prompt("Enter the room's password.");
@@ -225,7 +229,6 @@ function time(){
 }
 function load() {
 	setTimeout(time, 240000);
-	choose();
 	document.getElementById("heli").pause();
 	document.getElementById("boom").play();
 	day.innerHTML = "Day " + daynumber + ". Use arrow keys to move and  space to search for resources.";
