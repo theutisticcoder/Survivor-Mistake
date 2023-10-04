@@ -6,7 +6,8 @@ var fire;
 var ss;
 fire = new Image(50, 50);
 fire.src = "fire.png";
-fire.zIndex = "500";
+fire.zIndex = "400";
+fire.style.left = "50px";
 var shelter;
 var night = false;
 var socket = io.connect();
@@ -328,6 +329,8 @@ function load() {
 			}
 			if(e.key == "x" && task.value === 0 && daynumber >= 2){
 				fire.style.position = "absolute";
+				fire.style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
+				
 				document.getElementById("universe").appendChild(fire);
 				alert("The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food.");
 				task.value = 5;
