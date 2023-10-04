@@ -318,7 +318,7 @@ function load() {
 				if (-matrix4.m41 === wood1.m41 && matrix4.m43 === wood1.m43) {
 					alert("Wood found!");
 					task.value--;
-					if (task.value === 0) {
+					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
 						alert("Huh, maybe I should press x to build my house.");
 						house = true;
@@ -327,7 +327,7 @@ function load() {
 				if (-matrix4.m41 === wood2.m41 && matrix4.m43 === wood2.m43) {
 					alert("Wood found!");
 					task.value--;
-					if (task.value === 0) {
+					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
 						alert("Huh, maybe I should press x to build my house.");
 						house = true;
@@ -336,7 +336,7 @@ function load() {
 				if (-matrix4.m41 === wood3.m41 && matrix4.m43 === wood3.m43) {
 					alert("Wood found!");
 					task.value--;
-					if (task.value === 0) {
+					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
 						alert("Huh, maybe I should press x to build my house.");
 						house = true;
@@ -345,7 +345,7 @@ function load() {
 				if (-matrix4.m41 === wood4.m41 && matrix4.m43 === wood4.m43) {
 					alert("Wood found!");
 					task.value--;
-					if (task.value === 0) {
+					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
 						alert("Huh, maybe I should press x to build my house.");
 						house = true;
@@ -354,7 +354,7 @@ function load() {
 				if (-matrix4.m41 === wood5.m41 && matrix4.m43 === wood5.m43) {
 					alert("Wood found!");
 					task.value--;
-					if (task.value === 0) {
+					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
 						alert("Huh, maybe I should press x to build my house where I am.");
 						house = true;
