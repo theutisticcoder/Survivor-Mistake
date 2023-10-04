@@ -373,7 +373,7 @@ function load() {
 				alert("Hint: If you ENTER your house, you have double your health.");
 				tasks.innerHTML = "Find food";
 				alert("Go bring some food back home. Go hunting for food in a space by pressing 'h'.");
-				document.body.onkeydown = hunt;
+				document.getElementById("universe").onkeydown = hunt;
 			}
 			if (sheltermatrix) {
 
