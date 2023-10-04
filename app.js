@@ -411,7 +411,7 @@ function load() {
 		for (var i = 0; i < 3000; i += 50) {
 			dirtnew = dirt.cloneNode(true);
 			dirtnew.style.transform =
-				"translateY(" + -i + "px) translateX(" + (i - 2500) + "px)";
+				"translateY(" + -i + "px) translateX(" + (i - 1000) + "px)";
 			dirtnew.style.height = "50px";
 			dirtnew.style.width = "50px";
 			dirtnew.style.transformStyle = "preserve-3d";
