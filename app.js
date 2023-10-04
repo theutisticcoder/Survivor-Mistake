@@ -304,7 +304,7 @@ function load() {
 				a += 50;
 				playera += 50;
 				document.getElementById("universe").style.transform =
-					"translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
+					"translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 500) + "px)";
 			}
 			if (e.key == "ArrowDown") {
 				e.preventDefault();
