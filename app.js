@@ -8,6 +8,7 @@ fire = new Image(500, 500);
 fire.src = "fire.png";
 fire.zIndex = "400";
 fire.style.top = "500px";
+fire.style.left = "500px";
 var shelter;
 var night = false;
 var socket = io.connect();
