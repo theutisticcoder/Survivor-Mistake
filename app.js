@@ -3,7 +3,7 @@ var task = document.getElementById("enemyhealth");
 var tasks = document.getElementById("tasks");
 var x;
 var fire;
-var ss = new SpeechSynthesisUtterance("Hello "+ username +". Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!");
+var ss;
 fire = new Image(50, 50);
 fire.src = "fire.png";
 var shelter;
@@ -83,6 +83,7 @@ function hunt(e) {
 function choose() {
 	username = prompt("Choose an username!");
 	socket.emit("username", username);
+	ss = new SpeechSynthesisUtterance("Hello "+ username +". Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!");
 }
 document.getElementById("dialog").hidden = false;
 document.getElementById("universe").hidden = true;
