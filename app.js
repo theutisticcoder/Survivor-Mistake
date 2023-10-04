@@ -329,7 +329,7 @@ function load() {
 			}
 			if(e.key == "x" && task.value === 0 && daynumber >= 2){
 				fire.style.position = "absolute";
-				fire.style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 500) + "px)";
+				fire.style.transform = "translate3d(" + b + "px, " + y + "px,5000px) perspective(" + (a + 5000) + "px)";
 				
 				document.getElementById("universe").appendChild(fire);
 				alert("The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food.");
