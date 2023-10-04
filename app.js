@@ -102,7 +102,8 @@ document.getElementById("ok").onclick = () => {
 	socket.emit("password", password);
 		document.getElementById("heli").play();
 	speechSynthesis.speak(ss);	
-	if(window.speechSynthesis.speaking == false){
+	ss.onend = ()=> {
+	document.getElementById("heli").pause();
 		load();
 	}
 };
@@ -114,7 +115,8 @@ document.getElementById("neither").onclick = () => {
 	
 	document.getElementById("heli").play();
 speechSynthesis.speak(ss);
-	if(window.speechSynthesis.speaking == false){
+	ss.onend = ()=> {
+	document.getElementById("heli").pause();
 		const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
 	link = "";
 	for (var i = 0; i < 40; i++) {
@@ -138,7 +140,8 @@ document.getElementById("no").onclick = () => {
 
 	document.getElementById("heli").play();
 speechSynthesis.speak(ss);
-	if(window.speechSynthesis.speaking == false){
+	ss.onend = ()=> {
+	document.getElementById("heli").pause();
 		load();
 	}
 	
