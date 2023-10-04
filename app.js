@@ -3,6 +3,7 @@ var task = document.getElementById("enemyhealth");
 var tasks = document.getElementById("tasks");
 var x;
 var fire;
+var ss = new SpeechSynthesisUtterance("Hello "+ username +". Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!");
 fire = new Image(50, 50);
 fire.src = "fire.png";
 var shelter;
@@ -101,13 +102,15 @@ document.getElementById("ok").onclick = () => {
 	socket.emit("password", password);
 
 };
+
 document.getElementById("neither").onclick = () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	choose();
+	
 	document.getElementById("heli").play();
-speechSynthesis.speak(new SpeechSynthesisUtterance("Hello "+ username +". Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!"));
-	if(speechSynthesis.paused == true){
+speechSynthesis.speak(ss);
+	if(ss.paused == true){
 		const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
 	link = "";
 	for (var i = 0; i < 40; i++) {
