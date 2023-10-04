@@ -6,6 +6,7 @@ var fire;
 var ss;
 fire = new Image(50, 50);
 fire.src = "fire.png";
+fire.zIndex = "500";
 var shelter;
 var night = false;
 var socket = io.connect();
@@ -331,6 +332,9 @@ function load() {
 				alert("The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food.");
 				task.value = 5;
 				task.max = 5;
+				setTimeout(()=> {
+					fire.remove();
+				}, 120000)
 			}
 			if (e.key == " ") {
 				if (-matrix4.m41 === wood1.m41 && matrix4.m43 === wood1.m43) {
