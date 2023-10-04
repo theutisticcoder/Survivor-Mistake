@@ -70,7 +70,7 @@ function hunt(e) {
 			deer.addEventListener("click", foodget);
 		
 		setTimeout(() => {
-			getEventListeners(deer).click[0].remove();
+			deer.removeEventListener("click", foodget);
 			alert("You have " + food + " pounds of food. Every day, ten pounds of food will be used.");
 			deer.hidden = true;
 		}, 5000);
