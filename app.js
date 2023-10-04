@@ -334,7 +334,7 @@ function load() {
 				task.max = 5;
 				setTimeout(()=> {
 					fire.remove();
-				}, 120000)
+				}, 120000);
 			}
 			if (e.key == " ") {
 				if (-matrix4.m41 === wood1.m41 && matrix4.m43 === wood1.m43) {
