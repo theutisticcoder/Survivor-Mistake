@@ -48,7 +48,7 @@ this.addEventListener("install", (event) => {
           "tree.png",
           "Grass3.png",
           "replit.nix",
-          "Tree.png",
+          "Tree.png"
         ])
       )
   );
