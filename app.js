@@ -429,7 +429,7 @@ function load() {
 			newrow.style.perspective = "800px";
 			newrow.style.position = "absolute";
 			newrow.style.transform =
-				"rotateX(180deg) translateY(1600px) perspective(6000px) translateZ(" +
+				"rotateX(180deg) translateY(1000px) perspective(3000px) translateZ(" +
 				(z * 50 + 1000) +
 				"px)";
 
