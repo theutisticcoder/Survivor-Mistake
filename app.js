@@ -2,6 +2,9 @@ var house = false;
 var task = document.getElementById("enemyhealth");
 var tasks = document.getElementById("tasks");
 var x;
+var fire;
+fire = new Image(50, 50);
+fire.src = "fire.png";
 var shelter;
 var night = false;
 var socket = io.connect();
@@ -304,7 +307,9 @@ function load() {
 				document.getElementById("universe").style.transform =
 					"translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
 			}
-			if(e.key == "x" && task.value === 0 && daynumber === 2){
+			if(e.key == "x" && task.value === 0 && daynumber >= 2){
+				fire.style.position = "absolute";
+				document.getElementById("universe").appendChild(fire);
 				alert("The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food.");
 				task.value = 5;
 				task.max = 5;
