@@ -228,6 +228,7 @@ var wood2;
 var wood3;
 var wood4;
 var wood5;
+function time(){
 clearTimeout(timeout)
 	if(night == false){
 		document.getElementById("night").style.opacity = "60%";
@@ -298,6 +299,7 @@ clearTimeout(timeout)
 													 universe.hidden = false;
 												 }, 5000)
 	}
+}
 function load() {
 	timeout = setTimeout(time, 240000);
 	document.getElementById("heli").pause();
