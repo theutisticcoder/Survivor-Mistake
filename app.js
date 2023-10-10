@@ -2,8 +2,10 @@ var house = false;
 var task = document.getElementById("enemyhealth");
 var tasks = document.getElementById("tasks");
 var x;
+var timeout;
 var fire;
 var ss;
+var thirst = 0;
 fire = new Image(500, 500);
 fire.src = "fire.png";
 fire.zIndex = "400";
@@ -20,6 +22,14 @@ img.style.zIndex = "500";
 img.style.position = "absolute";
 document.getElementById("universe").appendChild(img);
 img.hidden = true;
+var lake = document.createElement("div");
+lake.style.height = "1000px";
+lake.style.width = "500px";
+lake.style.position = "absolute";
+lake.style.transform = "translateX(1000px) translateZ(1000px) perspective(1200px)";
+lake.style.backgroundColor = "blue";
+lake.style.borderRadius = "50%";
+var laketrix;
 var food = 0;
 var fight = false;
 var username;
@@ -71,6 +81,8 @@ deer.hidden = true;
 			document.body.appendChild(deer);
 function hunt(e) {
 	if (e.key == "h" && document.activeElement != document.getElementById("message")) {
+		if (e.key == "h") {
+		if(daynumber < 3){
 		alert("Click to get the deer in time.");
 		
 			deer.hidden = false;
@@ -78,9 +90,17 @@ function hunt(e) {
 		
 		setTimeout(() => {
 			deer.removeEventListener("click", foodget);
-			alert("You have " + food + " pounds of food. Every day, ten pounds of food will be used.");
+			alert("You have " + food + " food. Every day, ten food will be used.");
 			deer.hidden = true;
 		}, 5000);
+	}
+		else{
+			if(Math.floor(Math.random() * 15) === 2){
+						alert("Edible mushroom found! Each one will count as 4 food.");
+						food += 4;
+					}
+		}
+}
 	}
 }
 function choose() {
@@ -208,14 +228,21 @@ var wood2;
 var wood3;
 var wood4;
 var wood5;
-function time(){
+clearTimeout(timeout)
 	if(night == false){
+		document.getElementById("night").style.opacity = "60%";
+		setTimeout(nighttime, 10000);
 			alert("It is night time. Go run around riskingly, or sleep safely in your shelter");
 		night = true;
 	}
 	else if(night == true){
+				clearTimeout(nighttime, 10000);
+		document.getElementById("night").style.opacity = "0%";
 		universe.hidden = true;
 	 day.hidden = false;
+		 day.style.top = "100px";
+													 day.style.left = "100px";
+								 day.style.position = "relative";
 												 food -= 10;
 												 if(food < 0){
 													 alert("You do not have enough food. Game Over.");
@@ -234,20 +261,46 @@ function time(){
 													 task.value = 6;
 													 tasks.innerHTML = "Make Fire";
 												 }
-		alert("Wake up sleepyhead! You must go live this month!")
+		 if(daynumber === 3){
+													 day.innerHTML = "Day " + daynumber + ". Look around the area for other food. The deer are getting skeptical.";
+													 task.max = 6;
+													 task.value = 6;
+													 tasks.innerHTML = "Forage";
+												 }
+		if(daynumber === 4) {
+			document.getElementById("universe").appendChild(lake);
+			laketrix = new WebKitCSSMatrix(window.getComputedStyle(lake).transform);
+		}
+		if(daynumber >= 4){
+			day.innerHTML = "Day " + daynumber + ". Keep your stats in check. Now, water is a factor. Find the lake at (0, 0), then press D to drink.";
+		}
+		if(daynumber > 4){
+			thirst += 10;
+			if(thirst >=30){
+				 alert("You did not drink enough. Game Over.");
+													 var attempt = confirm("Try again?");
+													 if(attempt == true){
+														 location.reload();
+													 }
+													 else{
+														 window.close();
+													 }
+			}
+		}
+		if(daynumber === 6){
+			alert("Thank you for playing the One Survivor Preview. Updates coming soon.");
+		}
+		alert("Wake up sleepyhead! You must go live today!");
+		
 		night = false;
 												 setTimeout(()=> {
-													 day.style.top = "100px";
-													 day.style.left = "100px";
-													 day.style.position = "relative";
+													
 													 day.hidden = true;
 													 universe.hidden = false;
 												 }, 5000)
 	}
-	setTimeout(time, 240000);
-}
 function load() {
-	setTimeout(time, 240000);
+	timeout = setTimeout(time, 240000);
 	document.getElementById("heli").pause();
 	document.getElementById("boom").play();
 	day.innerHTML = "Day " + daynumber + ". Use arrow keys to move and  space to search for resources.";
@@ -342,7 +395,14 @@ function load() {
 					fire.remove();
 				}, 120000);
 			}
+			if(e.key == "x" && fire.style.position ==="absolute" && daynumber >= 2){
+				if(firematrix.m41 === matrix4.m41 && firematrix.m43 === matrix4.m43 ){
+				alert("Food cooked. It will now fill you twice as much.");
+				food = food * 2;
+				}
+			}
 			if (e.key == " ") {
+				
 				if (-matrix4.m41 === wood1.m41 && matrix4.m43 === wood1.m43) {
 					alert("Wood found!");
 					task.value--;
@@ -410,7 +470,7 @@ function load() {
 			}
 			if (sheltermatrix) {
 
-				if (e.key == "Enter" && matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43 && document.activeElement != document.getElementById("message")) {
+				if (e.key == "Enter" && matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43) {
 					if (img.hidden == true) {
 						img.hidden = false;
 						health.max = 10;
@@ -433,7 +493,6 @@ function load() {
 					tree.hidden = true;
 				});
 			}
-
 
 		});
 		document.getElementById("universe").hidden = false;
