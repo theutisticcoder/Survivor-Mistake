@@ -410,7 +410,7 @@ function load() {
 			}
 			if (sheltermatrix) {
 
-				if (e.key == "Enter" && matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43) {
+				if (e.key == "Enter" && matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43 && document.activeElement != document.getElementById("message")) {
 					if (img.hidden == true) {
 						img.hidden = false;
 						health.max = 10;
