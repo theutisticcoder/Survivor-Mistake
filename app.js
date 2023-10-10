@@ -81,7 +81,6 @@ deer.hidden = true;
 			document.body.appendChild(deer);
 function hunt(e) {
 	if (e.key == "h" && document.activeElement != document.getElementById("message")) {
-		if (e.key == "h") {
 		if(daynumber < 3){
 		alert("Click to get the deer in time.");
 		
@@ -95,14 +94,13 @@ function hunt(e) {
 		}, 5000);
 	}
 		else{
-			if(Math.floor(Math.random() * 15) === 2){
+			if(Math.floor(Math.random() * 5) === 2){
 						alert("Edible mushroom found! Each one will count as 4 food.");
 						food += 4;
 					}
 		}
 }
 	}
-}
 function choose() {
 	username = prompt("Choose an username!");
 	socket.emit("username", username);
