@@ -234,7 +234,6 @@ clearTimeout(timeout)
 		night = true;
 	}
 	else if(night == true){
-				clearTimeout(nighttime, 10000);
 		document.getElementById("night").style.opacity = "0%";
 		universe.hidden = true;
 	 day.hidden = false;
