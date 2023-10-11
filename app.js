@@ -75,7 +75,7 @@ function foodget(){
 }
 var deer = new Image(200, 200);
 			deer.src = "deer.png";
-			deer.style.zIndex = "300";
+			deer.style.zIndex = "2000";
 			deer.style.position = "absolute";
 deer.hidden = true;
 			document.body.appendChild(deer);
