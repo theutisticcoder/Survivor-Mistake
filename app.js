@@ -284,9 +284,6 @@ clearTimeout(timeout)
 													 }
 			}
 		}
-		if(daynumber === 6){
-			alert("Thank you for playing the One Survivor Preview. Updates coming soon.");
-		}
 		alert("Wake up sleepyhead! You must go live today!");
 		
 		night = false;
@@ -391,7 +388,8 @@ function load() {
 				task.max = 5;
 				setTimeout(()=> {
 					fire.remove();
-				}, 120000);
+				}, 60000);
+			socket.emit("fire", username);
 			}
 			if(e.key == "x" && fire.style.position ==="absolute" && daynumber >= 2){
 				if(firematrix.m41 === matrix4.m41 && firematrix.m43 === matrix4.m43 ){
@@ -450,6 +448,7 @@ function load() {
 			}
 
 			if (e.key == "x" && house == true) {
+				socket.emit("house", username);
 				alert("House built!");
 				house = false;
 				shelter = document.createElement("img");
@@ -468,7 +467,7 @@ function load() {
 			}
 			if (sheltermatrix) {
 
-				if (e.key == "Enter" && matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43 && document.acteiveElement != document.getElementById("message")) {
+				if (e.key == "Enter" && matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43 && document.activeElement != document.getElementById("message")) {
 					if (img.hidden == true) {
 						img.hidden = false;
 						health.max = 10;
@@ -550,7 +549,6 @@ document.getElementById("message").onkeydown = (e) => {
 		p.style.position = "relative";
 		p.style.zIndex = "101";
 		p.style.width = "10vw";
-		p.style.overflowX = "scroll";
 		socket.emit("message", { message: newmessage, user: username });
 		document.getElementById("messages").appendChild(p);
 	}
@@ -566,3 +564,7 @@ socket.on('newmessage', messagenew => {
 	p.style.zIndex = "101";
 	document.getElementById("messages").appendChild(p);
 });
+
+socket.on("firemade", (player)={
+	alert(player + " made a fire.");
+})
