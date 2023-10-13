@@ -1,3 +1,8 @@
+  var pusher = new Pusher('407eec1b79df5b288fae', {
+      cluster: 'mt1'
+    });
+var channel = pusher.subscribe("mychannel");
+
 var house = false;
 var task = document.getElementById("enemyhealth");
 var tasks = document.getElementById("tasks");
@@ -103,7 +108,7 @@ function hunt(e) {
 	}
 function choose() {
 	username = prompt("Choose an username!");
-	socket.emit("username", username);
+	pusher.trigger("username", username);
 	ss = new SpeechSynthesisUtterance("Hello "+ username +". Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!");
 }
 document.getElementById("dialog").hidden = false;
@@ -119,8 +124,9 @@ document.getElementById("ok").onclick = () => {
 	choose();
 	var room = prompt("Choose a private room name.");
 	var password = prompt("Choose a password.");
-	socket.emit("roomname", room);
-	socket.emit("password", password);
+	channel = pusher.subscribe(room);
+	pusher.trigger("roomname", room);
+	pusher.trigger("password", password);
 		document.getElementById("heli").play();
 	speechSynthesis.speak(ss);	
 	ss.onend = ()=> {
@@ -143,7 +149,7 @@ speechSynthesis.speak(ss);
 	for (var i = 0; i < 40; i++) {
 		link += characters.charAt(Math.floor(Math.random() * characters.length));
 	}
-	socket.emit("self", link);
+	pusher.trigger("self", link);
 	console.log(link);
 		load();
 	}
@@ -155,10 +161,10 @@ document.getElementById("no").onclick = () => {
 	document.body.style.background = "url(sky.jpg)";
 	choose();
 	var roomname = prompt("Enter the room name.");
-	socket.emit("room", roomname);
+	pusher.trigger("room", roomname);
 	var pass = prompt("Enter the room's password.");
-	socket.emit("pass", pass);
-
+	pusher.trigger("pass", pass);
+	channel = pusher.subscribe(roomname);
 	document.getElementById("heli").play();
 speechSynthesis.speak(ss);
 	ss.onend = ()=> {
@@ -167,13 +173,13 @@ speechSynthesis.speak(ss);
 	}
 	
 }
-socket.on("usernotadded", () => {
+channel.bind("usernotadded", () => {
 	person = prompt(
 		"Choose a new username. Your old one was either taken, inappropriate, or blank!"
 	);
-	socket.emit("username", person);
+	pusher.trigger("username", person);
 });
-socket.on("roomclosed", (data) => {
+channel.bind("roomclosed", (data) => {
 	if (
 		typeof users[0 + data.number] != "undefined" &&
 		typeof users[1 + data.number] != "undefined" &&
@@ -202,19 +208,19 @@ socket.on("roomclosed", (data) => {
 	}
 });
 
-socket.on("useradded", (u) => {
+channel.bind("useradded", (u) => {
 	users = u;
 });
-socket.on("left", (leaving) => {
+channel.bind("left", (leaving) => {
 	alert(leaving + " left.");
 });
-socket.on("joined", (per) => {
+channel.bind("joined", (per) => {
 	alert(per + " joined.");
 });
-socket.on("leave", (u) => {
+channel.bind("leave", (u) => {
 	users = u;
 });
-socket.on("gameover", (killed) => {
+channel.bind("gameover", (killed) => {
 	alert(killed + " died.");
 });
 var t;
@@ -329,7 +335,7 @@ function load() {
 			);
 			sol1 = document.getElementById("panther");
 			document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
-			socket.emit("move", matrix4);
+			pusher.trigger("move", matrix4);
 
 			a = parseInt(a);
 			b = parseInt(b);
@@ -389,7 +395,7 @@ function load() {
 				setTimeout(()=> {
 					fire.remove();
 				}, 60000);
-			socket.emit("fire", username);
+			pusher.trigger("fire", username);
 			}
 			if(e.key == "x" && fire.style.position ==="absolute" && daynumber >= 2){
 				if(firematrix.m41 === matrix4.m41 && firematrix.m43 === matrix4.m43 ){
@@ -448,7 +454,7 @@ function load() {
 			}
 
 			if (e.key == "x" && house == true) {
-				socket.emit("house", username);
+				pusher.trigger("house", username);
 				alert("House built!");
 				house = false;
 				shelter = document.createElement("img");
@@ -550,11 +556,11 @@ document.getElementById("message").onkeydown = (e) => {
 		p.style.position = "relative";
 		p.style.zIndex = "101";
 		p.style.width = "10vw";
-		socket.emit("message", { message: newmessage, user: username });
+		pusher.trigger("message", { message: newmessage, user: username });
 		document.getElementById("messages").appendChild(p);
 	}
 };
-socket.on('newmessage', messagenew => {
+channel.bind('newmessage', messagenew => {
 	p = document.createElement("p");
 	newmessage = messagenew.user + ": " + messagenew.message;
 	p.innerHTML = newmessage;
@@ -566,10 +572,10 @@ socket.on('newmessage', messagenew => {
 	document.getElementById("messages").appendChild(p);
 });
 
-socket.on("firemade", (player)=>{
+channel.bind("firemade", (player)=>{
 	alert(player + " made a fire.");
 })
 
-socket.on("housemade", (player)=>{
+channel.bind("housemade", (player)=>{
 	alert(player + " made a house.");
 })
