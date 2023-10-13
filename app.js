@@ -566,6 +566,10 @@ socket.on('newmessage', messagenew => {
 	document.getElementById("messages").appendChild(p);
 });
 
-socket.on("firemade", (player)={
+socket.on("firemade", (player)=>{
 	alert(player + " made a fire.");
+})
+
+socket.on("housemade", (player)=>{
+	alert(player + " made a house.");
 })
