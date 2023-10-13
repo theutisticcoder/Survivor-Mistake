@@ -73,6 +73,12 @@ io.on("connection", (socket) => {
 		
 				socket.to(Array.from(socket.rooms)[1]).emit("newmessage", {message: message.message, user: message.user});
   });
+	socket.on("house", (u)=> {
+		socket.emit("housemade", u);
+	});
+	socket.on("fire", (u)=> {
+		socket.emit("firemade", u);
+	});
   socket.on("disconnecting", () => {
     people--;
     
