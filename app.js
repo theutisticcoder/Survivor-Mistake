@@ -70,6 +70,10 @@ var p = 0;
 var person;
 var roomnumber = 0;
 var otherplayer;
+socket.on("roomnotjoined", ()=>{
+	alert("Room not found, please try again...");
+	location.reload();
+});
 function foodget(){
 	food++;
 }
