@@ -326,14 +326,10 @@ function load() {
 		wood2 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("1")).transform);
 		wood3 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("2")).transform);
 		wood4 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("3")).transform);
-		wood5 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("4")).transform); document.addEventListener("keydown", function(e) {
-
-			matrix4 = new WebKitCSSMatrix(
-				window.getComputedStyle(document.getElementById("universe")).transform
-			);
-			sol1 = document.getElementById("panther");
-			document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
-			socket.emit("move", matrix4);
+		wood5 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("4")).transform); 
+		document.addEventListener("keydown", function(e) {
+		if(document.activeElement != document.getElementById("message")){
+			
 
 			a = parseInt(a);
 			b = parseInt(b);
@@ -494,7 +490,13 @@ function load() {
 					tree.hidden = true;
 				});
 			}
-
+			matrix4 = new WebKitCSSMatrix(
+				window.getComputedStyle(document.getElementById("universe")).transform
+			);
+			sol1 = document.getElementById("panther");
+			document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
+			socket.emit("move", matrix4);
+		}
 		});
 		document.getElementById("universe").hidden = false;
 		document.getElementById("text").hidden = false;
