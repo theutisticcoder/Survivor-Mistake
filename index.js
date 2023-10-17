@@ -74,10 +74,10 @@ io.on("connection", (socket) => {
 				socket.to(Array.from(socket.rooms)[1]).emit("newmessage", {message: message.message, user: message.user});
   });
 	socket.on("house", (u)=> {
-		socket.broadcast.to(Array,from(socket.rooms)[1]).emit("housemade", u);
+		socket.broadcast.to(Array.from(socket.rooms)[1]).emit("housemade", u);
 	});
 	socket.on("fire", (u)=> {
-		socket.broadcast.to(Array,from(socket.rooms)[1]).emit("firemade", u);
+		socket.broadcast.to(Array.from(socket.rooms)[1]).emit("firemade", u);
 	});
   socket.on("disconnecting", () => {
     people--;
