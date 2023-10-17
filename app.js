@@ -448,7 +448,6 @@ function load() {
 			}
 
 			if (e.key == "x" && house == true) {
-				socket.emit("house", username);
 				alert("House built!");
 				house = false;
 				shelter = document.createElement("img");
@@ -464,6 +463,7 @@ function load() {
 				tasks.innerHTML = "Find food";
 				alert("Go bring some food back home. Go hunting for food in a space by pressing 'h'.");
 				document.onkeydown = hunt;
+				socket.emit("house", sheltermatrix);
 			}
 			if (sheltermatrix) {
 
@@ -577,5 +577,19 @@ socket.on("firemade", (player)=>{
 })
 
 socket.on("housemade", (player)=>{
-	alert(player + " made a house.");
+	alert("Someone made a house. It is at X: " + player.m41 + ", Z: " + player.m43);
+	house = false;
+				shelter = document.createElement("img");
+				shelter.style.position = "absolute";
+				shelter.style.zIndex = "8";
+				shelter.src = "shack.png";
+				shelter.style.left = "200px";
+				shelter.style.top = "200px";
+				shelter.style.transform = "translate3d(" + player.m41 + "px, " + player.m42 + "px, " + player.m43 + "px) perspective(" + (player.m43 + 5000) + "px)";
+				document.getElementById("universe").appendChild(shelter);
+				sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(shelter).transform);
+				alert("Hint: If you ENTER your house, you have double your health.");
+				tasks.innerHTML = "Find food";
+				alert("Go bring some food back home. Go hunting for food in a space by pressing 'h'.");
+				document.onkeydown = hunt;
 })
