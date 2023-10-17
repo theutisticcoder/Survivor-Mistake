@@ -389,7 +389,7 @@ function load() {
 				setTimeout(()=> {
 					fire.remove();
 				}, 60000);
-			socket.emit("fire", username);
+			socket.emit("fire", firematrix);
 			}
 			if(e.key == "x" && fire.style.position ==="absolute" && daynumber >= 2){
 				if(firematrix.m41 === matrix4.m41 && firematrix.m43 === matrix4.m43 ){
@@ -573,7 +573,17 @@ socket.on('newmessage', messagenew => {
 });
 
 socket.on("firemade", (player)=>{
-	alert(player + " made a fire.");
+	alert("Someone made a fire. It is at X: " + player.m41 + ", Z: " + player.m43);
+	fire.style.position = "absolute";
+				fire.style.transform = "translate3d(" + player.m41 + "px, " + player.m42 + "px, " + player.m43 + "px) perspective(" + (player.m43 + 5000) + "px)";
+				
+				document.getElementById("universe").appendChild(fire);
+				alert("The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food.");
+				task.value = 5;
+				task.max = 5;
+				setTimeout(()=> {
+					fire.remove();
+				}, 60000);
 })
 
 socket.on("housemade", (player)=>{
