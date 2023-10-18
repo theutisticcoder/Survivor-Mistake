@@ -551,10 +551,11 @@ document.getElementById("message").onkeydown = (e) => {
 		newmessage = message;
 		p.style.overflowWrap = "anywhere";
 		p.innerHTML = "You: " + message;
-		p.style.color = "navy";
+		p.style.color = "blue";
 		p.style.position = "relative";
 		p.style.zIndex = "101";
 		p.style.width = "10vw";
+		p.style.left = "5vh";
 		socket.emit("message", { message: newmessage, user: username });
 		document.getElementById("messages").appendChild(p);
 	}
@@ -564,7 +565,8 @@ socket.on('newmessage', messagenew => {
 	newmessage = messagenew.user + ": " + messagenew.message;
 	p.innerHTML = newmessage;
 	p.style.width = "10vw";
-	p.style.color = "black";
+	p.style.color = "red";
+	p.style.left = "-5vh";
 	p.style.overflowWrap = "anywhere";
 	p.style.position = "relative";
 	p.style.zIndex = "101";
