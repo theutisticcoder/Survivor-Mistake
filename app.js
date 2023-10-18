@@ -551,7 +551,6 @@ document.getElementById("message").onkeydown = (e) => {
 		newmessage = message;
 		p.style.overflowWrap = "anywhere";
 		p.innerHTML = "You: " + message;
-		p.style.left = "90vw";
 		p.style.color = "navy";
 		p.style.position = "relative";
 		p.style.zIndex = "101";
