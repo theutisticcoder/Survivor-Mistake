@@ -555,7 +555,7 @@ document.getElementById("message").onkeydown = (e) => {
 		p.style.position = "relative";
 		p.style.zIndex = "101";
 		p.style.width = "5vw";
-		p.style.left = "25%";
+		p.style.left = "75%";
 		socket.emit("message", { message: newmessage, user: username });
 		document.getElementById("messages").appendChild(p);
 	}
@@ -566,7 +566,7 @@ socket.on('newmessage', messagenew => {
 	p.innerHTML = newmessage;
 	p.style.width = "5vw";
 	p.style.color = "red";
-	p.style.left = "75%";
+	p.style.left = "25%";
 	p.style.overflowWrap = "anywhere";
 	p.style.position = "relative";
 	p.style.zIndex = "101";
