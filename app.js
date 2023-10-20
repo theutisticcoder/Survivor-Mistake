@@ -2,6 +2,7 @@ var house = false;
 var task = document.getElementById("enemyhealth");
 var tasks = document.getElementById("tasks");
 var x;
+var firematrix;
 var timeout;
 var fire;
 var ss;
