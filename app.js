@@ -554,8 +554,8 @@ document.getElementById("message").onkeydown = (e) => {
 		p.style.color = "blue";
 		p.style.position = "relative";
 		p.style.zIndex = "101";
-		p.style.width = "10vw";
-		p.style.left = "5vh";
+		p.style.width = "5vw";
+		p.style.left = "25%";
 		socket.emit("message", { message: newmessage, user: username });
 		document.getElementById("messages").appendChild(p);
 	}
@@ -564,9 +564,9 @@ socket.on('newmessage', messagenew => {
 	p = document.createElement("p");
 	newmessage = messagenew.user + ": " + messagenew.message;
 	p.innerHTML = newmessage;
-	p.style.width = "10vw";
+	p.style.width = "5vw";
 	p.style.color = "red";
-	p.style.left = "-5vh";
+	p.style.left = "75%";
 	p.style.overflowWrap = "anywhere";
 	p.style.position = "relative";
 	p.style.zIndex = "101";
