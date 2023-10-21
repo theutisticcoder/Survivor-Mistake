@@ -239,6 +239,7 @@ clearTimeout(timeout)
 		night = true;
 	}
 	else if(night == true){
+		
 		document.getElementById("night").style.opacity = "0%";
 		universe.hidden = true;
 	 day.hidden = false;
@@ -297,7 +298,15 @@ clearTimeout(timeout)
 													 day.hidden = true;
 													 universe.hidden = false;
 												 }, 5000)
+		if(daynumber === 6){
+			day.innerHTML = "Day " + daynumber + ". look for an abandoned building near (300, 700).";
+			document.querySelector("model-viewer").hidden = false;
+													 task.max = 6;
+													 task.value = 6;
+													 tasks.innerHTML = "Make Fire";
+		}
 	}
+	
 }
 function load() {
 	timeout = setTimeout(time, 240000);
@@ -447,7 +456,7 @@ function load() {
 				}
 
 			}
-
+				
 			if (e.key == "x" && house == true) {
 				alert("House built!");
 				house = false;
@@ -465,6 +474,9 @@ function load() {
 				alert("Go bring some food back home. Go hunting for food in a space by pressing 'h'.");
 				document.onkeydown = hunt;
 				socket.emit("house", sheltermatrix);
+			}
+			if(e.key == "Enter" && daynumber > 6 && -matrix4.m41 === 300 && matrix4.m43 === 700){
+				alert("House Entered! Find the clues to discover what happened.")
 			}
 			if (sheltermatrix) {
 
@@ -577,7 +589,7 @@ socket.on('newmessage', messagenew => {
 });
 
 socket.on("firemade", (player)=>{
-	alert("Someone made a fire. It is at X: " + player.m41 + ", Z: " + player.m43);
+	alert("Someone made a fire. It is at X: " + -player.m41 + ", Z: " + -player.m43);
 	fire.style.position = "absolute";
 				fire.style.transform = "translate3d(" + player.m41 + "px, " + player.m42 + "px, " + player.m43 + "px) perspective(" + (player.m43 + 5000) + "px)";
 				document.getElementById("universe").appendChild(fire);
@@ -591,7 +603,7 @@ socket.on("firemade", (player)=>{
 })
 
 socket.on("housemade", (player)=>{
-	alert("Someone made a house. It is at X: " + player.m41 + ", Z: " + player.m43);
+	alert("Someone made a house. It is at X: " + -player.m41 + ", Z: " + -player.m43);
 	house = false;
 				shelter = document.createElement("img");
 				shelter.style.position = "absolute";
