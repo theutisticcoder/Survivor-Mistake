@@ -499,10 +499,9 @@ function load() {
 				}
 
 			}
-			if (e.key == "s" && e.key == "n" && e.key == "a" && e.key == "p") {
-				document.getElementsByClassName("tree").forEach(tree => {
-					tree.hidden = true;
-				});
+			if(e.key == "d" && daynumber > 3 && a === 0 && b === 0){
+				alert("Your thirst went down by 5.");
+				thirst -= 5;
 			}
 			matrix4 = new WebKitCSSMatrix(
 				window.getComputedStyle(document.getElementById("universe")).transform
