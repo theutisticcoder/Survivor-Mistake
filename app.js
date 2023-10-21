@@ -382,8 +382,8 @@ function load() {
 			if(e.key == "x" && task.value === 0 && daynumber >= 2){
 				fire.style.position = "absolute";
 				fire.style.transform = "translate3d(" + b + "px, " + y + "px,"+ a +"px) perspective(" + (a + 5000) + "px)";
-				firematrix = new WebKitCSSMatrix(getComputedStyle(fire).transform);
 				document.getElementById("universe").appendChild(fire);
+				firematrix = new WebKitCSSMatrix(getComputedStyle(fire).transform);
 				alert("The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food.");
 				task.value = 5;
 				task.max = 5;
@@ -580,8 +580,8 @@ socket.on("firemade", (player)=>{
 	alert("Someone made a fire. It is at X: " + player.m41 + ", Z: " + player.m43);
 	fire.style.position = "absolute";
 				fire.style.transform = "translate3d(" + player.m41 + "px, " + player.m42 + "px, " + player.m43 + "px) perspective(" + (player.m43 + 5000) + "px)";
-				
 				document.getElementById("universe").appendChild(fire);
+				firematrix = new WebKitCSSMatrix(getComputedStyle(fire).transform);
 				alert("The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food.");
 				task.value = 5;
 				task.max = 5;
