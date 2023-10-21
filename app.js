@@ -300,10 +300,10 @@ clearTimeout(timeout)
 												 }, 5000)
 		if(daynumber === 6){
 			day.innerHTML = "Day " + daynumber + ". look for an abandoned building near (300, 700).";
-			document.querySelector("model-viewer").hidden = false;
+			document.querySelector("model-viewer").style.display = "block";
 													 task.max = 6;
 													 task.value = 6;
-													 tasks.innerHTML = "Make Fire";
+													 tasks.innerHTML = "Find Building";
 		}
 	}
 	
@@ -476,7 +476,8 @@ function load() {
 				socket.emit("house", sheltermatrix);
 			}
 			if(e.key == "Enter" && daynumber > 6 && -matrix4.m41 === 300 && matrix4.m43 === 700){
-				alert("House Entered! Find the clues to discover what happened.")
+				alert("House Entered! Find the clues to discover what happened.");
+				
 			}
 			if (sheltermatrix) {
 
