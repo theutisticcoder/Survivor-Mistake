@@ -12,6 +12,7 @@
 		<link rel="manifest" href="manifest.json" />
 
 <style>
+	
 	#other{
 		height: 100px;
 		width: 100px;
@@ -277,6 +278,14 @@
 	#messages{
 		overflow-y: scroll;
 	}
+	model-viewer{
+		position: absolute; 
+		transform: translate3d(300px, 0px, 700px) perspective(5000px);
+		scale: 10 10 10;
+		height: 500px;
+		width: 500px;
+		visibility: hidden;
+	}
 </style>
 	<div id="dialog" hidden = true>
 		<p id="option"></p>
@@ -292,7 +301,7 @@
 	
 	<body>
 		<div id="universe">
-			<model-viewer src="building.glb" style="position: absolute; transform: translate3d(300px, 0px, 700px) perspective(5000px); scale: 10 10 10; height: 500px; width: 500px;"></model-viewer>
+			<model-viewer src="building.glb"></model-viewer>
 		<div id="world">
 			<img id="panther" hidden="true" src="soldier.png" class="soldier"/>
 			<div id="mainDiv">
