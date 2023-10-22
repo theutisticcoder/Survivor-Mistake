@@ -298,9 +298,9 @@ clearTimeout(timeout)
 													 day.hidden = true;
 													 universe.hidden = false;
 												 }, 5000)
-		if(daynumber === 6){
+		if(daynumber >= 6){
 			day.innerHTML = "Day " + daynumber + ". look for an abandoned building near (300, 700).";
-			document.querySelector("model-viewer").style.display = "block";
+			document.querySelector("model-viewer").style.visibility = "visible";
 													 task.max = 6;
 													 task.value = 6;
 													 tasks.innerHTML = "Find Building";
