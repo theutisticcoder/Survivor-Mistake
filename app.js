@@ -300,9 +300,12 @@ clearTimeout(timeout)
 												 }, 5000)
 		if(daynumber >= 6){
 			day.innerHTML = "Day " + daynumber + ". look for an abandoned building near (300, 700).";
-			document.querySelector("model-viewer").style.visibility = "visible";
-													 task.max = 6;
-													 task.value = 6;
+			var model = document.createElement("model-viewer");
+			model.src = "building.glb";
+			document.getElementById("universe").appendChild(model);
+			model.style.visibility = "visible";
+													 task.max = 1;
+													 task.value = 1;
 													 tasks.innerHTML = "Find Building";
 		}
 	}
