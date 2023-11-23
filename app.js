@@ -231,6 +231,7 @@ var wood2;
 var wood3;
 var wood4;
 var wood5;
+var model;
 function time(){
 clearTimeout(timeout)
 	if(night == false){
@@ -298,13 +299,13 @@ clearTimeout(timeout)
 													 day.hidden = true;
 													 universe.hidden = false;
 												 }, 5000)
-		if(daynumber >= 6){
+		if(daynumber === 6){
 			day.innerHTML = "Day " + daynumber + ". look for an abandoned building near (300, 700).";
-			var model = document.createElement("model-viewer");
+			 model = document.createElement("model-viewer");
 			model.src = "building.glb";
+			model.classList.add("building");
 			document.getElementById("universe").appendChild(model);
-			model.style.visibility = "visible";
-													 task.max = 1;
+			task.max = 1;
 													 task.value = 1;
 													 tasks.innerHTML = "Find Building";
 		}
