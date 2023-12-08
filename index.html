@@ -38,8 +38,9 @@
 		left: 75%;
 	}
 	.building{
-		transform: translate3d(300px, 0px, -700px) scale3d(15,15,15);
+		transform: translate3d(300px, 0px, -700px) scale3d(20,20,20);
 		rotate: 0 1 0 90deg;
+		transform-origin: bottom;
 		height: 100px;
 		width: 100px;
 		position: absolute;
@@ -309,7 +310,7 @@
 				</div>
 			</div>
 		</div>
-			<model-viewer hidden id="model" src="building.glb"></model-viewer>
+			<model-viewer style="display: none" id="model" src="building.glb"></model-viewer>
 	</div>
 		<img id="ex" src="explosion.png" hidden="true"/>
 		<audio id="boom" src="Boom.mp3"></audio>
