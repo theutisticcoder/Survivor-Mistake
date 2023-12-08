@@ -232,6 +232,7 @@ var wood3;
 var wood4;
 var wood5;
 var model = document.getElementById("model");
+model.hidden = true;
 function time(){
 clearTimeout(timeout)
 	if(night == false){
@@ -302,6 +303,7 @@ clearTimeout(timeout)
 		if(daynumber === 6){
 			day.innerHTML = "Day " + daynumber + ". look for an abandoned building near (300, 700).";
 			model.hidden = false;
+			model.classList.add("building");
 			task.max = 1;
 													 task.value = 1;
 													 tasks.innerHTML = "Find Building";
