@@ -310,10 +310,11 @@ clearTimeout(timeout)
 													 tasks.innerHTML = "Find Building";
 		}
 	}
-	
+		timeout = setTimeout(time, 90000);
+
 }
 function load() {
-	timeout = setTimeout(time, 240000);
+	timeout = setTimeout(time, 90000);
 	document.getElementById("heli").pause();
 	document.getElementById("boom").play();
 	day.innerHTML = "Day " + daynumber + ". Use arrow keys to move and  space to search for resources.";
