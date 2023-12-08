@@ -38,7 +38,9 @@
 		left: 75%;
 	}
 	.building{
-		transform: translate3d(300px, 0px, -700px);
+		transform: translate3d(300px, 0px, -700px) scale3d(15,15,15);
+		height: 100px;
+		width: 100px;
 		position: absolute;
 	}
 	#username{
@@ -281,13 +283,7 @@
 	#messages{
 		overflow-y: scroll;
 	}
-	#model{
-		position: absolute; 
-		transform: rotateY(-90deg) scale3d(20, 20, 20) translate3d(300px, 0px, -700px);
-		height: 500px;
-		width: 500px;
-		visibility: hidden;
-	}
+	
 </style>
 	<div id="dialog" hidden = true>
 		<p id="option"></p>
