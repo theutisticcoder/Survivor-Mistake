@@ -1,5 +1,5 @@
 {
-  "name": "One Survivor",
+  "name": "Survivor Mistake",
   "short_name": "Survivor Mistake",
   "start_url": "index.html",
   "display": "standalone",
@@ -7,9 +7,9 @@
   "description": "Survive a month in the woods.",
   "icons": [
     {
-      "src": "shack.png",
+      "src": "shack.jpg",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/jpeg"
     }
   ]
 }
