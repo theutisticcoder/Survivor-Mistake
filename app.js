@@ -232,7 +232,6 @@ var wood3;
 var wood4;
 var wood5;
 var model = document.getElementById("model");
-model.hidden = true;
 function time(){
 clearTimeout(timeout)
 	if(night == false){
@@ -322,6 +321,7 @@ function load() {
 	day.style.color = "white";
 	day.style.position = "absolute";
 	day.style.zIndex = "140";
+	day.style.width = "50vw";
 	day.style.top = "50%";
 	day.style.left = "50%";
 	document.body.appendChild(day);
