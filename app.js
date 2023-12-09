@@ -308,7 +308,7 @@ clearTimeout(timeout)
 			model.style.height = "100px";
 			model.style.width = "100px";
 			model.style.rotate = "0 1 0 90deg";
-			model.classList.add("building");
+			model.style.translate = "-150px 0px 0px";
 			task.max = 1;
 													 task.value = 1;
 													 tasks.innerHTML = "Find Building";
