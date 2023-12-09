@@ -303,12 +303,11 @@ clearTimeout(timeout)
 			day.innerHTML = "Day " + daynumber + ". look for an abandoned building near (300, 700).";
 			model.style.display = "block";
 			model.style.transform = "translate3d(300px, 0px, 700px)";
-			model.style.scale = "10 10 10";
 			model.style.position = "absolute";
-			model.style.height = "100px";
-			model.style.width = "100px";
+			model.style.height = "1000px";
 			model.style.rotate = "0 1 0 90deg";
 			model.style.translate = "-150px 0px 0px";
+			model.style.transformStyle = "preserver-3d";
 			task.max = 1;
 													 task.value = 1;
 													 tasks.innerHTML = "Find Building";
