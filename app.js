@@ -9,7 +9,7 @@ var ss;
 var thirst = 0;
 fire = new Image(500, 500);
 fire.src = "fire.png";
-fire.zIndex = "400";
+fire.style.zIndex = "400";
 fire.style.top = "500px";
 fire.style.left = "1000px";
 var shelter;
@@ -301,7 +301,7 @@ clearTimeout(timeout)
 												 }, 5000)
 		if(daynumber === 6){
 			day.innerHTML = "Day " + daynumber + ". look for an abandoned building near (2000, 700).";
-			model.style.scale = "10 10 10";
+			model.style.scale = "3 3 3";
 			task.max = 1;
 													 task.value = 1;
 													 tasks.innerHTML = "Find Building";
