@@ -330,6 +330,7 @@ clearTimeout(timeout)
 		timeout = setTimeout(time, 90000);
 
 }
+			var room = document.getElementById("room");
 function load() {
 	timeout = setTimeout(time, 90000);
 	document.getElementById("heli").pause();
@@ -498,7 +499,6 @@ function load() {
 				document.onkeydown = hunt;
 				socket.emit("house", sheltermatrix);
 			}
-			var room = document.getElementById("room");
 			if(e.key == "Enter" && daynumber > 5 && -matrix4.m41 === 2000 && matrix4.m43 === 700){
 				alert("House Entered! Find the clues to discover what happened.");
 				room.hidden = false
@@ -507,11 +507,11 @@ function load() {
 var x, y, z;
 	
 	 
-											window.addEventListener('drag', (e) => {
+											document.getElementById("room").addEventListener('drag', (e) => {
 												
-																 x = -e.clientY;
-																 y = e.clientX;
-												document.getElementById("room").style.transform = `translateZ(600px) rotateY(${y}deg) rotateX(${x}deg)`;
+																 cx = -e.clientY;
+																 cy = e.clientX;
+												document.getElementById("room").style.transform = `translateZ(600px) rotateY(${cy}deg) rotateX(${cx}deg)`;
 															});
 								
 
@@ -556,7 +556,7 @@ if(parts >= 10){
 
 
 setTimeout(()=> {
-	if(esc !== true){
+	if(esc == false){
 	alert("Time's up! Nice try.");
 	location.reload();
 	}
