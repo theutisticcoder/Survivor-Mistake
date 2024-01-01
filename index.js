@@ -55,7 +55,8 @@ io.on("connection", (socket) => {
 			}
 			}
 			else{
-				socket.emit("roomnotjoined");
+				socket.join(room);
+				socket.emit("joinedroom", socket.nickname)
 			}
 		});
 	});
