@@ -1,0 +1,347 @@
+#other{
+		height: 100px;
+		width: 100px;
+		position: absolute;
+		transform-origin: -2500px 0px -7500px;
+	}
+	h1{
+		
+	}
+	#soldier{
+		position: absolute;
+		height: 300px;
+		width: 100px;
+		transform-origin: -2500px 0px 0px;
+	}
+	.score{
+		cursor: pointer;
+		position: absolute;
+		z-index: 9;
+		left: 80%;
+	}
+	#enemyhealth{
+		left: 75%;
+	}
+	
+	#username{
+		position: absolute;
+		transform-origin: -2500px 0px -7500px;
+	}
+	#panther {
+		transform-style: preserve-3d;
+		cursor: pointer;
+		top: 100px;
+		height: 500px;
+		width: 500px;
+		position: absolute;
+	}
+	html,
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	#range {
+		color: black;
+		z-index: 5;
+		font-size: 20pt;
+		position: absolute;
+		top: 150px;
+	}
+	#tasks{
+		left: 75%;
+		position: absolute;
+		color: white;
+		z-index: 6;
+	}
+	#c {
+		color: black;
+		z-index: 10;
+		font-size: 20pt;
+		position: absolute;
+		top: 200px;
+	}
+	#enemy {
+		color: black;
+		z-index: 10;
+		font-size: 20pt;
+		position: absolute;
+		top: 250px;
+	}
+	#a {
+		color: black;
+		z-index:105;
+		font-size: 20pt;
+		position: absolute;
+		top: 300px;
+	}
+	#health {
+		content: "health";
+  		background: red;
+		height: 50px;
+		width: 50%;
+		z-index: 5;
+		position: absolute;
+	}
+		#health::-webkit-progress-value {
+  background: red;
+}
+	#enemyhealth{
+  background: blue;
+		height: 50px;
+		width: 50%;
+		z-index: 5;
+		left: 50%;
+		position: absolute;
+	}
+	#enemyhealth::-webkit-progress-value {
+  background: blue;
+}
+	p {
+		left: 25%;
+ 		color: white;
+		z-index: 6;
+		position: absolute;
+	}
+
+
+
+	#bottom {
+		z-index: 0;
+		position: absolute;
+		transform-origin: bottom;
+		height: 50px;
+		width: 50px;
+		transform: rotateX(-90deg) translateY(250px);
+	}
+
+	#panther {
+		transform-style: preserve-3d;
+		cursor: pointer;
+		height: 100px;
+		width: 100px;
+		position: absolute;
+		transform: translateY(400px) translateX(100px);
+	}
+
+	#world {
+		position: absolute;
+		transform-style: preserve-3d;
+		transform-origin: -2500px 0px;
+	}
+
+	body {
+		perspective: 5000px;
+		overflow: hidden;
+		background: url(sky.jpg);
+	}
+
+	#main {
+		text-align: center;
+		border: 2px solid black;
+		z-index: 3;
+		height: 100px;
+		width: 100px;
+		position: absolute;
+		transform: translateY(-5050px);
+		background-color: white;
+		color: black;
+		font-size: 30pt;
+	}
+	#main:hover {
+		text-align: center;
+		border: 2px solid white;
+		z-index: 3;
+		height: 100px;
+		width: 100px;
+		position: absolute;
+		transform: translateY(-5050px);
+		background-color: black;
+		color: white;
+		font-size: 30pt;
+	}
+
+	#boxDiv {
+		width: 50px;
+		height: 50px;
+		transform-style: preserve-3d;
+	}
+
+	#boxDiv div {
+		transform-style: preserve-3d;
+		position: absolute;
+	}
+
+	#treeDiv {
+		width: 50px;
+		height: 50px;
+		transform-style: preserve-3d;
+	}
+
+	#treeDiv div {
+		position: absolute;
+	}
+
+	#tree {
+		position: absolute;
+		height: 500px;
+		width: 200px;
+		transform: rotateX(180deg) translateY(500px);
+		transform-style: preserve-3d;
+		transform-origin: bottom;
+		z-index: 2;
+	}
+
+	#universe {
+		z-index: 1;
+		transform: translateY(-400px);
+		transform-origin: -2500px 0px;
+		position: absolute;
+	}
+	mark{
+		color: yellow;
+	}
+	 #healthp{
+		 left: 75%;
+ 		color: white;
+		z-index: 6;
+		position: absolute;
+	 }
+	button{
+		border-radius: 5px;
+		font-size: 30pt;
+		position: relative;
+	}
+	#option{
+		left: 0%;
+		position: relative;
+		font-size: 30pt;
+	}
+	#ok{
+		position: relative;
+		font-size: 21pt;
+		background: green;
+	}
+	#no{
+		font-size: 21pt;
+		position: relative;
+		background: red;
+	}
+	#neither{
+		font-size: 25pt;
+		position: relative;
+		background: yellow;
+	}
+	
+	#dialog{
+		text-align: center;
+		position: relative;
+		z-index: 100;
+		height: 10%;
+		width: 20%;
+		left: 40%;
+		top: 45%;
+		background: black;
+	}
+	#bg{
+		position: absolute;
+		width: 100vw;
+		height: 100vh;
+	}
+	mark{
+		background-color: red;
+	}
+	#messages{
+		overflow-y: scroll;
+	}
+	#room{
+		z-index: -1;
+		position: absolute;
+		transform-style: preserve-3d;
+	}
+	#top{
+	background-image: url(sky.jpeg);
+	transform: rotateX(-90deg) translateY(-250px);
+	transform-origin: top;
+}
+#topleft{
+	background-image: url(sky.jpeg);
+	height: 250px;
+	width: 500px;
+	transform: rotateY(90deg) translateX(-250px);
+	transform-origin: left;
+}
+#topright{
+	background-image: url(sky.jpeg);
+	height: 250px;
+	width: 500px;
+	transform: rotateY(90deg) translateX(250px);
+	transform-origin: right;
+}
+#topfront{
+	background-image: url(sky.jpeg);
+	height: 250px;
+	width: 500px;
+	transform: translateZ(250px);
+}
+#topback{
+	background-image: url(sky.jpeg);
+	height: 250px;
+	width: 500px;
+	transform: translateZ(-250px);
+}
+#bottom1{
+	height: 500px;
+	width: 500px;
+	transform: rotateX(90deg) translateY(250px);
+	transform-origin: bottom;
+	background-image: url(grass.jpg);
+	background-size: 500px 500px;
+	
+	top: 250px;
+}
+#bottomleft{
+	background-image: url(sky.jpeg);
+	height: 250px;
+	width: 500px;
+	transform: rotateY(90deg) translateX(-250px);
+	transform-origin: left;
+	top: 250px;
+}
+#bottomright{
+	background-image: url(sky.jpeg);
+	height: 250px;
+	width: 500px;
+	transform: rotateY(90deg) translateX(250px);
+	transform-origin: right;
+	top: 250px;
+}
+#bottomfront{
+	background-image: url(sky.jpeg);
+	height: 250px;
+	width: 500px;
+	transform: translateZ(250px);
+	top: 250px;
+}
+#bottomback{
+	top: 250px;
+	background-image: url(sky.jpeg);
+	height: 250px;
+	width: 500px;
+	transform: translateZ(-250px);
+}
+#note{
+	height: 100px;
+	width: 200px;
+	background: url("note.jpeg");
+	position: absolute;
+	z-index: 5;
+	left: 300px;
+}
+#answer{
+	height: 100px;
+	width: 200px;
+	background: url("note.jpeg");
+	position: absolute;
+	z-index: 5;
+}
