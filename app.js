@@ -220,7 +220,12 @@ socket.on("joinedroom", (per) => {
 	alert(per + " joined.");
 	const player = document.getElementById("player").cloneNode(true);
 	player.id = per;
-	Array.from(player.children)[0].value = per;
+	Array.from(player.children)[0].innerHTML = per;
+	player.style.zIndex = "20";
+	player.style.height = "300px";
+	player.style.width = "200px";
+	player.style.position = "absolute";
+	player.style.transformStyle = "preserve-3d";
 	player.hidden = false;
 	document.getElementById("universe").appendChild(player);
 });
