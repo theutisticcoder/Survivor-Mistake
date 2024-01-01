@@ -213,8 +213,12 @@ socket.on("useradded", (u) => {
 socket.on("left", (leaving) => {
 	alert(leaving + " left.");
 });
-socket.on("joined", (per) => {
+socket.on("joinedroom", (per) => {
 	alert(per + " joined.");
+	const player = document.getElementById("player").cloneNode(true);
+	player.id = per;
+	Array.from(player.children)[0].value = per;
+	document.body.appendChild(player);
 });
 socket.on("leave", (u) => {
 	users = u;
