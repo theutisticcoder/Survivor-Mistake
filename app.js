@@ -400,6 +400,7 @@ function load() {
 				e.preventDefault();
 				playerb += 50;
 				b -= 50;
+				console.log("running");
 				document.getElementById("universe").style.transform =
 					"translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
 			}
