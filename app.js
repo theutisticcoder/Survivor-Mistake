@@ -521,6 +521,7 @@ document.getElementById("retro"). onclick = ()=> {
 	if(parts >= 10){
 		room.hidden = true;
 		alert("Find the hunter and get him to avenge the remaining deer");
+		esc = true;
 	}
 	
 }
@@ -530,6 +531,7 @@ document.getElementById("desk").onclick = ()=>{
 if(parts >= 10){
 		room.hidden = true;
 		alert("Find the hunter and get him to avenge the remaining deer");
+		esc = true;
 	}
 }
 document.getElementById("answer").onclick = ()=>{
@@ -538,6 +540,8 @@ document.getElementById("answer").onclick = ()=>{
 if(parts >= 10){
 		room.hidden = true;
 		alert("Find the hunter and get him to avenge the remaining deer");
+				esc = true;
+
 	}
 }
 document.getElementById("note").onclick = ()=>{
