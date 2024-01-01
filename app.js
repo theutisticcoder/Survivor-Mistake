@@ -3,6 +3,7 @@ var task = document.getElementById("enemyhealth");
 var tasks = document.getElementById("tasks");
 var x;
 var firematrix;
+var esc, parts = 0;
 var timeout;
 var fire;
 var ss;
@@ -491,8 +492,62 @@ function load() {
 				document.onkeydown = hunt;
 				socket.emit("house", sheltermatrix);
 			}
+			var room = document.getElementById("room");
 			if(e.key == "Enter" && daynumber > 5 && -matrix4.m41 === 2000 && matrix4.m43 === 700){
 				alert("House Entered! Find the clues to discover what happened.");
+				room.hidden = false
+
+    // feature detect
+var x, y, z;
+	
+	 
+											window.addEventListener('drag', (e) => {
+												
+																 x = -e.clientY;
+																 y = e.clientX;
+												document.getElementById("room").style.transform = `translateZ(600px) rotateY(${y}deg) rotateX(${x}deg)`;
+															});
+								
+
+document.getElementById("retro"). onclick = ()=> {
+	speechSynthesis.speak(new SpeechSynthesisUtterance("Part 1 is: A bad time it is to fight."));
+	parts += 1;
+	if(parts >= 10){
+		room.hidden = true;
+		alert("Find the man and get him to avenge the remaining deer");
+	}
+	
+}
+document.getElementById("desk").onclick = ()=>{
+		speechSynthesis.speak(new SpeechSynthesisUtterance("Part 2 is: to find the hidden man at night."));
+	parts += 2;
+if(parts >= 10){
+		room.hidden = true;
+		alert("Find the man and get him to avenge the remaining deer");
+	}
+}
+document.getElementById("answer").onclick = ()=>{
+		speechSynthesis.speak(new SpeechSynthesisUtterance("Part 3 is: during daytime you may succeed."));
+	parts += 3;
+if(parts >= 10){
+		room.hidden = true;
+		alert("Find the man and get him to avenge the remaining deer");
+	}
+}
+document.getElementById("note").onclick = ()=>{
+	parts+= 4;
+		speechSynthesis.speak(new SpeechSynthesisUtterance("Part 4 is: if you pay back the deed" ));
+if(parts >= 10){
+		room.hidden = true;
+		alert("Find the man and get him to avenge the remaining deer");
+	}
+}
+
+
+setTimeout(()=> {
+	alert("Time's up! Nice try.");
+	location.reload();
+}, 120000)
 				
 			}
 			if (sheltermatrix) {
