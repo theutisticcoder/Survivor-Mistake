@@ -361,7 +361,7 @@ function load() {
 		wood3 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("2")).transform);
 		wood4 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("3")).transform);
 		wood5 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("4")).transform); 
-		document.addEventListener("keydown", function(e) {
+		document.onkeydown = (e) =>{
 		if(document.activeElement != document.getElementById("message")){
 			
 
@@ -496,8 +496,10 @@ function load() {
 				alert("Hint: If you ENTER your house, you have double your health.");
 				tasks.innerHTML = "Find food";
 				alert("Go bring some food back home. Go hunting for food in a space by pressing 'h'.");
-				document.onkeydown = hunt;
 				socket.emit("house", sheltermatrix);
+			}
+			if(e.key == "h"){
+				hunt();
 			}
 			if(e.key == "Enter" && daynumber > 5 && -matrix4.m41 === 2000 && matrix4.m43 === 700){
 				alert("House Entered! Find the clues to discover what happened.");
@@ -594,7 +596,7 @@ setTimeout(()=> {
 			document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
 			socket.emit("move", matrix4);
 		}
-		});
+		};
 		document.getElementById("universe").hidden = false;
 		document.getElementById("text").hidden = false;
 		var dirt = document.getElementById("boxDiv");
