@@ -16,7 +16,7 @@ app.use(express.static(__dirname));
 // Socket setup
 const io = socketio(server);
 var i = 0;
-
+	var x = 0;
 var roomnumber;
 var people = 0;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
@@ -33,9 +33,8 @@ io.on("connection", (socket) => {
 	socket.on("self", link =>{
 		socket.join(link);
 	});
-	var x = 0;
 	socket.on("room", room => {
-		socket.on("pass", pass=> {
+		socket.on("pass",async (pass) => {
 			if(rooms.length > 0){
 			for(var i = 0; i < rooms.length; i++){
 				if(room === rooms[i].room && pass === rooms[i].password){
@@ -56,7 +55,11 @@ io.on("connection", (socket) => {
 			}
 			else{
 				socket.join(room);
-				socket.emit("joinedroom", socket.nickname)
+				const sockets = await io.in(room).fetchSockets();
+				sockets.forEach(s=> {
+					s.broadcast.to(room).emit("joinedroom", s.nickname);
+
+				})
 			}
 		});
 	});
