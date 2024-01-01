@@ -120,7 +120,7 @@ io.on("connection", (socket) => {
   });
   socket.on("move", (matrix) => {
    
-        socket.to(Array.from(socket.rooms)[1]).emit("enemymoved", matrix);
+        socket.to(Array.from(socket.rooms)[1]).emit("pmove", {matrix: matrix, person: socket.nickname});
 
   });
 });
