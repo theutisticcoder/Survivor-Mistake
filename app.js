@@ -530,7 +530,7 @@ document.getElementById("desk").onclick = ()=>{
 	parts += 2;
 if(parts >= 10){
 		room.hidden = true;
-		alert("Find the hunter and get him to avenge the remaining deer");
+		alert("Find the hunter and get him to avenge the remaining deer.");
 		esc = true;
 	}
 }
