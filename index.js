@@ -52,15 +52,21 @@ io.on("connection", (socket) => {
 			if(x > 0){
 				socket.emit("roomnotjoined");
 			}
-			}
+			
 			else{
 				socket.join(room);
 				const sockets = await io.in(room).fetchSockets();
 				sockets.forEach(s=> {
 					s.broadcast.to(room).emit("joinedroom", s.nickname);
+					
 
 				})
 			}
+			}
+			else{
+				socket.emit("roomnotjoined")
+			}
+				
 		});
 	});
 			socket.on("username", (user) => {
