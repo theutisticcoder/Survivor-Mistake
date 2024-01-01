@@ -62,6 +62,9 @@ function ended(audio) {
 		setTimeout(ended, 1000);
 	}
 }
+socket.on("pmove", (data)=> {
+	document.getElementById(data.person).style.transform = `matrix3d(${data.matrix})`
+})
 var ps = 0;
 var hunts = 0;
 var sol1 = document.getElementById("panther");
