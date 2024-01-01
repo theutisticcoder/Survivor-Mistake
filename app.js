@@ -221,6 +221,7 @@ socket.on("joinedroom", (per) => {
 	const player = document.getElementById("player").cloneNode(true);
 	player.id = per;
 	Array.from(player.children)[0].value = per;
+	player.hidden = false;
 	document.getElementById("universe").appendChild(player);
 });
 socket.on("leave", (u) => {
