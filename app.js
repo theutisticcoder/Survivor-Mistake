@@ -3,7 +3,7 @@ var task = document.getElementById("enemyhealth");
 var tasks = document.getElementById("tasks");
 var x;
 var firematrix;
-var esc, parts = 0;
+var esc = false, parts = 0;
 var timeout;
 var fire;
 var ss;
@@ -520,7 +520,7 @@ document.getElementById("retro"). onclick = ()=> {
 	parts += 1;
 	if(parts >= 10){
 		room.hidden = true;
-		alert("Find the man and get him to avenge the remaining deer");
+		alert("Find the hunter and get him to avenge the remaining deer");
 	}
 	
 }
@@ -529,7 +529,7 @@ document.getElementById("desk").onclick = ()=>{
 	parts += 2;
 if(parts >= 10){
 		room.hidden = true;
-		alert("Find the man and get him to avenge the remaining deer");
+		alert("Find the hunter and get him to avenge the remaining deer");
 	}
 }
 document.getElementById("answer").onclick = ()=>{
@@ -537,7 +537,7 @@ document.getElementById("answer").onclick = ()=>{
 	parts += 3;
 if(parts >= 10){
 		room.hidden = true;
-		alert("Find the man and get him to avenge the remaining deer");
+		alert("Find the hunter and get him to avenge the remaining deer");
 	}
 }
 document.getElementById("note").onclick = ()=>{
@@ -545,14 +545,17 @@ document.getElementById("note").onclick = ()=>{
 		speechSynthesis.speak(new SpeechSynthesisUtterance("Part 4 is: if you pay back the deed" ));
 if(parts >= 10){
 		room.hidden = true;
-		alert("Find the man and get him to avenge the remaining deer");
+		alert("Find the hunter and get him to avenge the remaining deer");
+		esc = true;
 	}
 }
 
 
 setTimeout(()=> {
+	if(esc !== true){
 	alert("Time's up! Nice try.");
 	location.reload();
+	}
 }, 120000)
 				
 			}
