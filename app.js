@@ -88,8 +88,7 @@ var deer = new Image(200, 200);
 			deer.style.position = "absolute";
 deer.hidden = true;
 			document.body.appendChild(deer);
-function hunt(e) {
-	if (e.key == "h" && document.activeElement != document.getElementById("message")) {
+function hunt() {
 		if(daynumber < 3){
 		alert("Click to get the deer in time.");
 		
@@ -108,7 +107,6 @@ function hunt(e) {
 						food += 4;
 					}
 		}
-}
 	}
 function choose() {
 	username = prompt("Choose an username!");
