@@ -75,6 +75,9 @@ var p = 0;
 var person;
 var roomnumber = 0;
 var otherplayer;
+function rotate(){
+	document.getElementById("room").style.transform = `scale3d(3 3 3) translateZ(1000px) rotateY(${cy}deg) rotateX(${cx}deg)`;
+}
 socket.on("roomnotjoined", ()=>{
 	alert("Room not found, please try again...");
 	location.reload();
@@ -506,11 +509,11 @@ function load() {
     // feature detect
 	
 	 
-											document.ondrag =  (e) => {
+											document.body.ondrag =  (e) => {
 												
 																 cx = -e.clientY;
 																 cy = e.clientX;
-												document.getElementById("room").style.transform = `scale3d(3 3 3) translateZ(1000px) rotateY(${cy}deg) rotateX(${cx}deg)`;
+																rotate();
 															};
 
 				
