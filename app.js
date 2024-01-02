@@ -329,6 +329,9 @@ clearTimeout(timeout)
 
 }
 			var room = document.getElementById("room");
+function move(){
+	document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
+}
 function load() {
 	document.getElementById("universe").style.transformStyle = "preserve-3d";
 	document.getElementById("universe").style.position = "absolute";
@@ -593,7 +596,7 @@ setTimeout(()=> {
 			document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
 			socket.emit("move", matrix4);
 		}
-										document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
+			move();
 		};
 		document.getElementById("universe").hidden = false;
 		document.getElementById("text").hidden = false;
