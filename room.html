@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Escape Room AR</title>
+
+	<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+	<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+	<style>
+		html {
+			height: 100%;
+			width: 100%;
+		}
+
+		input {
+			position: absolute;
+			font-size: 30pt;
+			z-index: 20;
+			top: 80vh;
+		}
+
+		#escape {
+			position: absolute;
+			font-size: 30pt;
+			z-index: 210;
+			top: 80vh;
+			left: 70vw;
+		}
+
+		body {
+			overflow: hidden;
+		}
+
+		#world {
+			position: absolute;
+			width: 500px;
+			height: 500px;
+			margin: 200px auto;
+			perspective: 800px;
+		}
+
+		#desk {
+			height: 300px;
+			width: 300px;
+			position: absolute;
+			transform: translateY(400px);
+		}
+
+		#retro {
+			height: 300px;
+			width: 300px;
+			position: absolute;
+		}
+
+		#mainDiv {
+			position: absolute;
+			height: 500px;
+			width: 500px;
+			transform: translateZ(600px);
+			transform-style: preserve-3d;
+		}
+
+		#mainDiv div {
+			position: absolute;
+		}
+
+		#top {
+			background-image: url(sky.jpeg);
+			transform: rotateX(-90deg) translateY(-250px);
+			transform-origin: top;
+		}
+
+		#topleft {
+			background-image: url(sky.jpeg);
+			height: 250px;
+			width: 500px;
+			transform: rotateY(90deg) translateX(-250px);
+			transform-origin: left;
+		}
+
+		#topright {
+			background-image: url(sky.jpeg);
+			height: 250px;
+			width: 500px;
+			transform: rotateY(90deg) translateX(250px);
+			transform-origin: right;
+		}
+
+		#topfront {
+			background-image: url(sky.jpeg);
+			height: 250px;
+			width: 500px;
+			transform: translateZ(250px);
+		}
+
+		#topback {
+			background-image: url(sky.jpeg);
+			height: 250px;
+			width: 500px;
+			transform: translateZ(-250px);
+		}
+
+		#bottom {
+			height: 500px;
+			width: 500px;
+			transform: rotateX(90deg) translateY(250px);
+			transform-origin: bottom;
+			background-image: url(grass.jpg);
+			background-size: 500px 500px;
+
+			top: 250px;
+		}
+
+		#bottomleft {
+			background-image: url(sky.jpeg);
+			height: 250px;
+			width: 500px;
+			transform: rotateY(90deg) translateX(-250px);
+			transform-origin: left;
+			top: 250px;
+		}
+
+		#bottomright {
+			background-image: url(sky.jpeg);
+			height: 250px;
+			width: 500px;
+			transform: rotateY(90deg) translateX(250px);
+			transform-origin: right;
+			top: 250px;
+		}
+
+		#bottomfront {
+			background-image: url(sky.jpeg);
+			height: 250px;
+			width: 500px;
+			transform: translateZ(250px);
+			top: 250px;
+		}
+
+		#bottomback {
+			top: 250px;
+			background-image: url(sky.jpeg);
+			height: 250px;
+			width: 500px;
+			transform: translateZ(-250px);
+		}
+
+		#note {
+			height: 100px;
+			width: 200px;
+			background: url("note.jpeg");
+			position: absolute;
+			z-index: 5;
+			left: 300px;
+		}
+
+		#answer {
+			height: 100px;
+			width: 200px;
+			background: url("note.jpeg");
+			position: absolute;
+			z-index: 5;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div id="world">
+		<div id="mainDiv">
+			<model-viewer id="desk" src="desk.glb" camera-controls style="position: absolute;"></model-viewer>
+			<div id="top">
+				<div id="answer"></div>
+			</div>
+			<div id="topleft"></div>
+			<div id="topright"></div>
+			<div id="topfront"></div>
+			<div id="topback"></div>
+			<div id="bottomleft"><img id="retro" src="computer.png" style="position: absolute;" /></div>
+			<div id="bottomright"></div>
+			<div id="bottomfront"></div>
+			<div id="bottomback"></div>
+			<div id="bottom">
+				<div id="note"></div>
+			</div>
+		</div>
+	</div>
+	<input placeholder="Enter the passcode" style="font-size: 30pt; z-index: 200; position: absolute;">
+	<button id="escape">Escape!</button>
+	<script>
+		var parts = 0;
+		// feature detect
+		var x, y;
+
+		window.addEventListener('drag', (e) => {
+			x = e.clientY;
+			y = e.clientX;
+			document.getElementById("mainDiv").style.transform = `translateZ(600px) rotateY(${y}deg) rotateX(${x}deg)`;
+		});
+		document.getElementById("retro").onclick = () => {
+			speechSynthesis.speak(new SpeechSynthesisUtterance("Part 1 is: a bad time it is to fight"));
+			parts += 1;
+			if (parts >= 10) { window.close() }
+		}
+		document.getElementById("desk").onclick = () => {
+			speechSynthesis.speak(new SpeechSynthesisUtterance("Part 2 is: to find the hidden man at night"));
+
+			parts += 2;
+			if (parts >= 10) { window.close() }
+
+		}
+		document.getElementById("answer").onclick = () => {
+			speechSynthesis.speak(new SpeechSynthesisUtterance("Part 3 is: during the day, you may succeed"));
+
+			parts += 3;
+			if (parts >= 10) { window.close() }
+
+		}
+		document.getElementById("note").onclick = () => {
+			speechSynthesis.speak(new SpeechSynthesisUtterance("Part 4 is: if you pay back the deed"));
+			parts += 4;
+			if (parts >= 10) { window.close() }
+
+
+		}
+
+	</script>
+</body>
+
+</html>
