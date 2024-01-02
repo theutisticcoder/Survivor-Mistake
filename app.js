@@ -506,7 +506,8 @@ function load() {
 			}
 			if(e.key == "Enter" && daynumber > 5 && -matrix4.m41 === 2000 && matrix4.m43 === 700){
 				alert("House Entered! Find the clues to discover what happened.");
-				room.hidden = false
+				room.hidden = false;
+				room.style.zIndex = "2000000"
 
     // feature detect
 var x, y, z;
@@ -568,6 +569,7 @@ setTimeout(()=> {
 }, 120000)
 				
 			}
+			
 			if (sheltermatrix) {
 
 				if (e.key == "Enter" && matrix4.m41 === sheltermatrix.m41 && sheltermatrix.m43 === matrix4.m43 && document.activeElement != document.getElementById("message")) {
