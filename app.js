@@ -391,26 +391,26 @@ function load() {
 			if (e.key == "ArrowUp") {
 				e.preventDefault();
 				a += 50;
-				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
+				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 			}
 			if (e.key == "ArrowDown") {
 				e.preventDefault();
 				a -= 50;
-				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
+				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 			}
 			if (e.key == "ArrowRight") {
 				e.preventDefault();
 				b -= 50;
-				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
+				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 			}
 			if (e.key == "ArrowLeft") {
 				e.preventDefault();
 				b += 50;
-				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
+				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 			}
 			if(e.key == "x" && task.value === 0 && daynumber >= 2){
 				fire.style.position = "absolute";
-				fire.style.transform = "translate3d(" + b + "px, " + y + "px,"+ a +"px) perspective(" + (a + 5000) + "px)";
+				fire.style.transform = "translate3d(" + b + "px, " + y + "px,"+ a +"px) perspective(" + 5000 + "px)";
 				document.getElementById("universe").appendChild(fire);
 				firematrix = new WebKitCSSMatrix(getComputedStyle(fire).transform);
 				alert("The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food.");
@@ -486,7 +486,7 @@ function load() {
 				shelter.src = "shack.png";
 				shelter.style.left = "200px";
 				shelter.style.top = "200px";
-				shelter.style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
+				shelter.style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 				document.getElementById("universe").appendChild(shelter);
 				sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(shelter).transform);
 				alert("Hint: If you ENTER your house, you have double your health.");
