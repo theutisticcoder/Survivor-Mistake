@@ -332,6 +332,7 @@ clearTimeout(timeout)
 function load() {
 	document.getElementById("universe").style.transformStyle = "preserve-3d";
 	document.getElementById("universe").style.position = "absolute";
+	document.getElementById("universe").style.transform = "translate3d(0px, 0px, 0px)";
 	document.getElementById("universe").style.zIndex = "1";
 	document.body.style.perspective = "6000px";
 	document.getElementById("universe").style.transformOrigin = "-2500px 0px";	
