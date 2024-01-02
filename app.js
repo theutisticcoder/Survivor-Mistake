@@ -391,30 +391,22 @@ function load() {
 			if (e.key == "ArrowUp") {
 				e.preventDefault();
 				a += 50;
-				playera += 50;
-				document.getElementById("universe").style.transform =
-					"translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
+				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
 			}
 			if (e.key == "ArrowDown") {
 				e.preventDefault();
 				a -= 50;
-				playera -= 50;
-				document.getElementById("universe").style.transform =
-					"translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
+				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
 			}
 			if (e.key == "ArrowRight") {
 				e.preventDefault();
-				playerb += 50;
 				b -= 50;
-				document.getElementById("universe").style.transform =
-					"translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
+				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
 			}
 			if (e.key == "ArrowLeft") {
 				e.preventDefault();
 				b += 50;
-				playerb -= 50;
-				document.getElementById("universe").style.transform =
-					"translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
+				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
 			}
 			if(e.key == "x" && task.value === 0 && daynumber >= 2){
 				fire.style.position = "absolute";
