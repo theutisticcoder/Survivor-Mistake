@@ -330,10 +330,9 @@ clearTimeout(timeout)
 }
 			var room = document.getElementById("room");
 function move(){
-	document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + ( a +100) + "px)";
+	document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + ( a +5000) + "px)";
 }
 function load() {
-	document.getElementById("universe").style.transformStyle = "preserve-3d";
 	document.getElementById("universe").style.position = "absolute";
 	document.getElementById("universe").style.zIndex = "1";
 	timeout = setTimeout(time, 90000);
