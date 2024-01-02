@@ -71,7 +71,7 @@ function battle(){
 					document.getElementById("heli").play();
 					setTimeout(()=> {
 					alert("You escaped!");
-						alert("credits to Marine hunter (https://skfb.ly/6UtoZ) by ill_drakon is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/) and Marine hunter (https://skfb.ly/6UtoZ) by ill_drakon is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/) for 3d models.")
+						alert("credits to Marine hunter (https://skfb.ly/6UtoZ) by ill_drakon is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/) and Table Fancy Small (https://skfb.ly/oLSwo) by GameDevMoot is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/) for 3d models.")
 					location.reload();
 					}, 7000)
 				}
