@@ -494,7 +494,6 @@ function load() {
 				hunt();
 			}
 
-							document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 
 			if(e.key == "Enter" && daynumber > 5 && -matrix4.m41 === 2000 && matrix4.m43 === 700){
 				alert("House Entered! Find the clues to discover what happened.");
@@ -511,7 +510,8 @@ var x, y, z;
 																 cy = e.clientX;
 												document.getElementById("room").style.transform = `translateZ(600px) rotateY(${cy}deg) rotateX(${cx}deg)`;
 															});
-								
+
+				
 
 document.getElementById("retro"). onclick = ()=> {
 	speechSynthesis.speak(new SpeechSynthesisUtterance("Part 1 is: A bad time it is to fight."));
@@ -593,6 +593,7 @@ setTimeout(()=> {
 			document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
 			socket.emit("move", matrix4);
 		}
+										document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 		};
 		document.getElementById("universe").hidden = false;
 		document.getElementById("text").hidden = false;
