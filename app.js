@@ -506,7 +506,7 @@ function load() {
     // feature detect
 	
 	 
-											document.getElementById("room").ondrag =  (e) => {
+											document.ondrag =  (e) => {
 												
 																 cx = -e.clientY;
 																 cy = e.clientX;
