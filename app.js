@@ -47,6 +47,33 @@ var playera = 0;
 var b = 0;
 var c = 0;
 var y = 0;
+var clicks = 0;
+function lose(
+	health.value--;
+	if(clicks <50){
+		if(health.value > 0){
+	setTimeout(lose, 4000)
+		}
+		else{
+			alert("You died, better luck next time.");
+		}
+	}
+)
+function fight(){
+	alert("Click the hunter to do damage. Quick!");
+	document.getElementById("hunter").onclick = ()=> {
+		clicks++;
+		if(clicks === 50){
+			document.getElementById("heli").play();
+			alert("You escaped!");
+			location.reload();
+			
+		}
+		
+	}
+	
+		setTimeout(lose, 4000)
+}
 var intro = document.getElementById("intro");
 var range = 200;
 var ammo = 20;
@@ -505,7 +532,9 @@ function load() {
 				alert("House Entered! Find the clues to discover what happened.");
 				window.open("room.html");
 				if (!document.hidden) {
-					alert("find the hunter and get him to avenge the remaining deer")
+					alert("find the hunter and get him to avenge the remaining deer");
+					document.getElementById("hunter").hidden = false;
+					fight();
 				}
 			}
 			
