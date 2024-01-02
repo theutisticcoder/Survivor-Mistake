@@ -187,14 +187,12 @@
 			</div>
 		</div>
 	</div>
-	<input placeholder="Enter the passcode" style="font-size: 30pt; z-index: 200; position: absolute;">
-	<button id="escape">Escape!</button>
 	<script>
 		var parts = 0;
 		// feature detect
 		var x, y;
 
-		window.addEventListener('drag', (e) => {
+		window.addEventListener('mousemove', (e) => {
 			x = e.clientX;
 			y = - e.clientY;
 			document.getElementById("mainDiv").style.transform = `translateZ(600px) rotateY(${x}deg) rotateX(${y}deg)`;
