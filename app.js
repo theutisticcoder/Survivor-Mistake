@@ -539,12 +539,15 @@ function load() {
 
 			if(e.key == "Enter" && daynumber > 5 && -matrix4.m41 === 2000 && matrix4.m43 === 700){
 				alert("House Entered! Find the clues to discover what happened.");
-				window.open("room.html");
-				if (!document.hidden) {
-					alert("find the hunter and get him to avenge the remaining deer");
-					document.getElementById("hunter").style.display = "block";
-					battle();
-				}
+				var popup = window.open("room.html");
+				popup.window.addEventListener('load', () => {
+  					popup.window.addEventListener('unload', () => {
+						alert("find the hunter and get him to avenge the remaining deer");
+						document.getElementById("hunter").style.display = "block";
+						battle();
+    					});
+				});
+				
 			}
 			
 			if (sheltermatrix) {
