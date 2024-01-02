@@ -48,7 +48,7 @@ var b = 0;
 var c = 0;
 var y = 0;
 var clicks = 0;
-function lose(
+function lose(){
 	health.value--;
 	if(clicks <50){
 		if(health.value > 0){
@@ -58,7 +58,7 @@ function lose(
 			alert("You died, better luck next time.");
 		}
 	}
-)
+}
 function fight(){
 	alert("Click the hunter to do damage. Quick!");
 	document.getElementById("hunter").onclick = ()=> {
