@@ -59,7 +59,7 @@ function lose(){
 		}
 	}
 }
-function fight(){
+function battle(){
 	alert("Click the hunter to do damage. Quick!");
 	document.getElementById("hunter").onclick = ()=> {
 		clicks++;
@@ -534,7 +534,7 @@ function load() {
 				if (!document.hidden) {
 					alert("find the hunter and get him to avenge the remaining deer");
 					document.getElementById("hunter").style.display = "block";
-					fight();
+					battle();
 				}
 			}
 			
