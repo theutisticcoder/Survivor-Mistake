@@ -533,7 +533,7 @@ function load() {
 				window.open("room.html");
 				if (!document.hidden) {
 					alert("find the hunter and get him to avenge the remaining deer");
-					document.getElementById("hunter").hidden = false;
+					document.getElementById("hunter").style.display = "block";
 					fight();
 				}
 			}
