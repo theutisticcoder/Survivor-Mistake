@@ -391,22 +391,18 @@ function load() {
 			if (e.key == "ArrowUp") {
 				e.preventDefault();
 				a += 50;
-				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 			}
 			if (e.key == "ArrowDown") {
 				e.preventDefault();
 				a -= 50;
-				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 			}
 			if (e.key == "ArrowRight") {
 				e.preventDefault();
 				b -= 50;
-				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 			}
 			if (e.key == "ArrowLeft") {
 				e.preventDefault();
 				b += 50;
-				document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 			}
 			if(e.key == "x" && task.value === 0 && daynumber >= 2){
 				fire.style.position = "absolute";
@@ -497,6 +493,9 @@ function load() {
 			if(e.key == "h"){
 				hunt();
 			}
+
+							document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
+
 			if(e.key == "Enter" && daynumber > 5 && -matrix4.m41 === 2000 && matrix4.m43 === 700){
 				alert("House Entered! Find the clues to discover what happened.");
 				room.hidden = false;
