@@ -64,9 +64,18 @@ function battle(){
 	document.getElementById("hunter").onclick = ()=> {
 		clicks++;
 		if(clicks === 50){
-			document.getElementById("heli").play();
-			alert("You escaped!");
-			location.reload();
+			alert("Press 'e' to call in a ride and escape!")
+			document.onkeydown = (e)=> {
+				if(e.key == "e"){
+					e.preventDefault();
+					document.getElementById("heli").play();
+					setTimeout(()=> {
+					alert("You escaped!");
+					location.reload();
+					}, 7000)
+				}
+			}
+			
 			
 		}
 		
