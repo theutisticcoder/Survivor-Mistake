@@ -503,68 +503,10 @@ function load() {
 
 			if(e.key == "Enter" && daynumber > 5 && -matrix4.m41 === 2000 && matrix4.m43 === 700){
 				alert("House Entered! Find the clues to discover what happened.");
-				room.hidden = false;
-				room.style.zIndex = "2000000"
-
-    // feature detect
-	
-	 
-											document.body.ondrag =  (e) => {
-												
-																 cx = -e.clientY;
-																 cy = e.clientX;
-																rotate();
-															};
-
-				
-
-document.getElementById("retro"). onclick = ()=> {
-	speechSynthesis.speak(new SpeechSynthesisUtterance("Part 1 is: A bad time it is to fight."));
-	parts += 1;
-	if(parts >= 10){
-		room.hidden = true;
-		alert("Find the hunter and get him to avenge the remaining deer");
-		esc = true;
-	}
-	
-}
-document.getElementById("desk").onclick = ()=>{
-		speechSynthesis.speak(new SpeechSynthesisUtterance("Part 2 is: to find the hidden man at night."));
-	parts += 2;
-if(parts >= 10){
-		room.hidden = true;
-		alert("Find the hunter and get him to avenge the remaining deer.");
-		esc = true;
-	}
-}
-document.getElementById("answer").onclick = ()=>{
-		speechSynthesis.speak(new SpeechSynthesisUtterance("Part 3 is: during daytime you may succeed."));
-	parts += 3;
-if(parts >= 10){
-		room.hidden = true;
-		alert("Find the hunter and get him to avenge the remaining deer");
-				esc = true;
-
-	}
-}
-document.getElementById("note").onclick = ()=>{
-	parts+= 4;
-		speechSynthesis.speak(new SpeechSynthesisUtterance("Part 4 is: if you pay back the deed" ));
-if(parts >= 10){
-		room.hidden = true;
-		alert("Find the hunter and get him to avenge the remaining deer");
-		esc = true;
-	}
-}
-
-
-setTimeout(()=> {
-	if(esc == false){
-	alert("Time's up! Nice try.");
-	location.reload();
-	}
-}, 120000)
-				
+				window.open("room.html");
+				if (!document.hidden) {
+					alert("find the hunter and get him to avenge the remaining deer")
+				}
 			}
 			
 			if (sheltermatrix) {
