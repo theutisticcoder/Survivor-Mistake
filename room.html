@@ -195,9 +195,9 @@
 		var x, y;
 
 		window.addEventListener('drag', (e) => {
-			x = e.clientY;
-			y = e.clientX;
-			document.getElementById("mainDiv").style.transform = `translateZ(600px) rotateY(${y}deg) rotateX(${x}deg)`;
+			x = e.clientX;
+			y = - e.clientY;
+			document.getElementById("mainDiv").style.transform = `translateZ(600px) rotateY(${x}deg) rotateX(${y}deg)`;
 		});
 		document.getElementById("retro").onclick = () => {
 			speechSynthesis.speak(new SpeechSynthesisUtterance("Part 1 is: a bad time it is to fight"));
