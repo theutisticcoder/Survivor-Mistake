@@ -332,7 +332,9 @@ clearTimeout(timeout)
 function load() {
 	document.getElementById("universe").style.transformStyle = "preserve-3d";
 	document.getElementById("universe").style.position = "absolute";
-	document.getElementById("universe").style.transformOrigin = "-2500px 0px 0px";	
+	document.getElementById("universe").style.zIndex = "1";
+
+	document.getElementById("universe").style.transformOrigin = "-2500px 0px";	
 	timeout = setTimeout(time, 90000);
 	document.getElementById("heli").pause();
 	document.getElementById("boom").play();
@@ -403,7 +405,6 @@ function load() {
 				e.preventDefault();
 				playerb += 50;
 				b -= 50;
-				console.log("running");
 				document.getElementById("universe").style.transform =
 					"translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + (a + 5000) + "px)";
 			}
