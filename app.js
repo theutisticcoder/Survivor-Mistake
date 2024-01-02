@@ -329,6 +329,10 @@ clearTimeout(timeout)
 
 }
 			var room = document.getElementById("room");
+			room.style.transformStyle = "preserve=3d";
+			room.style.position = "absolute";
+
+
 function move(){
 	document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + ( a +5000) + "px)";
 }
