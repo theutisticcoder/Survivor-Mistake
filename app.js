@@ -687,7 +687,7 @@ socket.on("firemade", (player)=>{
 					fire.remove();
 				}, 60000);
 })
-var x, y, z;
+var cx, cy;
 
 
 socket.on("housemade", (player)=>{
