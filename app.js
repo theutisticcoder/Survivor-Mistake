@@ -500,15 +500,14 @@ function load() {
 				room.style.zIndex = "2000000"
 
     // feature detect
-var x, y, z;
 	
 	 
-											document.getElementById("room").addEventListener('drag', (e) => {
+											document.getElementById("room").ondrag =  (e) => {
 												
 																 cx = -e.clientY;
 																 cy = e.clientX;
-												document.getElementById("room").style.transform = `translateZ(600px) rotateY(${cy}deg) rotateX(${cx}deg)`;
-															});
+												document.getElementById("room").style.transform = `scale3d(3 3 3) translateZ(1000px) rotateY(${cy}deg) rotateX(${cx}deg)`;
+															};
 
 				
 
@@ -684,6 +683,8 @@ socket.on("firemade", (player)=>{
 					fire.remove();
 				}, 60000);
 })
+var x, y, z;
+
 
 socket.on("housemade", (player)=>{
 	alert("Someone made a house. It is at X: " + -player.m41 + ", Z: " + -player.m43);
