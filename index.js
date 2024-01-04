@@ -132,4 +132,7 @@ io.on("connection", (socket) => {
         socket.to(Array.from(socket.rooms)[1]).emit("pmove", {matrix: matrix, person: socket.nickname});
 
   });
+	socket.on("escape", per> {
+		socket.broadcast.to(Array.from(socket.rooms)[1]).emit("escaped", per)
+	})
 });
