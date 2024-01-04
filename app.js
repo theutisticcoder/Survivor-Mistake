@@ -71,6 +71,7 @@ function battle(){
 					document.getElementById("heli").play();
 					setTimeout(()=> {
 					alert("You escaped!");
+						socket.emit("escape", username)
 						alert("credits to Marine hunter (https://skfb.ly/6UtoZ) by ill_drakon is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/) and Table Fancy Small (https://skfb.ly/oLSwo) by GameDevMoot is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/) for 3d models.")
 					location.reload();
 					}, 7000)
@@ -579,10 +580,10 @@ function load() {
 				window.getComputedStyle(document.getElementById("universe")).transform
 			);
 			sol1 = document.getElementById("panther");
-			document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
 			socket.emit("move", matrix4);
-		}
+			document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
 			move();
+		}
 		};
 		document.getElementById("universe").hidden = false;
 		document.getElementById("text").hidden = false;
@@ -692,7 +693,6 @@ socket.on("housemade", (player)=>{
 				alert("Hint: If you ENTER your house, you have double your health.");
 				tasks.innerHTML = "Find food";
 				alert("Go bring some food back home. Go hunting for food in a space by pressing 'h'.");
-				document.onkeydown = hunt;
 })
  function notifyMe() {
   if (!("Notification" in window)) {
@@ -716,3 +716,6 @@ socket.on("housemade", (player)=>{
   // want to be respectful there is no need to bother them anymore.
 }
 	  notifyMe();
+socket.on("escaped", p=> {
+	alert(p + " escaped!")
+})
