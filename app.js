@@ -360,7 +360,8 @@ clearTimeout(timeout)
 			model.style.position = "absolute";
 			model.style.height = "1000px";
 			model.style.width = "1000px";
-			model.style.transform = "translate3d(-2000px, 0px, 700px) perspective(2000px)";
+			document.getElementById("universe").style.perspective = "900px";
+			model.style.transform = "translate3d(-2000px, 0px, 700px) perspective(800px)";
 			task.max = 1;
 													 task.value = 1;
 													 tasks.innerHTML = "Find Building";
@@ -576,13 +577,13 @@ function load() {
 				alert("Your thirst went down by 5.");
 				thirst -= 5;
 			}
+			move();
 			matrix4 = new WebKitCSSMatrix(
 				window.getComputedStyle(document.getElementById("universe")).transform
 			);
 			sol1 = document.getElementById("panther");
 			socket.emit("move", matrix4);
 			document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
-			move();
 		}
 		};
 		document.getElementById("universe").hidden = false;
