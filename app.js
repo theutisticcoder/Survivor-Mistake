@@ -360,7 +360,7 @@ clearTimeout(timeout)
 			model.style.position = "absolute";
 			model.style.height = "1000px";
 			model.style.width = "1000px";
-			model.style.transform = "translate3d(-2000px, 0px, 700px) perspective(800px)";
+			model.style.transform = "translate3d(-2000px, 0px, -700px) perspective(800px)";
 			task.max = 1;
 													 task.value = 1;
 													 tasks.innerHTML = "Find Building";
