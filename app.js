@@ -170,9 +170,7 @@ document.getElementById("ok").onclick = () => {
 	socket.emit("roomname", room);
 	socket.emit("password", password);
 		document.getElementById("heli").play();
-	speechSynthesis.speak(ss);	
-	ss.onend = ()=> {
-	document.getElementById("heli").pause();
+	document.getElementById("heli").onend = ()=> {
 		load();
 	}
 };
@@ -183,9 +181,7 @@ document.getElementById("neither").onclick = () => {
 	choose();
 	
 	document.getElementById("heli").play();
-speechSynthesis.speak(ss);
-	ss.onend = ()=> {
-	document.getElementById("heli").pause();
+	document.getElementById("heli").onend = ()=> {
 		const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
 	link = "";
 	for (var i = 0; i < 40; i++) {
@@ -208,9 +204,7 @@ document.getElementById("no").onclick = () => {
 	socket.emit("pass", pass);
 
 	document.getElementById("heli").play();
-speechSynthesis.speak(ss);
-	ss.onend = ()=> {
-	document.getElementById("heli").pause();
+	document.getElementById("heli").onend = ()=> {
 		load();
 	}
 	
