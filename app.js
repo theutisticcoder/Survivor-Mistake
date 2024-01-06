@@ -170,7 +170,7 @@ document.getElementById("ok").onclick = () => {
 	socket.emit("roomname", room);
 	socket.emit("password", password);
 		document.getElementById("heli").play();
-	document.getElementById("heli").onend = ()=> {
+	document.getElementById("heli").onended = ()=> {
 		load();
 	}
 };
@@ -181,7 +181,7 @@ document.getElementById("neither").onclick = () => {
 	choose();
 	
 	document.getElementById("heli").play();
-	document.getElementById("heli").onend = ()=> {
+	document.getElementById("heli").onended = ()=> {
 		const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
 	link = "";
 	for (var i = 0; i < 40; i++) {
@@ -204,7 +204,7 @@ document.getElementById("no").onclick = () => {
 	socket.emit("pass", pass);
 
 	document.getElementById("heli").play();
-	document.getElementById("heli").onend = ()=> {
+	document.getElementById("heli").onended = ()=> {
 		load();
 	}
 	
