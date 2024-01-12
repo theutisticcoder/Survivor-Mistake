@@ -2,6 +2,7 @@ var house = false;
 var task = document.getElementById("enemyhealth");
 var tasks = document.getElementById("tasks");
 var x;
+var modals = [];
 var firematrix;
 var esc = false, parts = 0;
 var timeout;
@@ -55,25 +56,33 @@ function lose(){
 	setTimeout(lose, 4000)
 		}
 		else{
-			alert("You died, better luck next time.");
+			modals.push({text: "You died, better luck next time."});
+			Swal.queue(modals)
+			modals = [];
 		}
 	}
 }
 function battle(){
-	alert("Click the hunter to do damage. Quick!");
+	modals.push({text: "Click the hunter to do damage. Quick!"});
+	Swal.queue(modals)
+			modals = [];
 	document.getElementById("hunter").onclick = ()=> {
 		clicks++;
 		if(clicks === 50){
-			alert("Press 'e' to call in a ride and escape!")
+			modals.push({text: "Press 'e' to call in a ride and escape!"})
+			Swal.queue(modals)
+			modals = [];
 			document.onkeydown = (e)=> {
 				if(e.key == "e"){
 					e.preventDefault();
 					document.getElementById("heli").play();
 					setTimeout(()=> {
-					alert("You escaped!");
+					modals.push({text: "You escaped!"});
 						socket.emit("escape", username)
-						alert("credits to Marine hunter (https://skfb.ly/6UtoZ) by ill_drakon is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/) and Table Fancy Small (https://skfb.ly/oLSwo) by GameDevMoot is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/) for 3d models.")
-					location.reload();
+						modals.push({text: "credits to Marine hunter (https://skfb.ly/6UtoZ) by ill_drakon is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/) and Table Fancy Small (https://skfb.ly/oLSwo) by GameDevMoot is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/) for 3d models."})
+						Swal.queue(modals)
+			modals = [];
+						location.reload();
 					}, 7000)
 				}
 			}
@@ -117,7 +126,9 @@ function rotate(){
 	document.getElementById("room").style.transform = `scale3d(3 3 3) translateZ(1000px) rotateY(${cy}deg) rotateX(${cx}deg)`;
 }
 socket.on("roomnotjoined", ()=>{
-	alert("Room not found, please try again...");
+	modals.push({text: "Room not found, please try again..."});
+	Swal.queue(modals)
+			modals = [];
 	location.reload();
 });
 function foodget(){
@@ -131,26 +142,33 @@ deer.hidden = true;
 			document.body.appendChild(deer);
 function hunt() {
 		if(daynumber < 3){
-		alert("Click to get the deer in time.");
-		
+		modals.push({text: "Click to get the deer in time."});
+		Swal.queue(modals)
+			modals = [];
 			deer.hidden = false;
 			deer.addEventListener("click", foodget);
 		
 		setTimeout(() => {
 			deer.removeEventListener("click", foodget);
-			alert("You have " + food + " food. Every day, ten food will be used.");
+			modals.push({text: "You have " + food + " food. Every day, ten food will be used."});
+			Swal.queue(modals)
+			modals = [];
 			deer.hidden = true;
 		}, 5000);
 	}
 		else{
 			if(Math.floor(Math.random() * 5) === 2){
-						alert("Edible mushroom found! Each one will count as 4 food.");
+						modals.push({text: "Edible mushroom found! Each one will count as 4 food."});
+				Swal.queue(modals)
+			modals = [];
 						food += 4;
 					}
 		}
 	}
 function choose() {
-	username = prompt("Choose an username!");
+	var {value: username} = Swal.fire({input: "text", text:"Choose an username!"});
+	Swal.queue(modals)
+			modals = [];
 	socket.emit("username", username);
 	ss = new SpeechSynthesisUtterance("Hello "+ username +". Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!");
 }
@@ -165,8 +183,12 @@ document.getElementById("ok").onclick = () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	choose();
-	var room = prompt("Choose a private room name.");
-	var password = prompt("Choose a password.");
+	var {value: room} = Swal.fire({input: "text", text:"Choose a private room name."});
+	if(room){
+	var {value: password} = Swal.fire({input: "text", text:"Choose a password."});
+	}
+	Swal.queue(modals)
+			modals = [];
 	socket.emit("roomname", room);
 	socket.emit("password", password);
 		document.getElementById("heli").play();
@@ -198,9 +220,13 @@ document.getElementById("no").onclick = () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	choose();
-	var roomname = prompt("Enter the room name.");
+	var {value:roomname} = Swal.fire({input: "text", text:"Enter the room name."});
+	if(roomname){
+	var {value: pass} = Swal.fire({input: "text", text:"Enter the room's password.");
+	}
+	Swal.queue(modals)
+			modals = [];
 	socket.emit("room", roomname);
-	var pass = prompt("Enter the room's password.");
 	socket.emit("pass", pass);
 
 	document.getElementById("heli").play();
@@ -210,9 +236,9 @@ document.getElementById("no").onclick = () => {
 	
 }
 socket.on("usernotadded", () => {
-	person = prompt(
+	const {value: person} = Swal.fire({input: "text", text:
 		"Choose a new username. Your old one was either taken, inappropriate, or blank!"
-	);
+			   });
 	socket.emit("username", person);
 });
 socket.on("roomclosed", (data) => {
@@ -221,14 +247,7 @@ socket.on("roomclosed", (data) => {
 		typeof users[1 + data.number] != "undefined" &&
 		typeof users[2 + data.number] != "undefined"
 	) {
-		alert(
-			"Game room closed. Players are " +
-			users[0 + data.number] +
-			", " +
-			users[1 + data.number] +
-			", " +
-			users[2 + data.number]
-		);
+		
 		roomnumber = data.room;
 		var play = 0;
 		users.forEach((player) => {
@@ -248,10 +267,14 @@ socket.on("useradded", (u) => {
 	users = u;
 });
 socket.on("left", (leaving) => {
-	alert(leaving + " left.");
+	modals.push({text:leaving + " left."});
+	Swal.queue(modals)
+			modals = [];
 });
 socket.on("joinedroom", (per) => {
-	alert(per + " joined.");
+	modals.push({text:per + " joined."});
+	Swal.queue(modals)
+			modals = [];
 	const player = document.getElementById("player").cloneNode(true);
 	player.id = per;
 	Array.from(player.children)[0].innerHTML = per;
@@ -267,7 +290,9 @@ socket.on("leave", (u) => {
 	users = u;
 });
 socket.on("gameover", (killed) => {
-	alert(killed + " died.");
+	modals.push({text: killed + " died."});
+	Swal.queue(modals)
+			modals = [];
 });
 var t;
 var day = document.createElement("h1");
@@ -283,7 +308,9 @@ function time(){
 clearTimeout(timeout)
 	if(night == false){
 		document.getElementById("night").style.opacity = "60%";
-			alert("It is night time. Go run around riskingly, or sleep safely in your shelter");
+			modals.push({text: "It is night time. Go run around riskingly, or sleep safely in your shelter"});
+		Swal.queue(modals)
+			modals = [];
 		night = true;
 	}
 	else if(night == true){
@@ -296,14 +323,11 @@ clearTimeout(timeout)
 								 day.style.position = "relative";
 												 food -= 10;
 												 if(food < 0){
-													 alert("You do not have enough food. Game Over.");
-													 var attempt = confirm("Try again?");
-													 if(attempt == true){
+													 modals.push({text: "You do not have enough food. Game Over."});
+													 Swal.queue(modals)
+			modals = [];
 														 location.reload();
-													 }
-													 else{
-														 window.close();
-													 }
+													 
 												 }
 												 daynumber++;
 												 if(daynumber === 2){
@@ -328,17 +352,15 @@ clearTimeout(timeout)
 		if(daynumber > 4){
 			thirst += 10;
 			if(thirst >=30){
-				 alert("You did not drink enough. Game Over.");
-													 var attempt = confirm("Try again?");
-													 if(attempt == true){
-														 location.reload();
-													 }
-													 else{
-														 window.close();
-													 }
+				 modals.push({text: "You did not drink enough. Game Over."});
+				Swal.queue(modals)
+			modals = [];
+													location.reload
 			}
 		}
-		alert("Wake up sleepyhead! You must go live today!");
+		modals.push({text: "Wake up sleepyhead! You must go live today!"});
+		Swal.queue(modals)
+			modals = [];
 		
 		night = false;
 												 setTimeout(()=> {
@@ -447,7 +469,9 @@ function load() {
 				fire.style.transform = "translate3d(" + b + "px, " + y + "px,"+ a +"px) perspective(" + 5000 + "px)";
 				document.getElementById("universe").appendChild(fire);
 				firematrix = new WebKitCSSMatrix(getComputedStyle(fire).transform);
-				alert("The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food.");
+				modals.push({text: "The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food."});
+				Swal.queue(modals)
+			modals = [];
 				task.value = 5;
 				task.max = 5;
 				setTimeout(()=> {
@@ -457,54 +481,76 @@ function load() {
 			}
 			if(e.key == "x" && fire.style.position ==="absolute" && daynumber >= 2){
 				if(firematrix.m41 === matrix4.m41 && firematrix.m43 === matrix4.m43 ){
-				alert("Food cooked. It will now fill you twice as much.");
+				modals.push({text: "Food cooked. It will now fill you twice as much."});
+					Swal.queue(modals)
+			modals = [];
 				food = food * 2;
 				}
 			}
 			if (e.key == " ") {
 				
 				if (-matrix4.m41 === wood1.m41 && matrix4.m43 === wood1.m43) {
-					alert("Wood found!");
+					modals.push({text: "Wood found!"});
+					Swal.queue(modals)
+			modals = [];
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						alert("Huh, maybe I should press x to build my house.");
+						modals.push({text: "Huh, maybe I should press x to build my house."});
+						Swal.queue(modals)
+			modals = [];
 						house = true;
 					}
 				}
 				if (-matrix4.m41 === wood2.m41 && matrix4.m43 === wood2.m43) {
-					alert("Wood found!");
+					modals.push({text: "Wood found!"});
+					Swal.queue(modals)
+			modals = [];
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						alert("Huh, maybe I should press x to build my house.");
+						modals.push({text: "Huh, maybe I should press x to build my house."});
+						Swal.queue(modals)
+			modals = [];
 						house = true;
 					}
 				}
 				if (-matrix4.m41 === wood3.m41 && matrix4.m43 === wood3.m43) {
-					alert("Wood found!");
+					modals.push({text: "Wood found!"});
+					Swal.queue(modals)
+			modals = [];
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						alert("Huh, maybe I should press x to build my house.");
+						modals.push({text: "Huh, maybe I should press x to build my house."});
+						Swal.queue(modals)
+			modals = [];
 						house = true;
 					}
 				}
 				if (-matrix4.m41 === wood4.m41 && matrix4.m43 === wood4.m43) {
-					alert("Wood found!");
+					modals.push({text: "Wood found!"});
+					Swal.queue(modals)
+			modals = [];
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						alert("Huh, maybe I should press x to build my house.");
+						modals.push({text: "Huh, maybe I should press x to build my house."});
+						Swal.queue(modals)
+			modals = [];
 						house = true;
 					}
 				}
 				if (-matrix4.m41 === wood5.m41 && matrix4.m43 === wood5.m43) {
-					alert("Wood found!");
+					modals.push({text: "Wood found!"});
+					Swal.queue(modals)
+			modals = [];
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						alert("Huh, maybe I should press x to build my house where I am.");
+						modals.push({text: "Huh, maybe I should press x to build my house where I am."});
+						Swal.queue(modals)
+			modals = [];
 						house = true;
 					}
 				}
@@ -512,7 +558,7 @@ function load() {
 			}
 				
 			if (e.key == "x" && house == true) {
-				alert("House built!");
+				modals.push({text: "House built!"});
 				house = false;
 				shelter = document.createElement("img");
 				shelter.style.position = "absolute";
@@ -523,9 +569,11 @@ function load() {
 				shelter.style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 				document.getElementById("universe").appendChild(shelter);
 				sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(shelter).transform);
-				alert("Hint: If you ENTER your house, you have double your health.");
+				modals.push({text: "Hint: If you ENTER your house, you have double your health."});
 				tasks.innerHTML = "Find food";
-				alert("Go bring some food back home. Go hunting for food in a space by pressing 'h'.");
+				modals.push({text: "Go bring some food back home. Go hunting for food in a space by pressing 'h'."});
+				Swal.queue(modals)
+			modals = [];
 				socket.emit("house", sheltermatrix);
 			}
 			if(e.key == "h"){
@@ -534,11 +582,15 @@ function load() {
 
 
 			if(e.key == "Enter" && daynumber > 5 && -matrix4.m41 === 2000 && matrix4.m43 === 700){
-				alert("House Entered! Find the clues to discover what happened.");
+				modals.push({text: "House Entered! Find the clues to discover what happened."});
+				Swal.queue(modals)
+			modals = [];
 				var popup = window.open("room.html");
 				popup.window.addEventListener('load', () => {
   					popup.window.addEventListener('unload', () => {
-						alert("find the hunter and get him to avenge the remaining deer");
+						modals.push({text: "find the hunter and get him to avenge the remaining deer"});
+						Swal.queue(modals)
+			modals = [];
 						document.getElementById("hunter").style.display = "block";
 						battle();
     					});
@@ -567,7 +619,9 @@ function load() {
 
 			}
 			if(e.key == "d" && daynumber > 3 && a === 0 && b === 0){
-				alert("Your thirst went down by 5.");
+				modals.push({text: "Your thirst went down by 5."});
+				Swal.queue(modals)
+			modals = [];
 				thirst -= 5;
 			}
 			move();
@@ -657,12 +711,14 @@ socket.on('newmessage', messagenew => {
 });
 
 socket.on("firemade", (player)=>{
-	alert("Someone made a fire. It is at X: " + -player.m41 + ", Z: " + -player.m43);
+	modals.push({text: "Someone made a fire. It is at X: " + -player.m41 + ", Z: " + -player.m43});
 	fire.style.position = "absolute";
 				fire.style.transform = "translate3d(" + player.m41 + "px, " + player.m42 + "px, " + player.m43 + "px) perspective(" + (player.m43 + 5000) + "px)";
 				document.getElementById("universe").appendChild(fire);
 				firematrix = new WebKitCSSMatrix(getComputedStyle(fire).transform);
-				alert("The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food.");
+				modals.push({text: "The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food."});
+	Swal.queue(modals)
+			modals = [];
 				task.value = 5;
 				task.max = 5;
 				setTimeout(()=> {
@@ -673,7 +729,8 @@ var cx, cy;
 
 
 socket.on("housemade", (player)=>{
-	alert("Someone made a house. It is at X: " + -player.m41 + ", Z: " + -player.m43);
+	modals.push({text: "Someone made a house. It is at X: " + -player.m41 + ", Z: " + -player.m43});
+	
 	house = false;
 				shelter = document.createElement("img");
 				shelter.style.position = "absolute";
@@ -684,18 +741,14 @@ socket.on("housemade", (player)=>{
 				shelter.style.transform = "translate3d(" + player.m41 + "px, " + player.m42 + "px, " + player.m43 + "px) perspective(" + (player.m43 + 5000) + "px)";
 				document.getElementById("universe").appendChild(shelter);
 				sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(shelter).transform);
-				alert("Hint: If you ENTER your house, you have double your health.");
+				modals.push({text: "Hint: If you ENTER your house, you have double your health."});
 				tasks.innerHTML = "Find food";
-				alert("Go bring some food back home. Go hunting for food in a space by pressing 'h'.");
+				modals.push({text: "Go bring some food back home. Go hunting for food in a space by pressing 'h'."});
+	Swal.queue(modals)
+			modals = [];
 })
  function notifyMe() {
   if (!("Notification" in window)) {
-    // Check if the browser supports notifications
-    alert("This browser does not support desktop notification");
-  } else if (Notification.permission === "granted") {
-    // Check whether notification permissions have already been granted;
-    // if so, create a notification
-    // …
   } else if (Notification.permission !== "denied") {
     // We need to ask the user for permission
     Notification.requestPermission().then((permission) => {
@@ -711,5 +764,7 @@ socket.on("housemade", (player)=>{
 }
 	  notifyMe();
 socket.on("escaped", p=> {
-	alert(p + " escaped!")
+	modals.push({text: p + " escaped!"})
+	Swal.queue(modals)
+			modals = [];
 })
