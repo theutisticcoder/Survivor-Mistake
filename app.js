@@ -222,7 +222,7 @@ document.getElementById("no").onclick = () => {
 	choose();
 	var {value:roomname} = Swal.fire({input: "text", text:"Enter the room name."});
 	if(roomname){
-	var {value: pass} = Swal.fire({input: "text", text:"Enter the room's password.");
+	var {value: pass} = Swal.fire({input: "text", text:"Enter the room's password."});
 	}
 	Swal.queue(modals)
 			modals = [];
