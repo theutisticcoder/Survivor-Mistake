@@ -230,7 +230,7 @@ document.getElementById("no").onclick = async () => {
 	
 }
 socket.on("usernotadded", async () => {
-	const {value: person} = await Queue.fire({currentProgressStep: 0,input: "text", text:
+	const {value: person} = await Queue.fire({currentProgressStep: 3,input: "text", text:
 		"Choose a new username. Your old one was either taken, inappropriate, or blank!"
 			   });
 	socket.emit("username", person);
