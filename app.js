@@ -9,6 +9,14 @@ var timeout;
 var fire;
 var ss;
 var thirst = 0;
+const steps = ['1', '2', '3']
+const Queue = Swal.mixin({
+  progressSteps: steps,
+  confirmButtonText: 'Next >',
+  // optional classes to avoid backdrop blinking between steps
+  showClass: { backdrop: 'swal2-noanimation' },
+  hideClass: { backdrop: 'swal2-noanimation' },
+})
 fire = new Image(500, 500);
 fire.src = "fire.png";
 fire.style.zIndex = "400";
@@ -49,39 +57,35 @@ var b = 0;
 var c = 0;
 var y = 0;
 var clicks = 0;
-function lose(){
+async function lose(){
 	health.value--;
 	if(clicks <50){
 		if(health.value > 0){
 	setTimeout(lose, 4000)
 		}
 		else{
-			modals.push({text: "You died, better luck next time."});
-			Swal.queue(modals)
-			modals = [];
+			await Queue.fire({text: "You died, better luck next time."});
+			
 		}
 	}
 }
-function battle(){
-	modals.push({text: "Click the hunter to do damage. Quick!"});
-	Swal.queue(modals)
-			modals = [];
-	document.getElementById("hunter").onclick = ()=> {
+async function battle(){
+	await Queue.fire({text: "Click the hunter to do damage. Quick!"});
+	
+	document.getElementById("hunter").onclick = async () => {
 		clicks++;
 		if(clicks === 50){
-			modals.push({text: "Press 'e' to call in a ride and escape!"})
-			Swal.queue(modals)
-			modals = [];
+			await Queue.fire({text: "Press 'e' to call in a ride and escape!"})
+			
 			document.onkeydown = (e)=> {
 				if(e.key == "e"){
 					e.preventDefault();
 					document.getElementById("heli").play();
-					setTimeout(()=> {
-					modals.push({text: "You escaped!"});
+					setTimeout(async () => {
+					await Queue.fire({text: "You escaped!"});
 						socket.emit("escape", username)
-						modals.push({text: "credits to Marine hunter (https://skfb.ly/6UtoZ) by ill_drakon is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/) and Table Fancy Small (https://skfb.ly/oLSwo) by GameDevMoot is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/) for 3d models."})
-						Swal.queue(modals)
-			modals = [];
+						await Queue.fire({text: "credits to Marine hunter (https://skfb.ly/6UtoZ) by ill_drakon is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/) and Table Fancy Small (https://skfb.ly/oLSwo) by GameDevMoot is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/) for 3d models."})
+						
 						location.reload();
 					}, 7000)
 				}
@@ -102,7 +106,7 @@ var you;
 var matrix2;
 var health = document.getElementById("health");
 var matrix4;
-function ended(audio) {
+async function ended(audio) {
 	if (audio.ended == true) {
 		load();
 	}
@@ -122,16 +126,15 @@ var p = 0;
 var person;
 var roomnumber = 0;
 var otherplayer;
-function rotate(){
+async function rotate(){
 	document.getElementById("room").style.transform = `scale3d(3 3 3) translateZ(1000px) rotateY(${cy}deg) rotateX(${cx}deg)`;
 }
-socket.on("roomnotjoined", ()=>{
-	modals.push({text: "Room not found, please try again..."});
-	Swal.queue(modals)
-			modals = [];
+socket.on("roomnotjoined", async () =>{
+	await Queue.fire({text: "Room not found, please try again..."});
+	
 	location.reload();
 });
-function foodget(){
+async function foodget(){
 	food++;
 }
 var deer = new Image(200, 200);
@@ -140,35 +143,28 @@ var deer = new Image(200, 200);
 			deer.style.position = "absolute";
 deer.hidden = true;
 			document.body.appendChild(deer);
-function hunt() {
+async function hunt() {
 		if(daynumber < 3){
-		modals.push({text: "Click to get the deer in time."});
-		Swal.queue(modals)
-			modals = [];
+		await Queue.fire({text: "Click to get the deer in time."});
 			deer.hidden = false;
 			deer.addEventListener("click", foodget);
 		
-		setTimeout(() => {
+		setTimeout(async () => {
 			deer.removeEventListener("click", foodget);
-			modals.push({text: "You have " + food + " food. Every day, ten food will be used."});
-			Swal.queue(modals)
-			modals = [];
+			await Queue.fire({text: "You have " + food + " food. Every day, ten food will be used."});
 			deer.hidden = true;
 		}, 5000);
 	}
 		else{
 			if(Math.floor(Math.random() * 5) === 2){
-						modals.push({text: "Edible mushroom found! Each one will count as 4 food."});
-				Swal.queue(modals)
-			modals = [];
+						await Queue.fire({text: "Edible mushroom found! Each one will count as 4 food."});
+				
 						food += 4;
 					}
 		}
 	}
-function choose() {
-	var {value: username} = Swal.fire({input: "text", text:"Choose an username!"});
-	Swal.queue(modals)
-			modals = [];
+async function choose() {
+	var {value: username} = await Queue.fire({input: "text", text:"Choose an username!"});
 	socket.emit("username", username);
 	ss = new SpeechSynthesisUtterance("Hello "+ username +". Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!");
 }
@@ -178,32 +174,31 @@ document.getElementById("text").hidden = true;
 document.body.style.background = "black";
 document.getElementById("option").innerHTML = "Do You Want To Create A Room?";
 
-document.getElementById("ok").onclick = () => {
+document.getElementById("ok").onclick = async () => {
 
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	choose();
-	var {value: room} = Swal.fire({input: "text", text:"Choose a private room name."});
+	var {value: room} = await Queue.fire({input: "text", text:"Choose a private room name."});
 	if(room){
-	var {value: password} = Swal.fire({input: "text", text:"Choose a password."});
+	var {value: password} = await Queue.fire({input: "text", text:"Choose a password."});
 	}
-	Swal.queue(modals)
-			modals = [];
+	
 	socket.emit("roomname", room);
 	socket.emit("password", password);
 		document.getElementById("heli").play();
-	document.getElementById("heli").onended = ()=> {
+	document.getElementById("heli").onended = async () => {
 		load();
 	}
 };
 
-document.getElementById("neither").onclick = () => {
+document.getElementById("neither").onclick = async () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	choose();
 	
 	document.getElementById("heli").play();
-	document.getElementById("heli").onended = ()=> {
+	document.getElementById("heli").onended = async () => {
 		const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
 	link = "";
 	for (var i = 0; i < 40; i++) {
@@ -216,32 +211,31 @@ document.getElementById("neither").onclick = () => {
 
 	
 };
-document.getElementById("no").onclick = () => {
+document.getElementById("no").onclick = async () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	choose();
-	var {value:roomname} = Swal.fire({input: "text", text:"Enter the room name."});
+	var {value:roomname} = await Queue.fire({input: "text", text:"Enter the room name."});
 	if(roomname){
-	var {value: pass} = Swal.fire({input: "text", text:"Enter the room's password."});
+	var {value: pass} = await Queue.fire({input: "text", text:"Enter the room's password."});
 	}
-	Swal.queue(modals)
-			modals = [];
+	
 	socket.emit("room", roomname);
 	socket.emit("pass", pass);
 
 	document.getElementById("heli").play();
-	document.getElementById("heli").onended = ()=> {
+	document.getElementById("heli").onended = async () => {
 		load();
 	}
 	
 }
-socket.on("usernotadded", () => {
-	const {value: person} = Swal.fire({input: "text", text:
+socket.on("usernotadded", async () => {
+	const {value: person} = await Queue.fire({input: "text", text:
 		"Choose a new username. Your old one was either taken, inappropriate, or blank!"
 			   });
 	socket.emit("username", person);
 });
-socket.on("roomclosed", (data) => {
+socket.on("roomclosed", async (data) => {
 	if (
 		typeof users[0 + data.number] != "undefined" &&
 		typeof users[1 + data.number] != "undefined" &&
@@ -266,15 +260,12 @@ socket.on("roomclosed", (data) => {
 socket.on("useradded", (u) => {
 	users = u;
 });
-socket.on("left", (leaving) => {
-	modals.push({text:leaving + " left."});
-	Swal.queue(modals)
-			modals = [];
+socket.on("left", async (leaving) => {
+	await Queue.fire({text:leaving + " left."});
+
 });
-socket.on("joinedroom", (per) => {
-	modals.push({text:per + " joined."});
-	Swal.queue(modals)
-			modals = [];
+socket.on("joinedroom", async (per) => {
+	await Queue.fire({text:per + " joined."});
 	const player = document.getElementById("player").cloneNode(true);
 	player.id = per;
 	Array.from(player.children)[0].innerHTML = per;
@@ -289,10 +280,8 @@ socket.on("joinedroom", (per) => {
 socket.on("leave", (u) => {
 	users = u;
 });
-socket.on("gameover", (killed) => {
-	modals.push({text: killed + " died."});
-	Swal.queue(modals)
-			modals = [];
+socket.on("gameover", async (killed) => {
+	await Queue.fire({text: killed + " died."});
 });
 var t;
 var day = document.createElement("h1");
@@ -304,13 +293,11 @@ var wood3;
 var wood4;
 var wood5;
 var model = document.getElementById("model");
-function time(){
+async function time(){
 clearTimeout(timeout)
 	if(night == false){
 		document.getElementById("night").style.opacity = "60%";
-			modals.push({text: "It is night time. Go run around riskingly, or sleep safely in your shelter"});
-		Swal.queue(modals)
-			modals = [];
+			await Queue.fire({text: "It is night time. Go run around riskingly, or sleep safely in your shelter"});
 		night = true;
 	}
 	else if(night == true){
@@ -323,9 +310,8 @@ clearTimeout(timeout)
 								 day.style.position = "relative";
 												 food -= 10;
 												 if(food < 0){
-													 modals.push({text: "You do not have enough food. Game Over."});
-													 Swal.queue(modals)
-			modals = [];
+													 await Queue.fire({text: "You do not have enough food. Game Over."});
+												
 														 location.reload();
 													 
 												 }
@@ -352,18 +338,16 @@ clearTimeout(timeout)
 		if(daynumber > 4){
 			thirst += 10;
 			if(thirst >=30){
-				 modals.push({text: "You did not drink enough. Game Over."});
-				Swal.queue(modals)
-			modals = [];
+				 await Queue.fire({text: "You did not drink enough. Game Over."});
+				
 													location.reload
 			}
 		}
-		modals.push({text: "Wake up sleepyhead! You must go live today!"});
-		Swal.queue(modals)
-			modals = [];
+		await Queue.fire({text: "Wake up sleepyhead! You must go live today!"});
+		
 		
 		night = false;
-												 setTimeout(()=> {
+												 setTimeout(async () => {
 													
 													 day.hidden = true;
 													 universe.hidden = false;
@@ -390,10 +374,10 @@ clearTimeout(timeout)
 			room.style.position = "absolute";
 
 
-function move(){
+async function move(){
 	document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + ( a +5000) + "px)";
 }
-function load() {
+async function load() {
 	document.getElementById("universe").style.position = "absolute";
 	document.getElementById("universe").style.zIndex = "1";
 	timeout = setTimeout(time, 90000);
@@ -408,7 +392,7 @@ function load() {
 	day.style.top = "50%";
 	day.style.left = "50%";
 	document.body.appendChild(day);
-	setTimeout(() => {
+	setTimeout(async () => {
 		for (var i = 0; i < 5; i++) {
 			wood = document.createElement("div");
 			wood.setAttribute("id", i);
@@ -425,7 +409,7 @@ function load() {
 		wood3 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("2")).transform);
 		wood4 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("3")).transform);
 		wood5 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("4")).transform); 
-		document.onkeydown = (e) =>{
+		document.onkeydown = async (e) =>{
 		if(document.activeElement != document.getElementById("message")){
 			
 
@@ -469,88 +453,76 @@ function load() {
 				fire.style.transform = "translate3d(" + b + "px, " + y + "px,"+ a +"px) perspective(" + 5000 + "px)";
 				document.getElementById("universe").appendChild(fire);
 				firematrix = new WebKitCSSMatrix(getComputedStyle(fire).transform);
-				modals.push({text: "The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food."});
-				Swal.queue(modals)
-			modals = [];
+				await Queue.fire({text: "The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food."});
+				
 				task.value = 5;
 				task.max = 5;
-				setTimeout(()=> {
+				setTimeout(async () => {
 					fire.remove();
 				}, 60000);
 			socket.emit("fire", firematrix);
 			}
 			if(e.key == "x" && fire.style.position ==="absolute" && daynumber >= 2){
 				if(firematrix.m41 === matrix4.m41 && firematrix.m43 === matrix4.m43 ){
-				modals.push({text: "Food cooked. It will now fill you twice as much."});
-					Swal.queue(modals)
-			modals = [];
+				await Queue.fire({text: "Food cooked. It will now fill you twice as much."});
+					
 				food = food * 2;
 				}
 			}
 			if (e.key == " ") {
 				
 				if (-matrix4.m41 === wood1.m41 && matrix4.m43 === wood1.m43) {
-					modals.push({text: "Wood found!"});
-					Swal.queue(modals)
-			modals = [];
+					await Queue.fire({text: "Wood found!"});
+					
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						modals.push({text: "Huh, maybe I should press x to build my house."});
-						Swal.queue(modals)
-			modals = [];
+						await Queue.fire({text: "Huh, maybe I should press x to build my house."});
+						
 						house = true;
 					}
 				}
 				if (-matrix4.m41 === wood2.m41 && matrix4.m43 === wood2.m43) {
-					modals.push({text: "Wood found!"});
-					Swal.queue(modals)
-			modals = [];
+					await Queue.fire({text: "Wood found!"});
+					
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						modals.push({text: "Huh, maybe I should press x to build my house."});
-						Swal.queue(modals)
-			modals = [];
+						await Queue.fire({text: "Huh, maybe I should press x to build my house."});
+						
 						house = true;
 					}
 				}
 				if (-matrix4.m41 === wood3.m41 && matrix4.m43 === wood3.m43) {
-					modals.push({text: "Wood found!"});
-					Swal.queue(modals)
-			modals = [];
+					await Queue.fire({text: "Wood found!"});
+					
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						modals.push({text: "Huh, maybe I should press x to build my house."});
-						Swal.queue(modals)
-			modals = [];
+						await Queue.fire({text: "Huh, maybe I should press x to build my house."});
+						
 						house = true;
 					}
 				}
 				if (-matrix4.m41 === wood4.m41 && matrix4.m43 === wood4.m43) {
-					modals.push({text: "Wood found!"});
-					Swal.queue(modals)
-			modals = [];
+					await Queue.fire({text: "Wood found!"});
+					
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						modals.push({text: "Huh, maybe I should press x to build my house."});
-						Swal.queue(modals)
-			modals = [];
+						await Queue.fire({text: "Huh, maybe I should press x to build my house."});
+						
 						house = true;
 					}
 				}
 				if (-matrix4.m41 === wood5.m41 && matrix4.m43 === wood5.m43) {
-					modals.push({text: "Wood found!"});
-					Swal.queue(modals)
-			modals = [];
+					await Queue.fire({text: "Wood found!"});
+					
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						modals.push({text: "Huh, maybe I should press x to build my house where I am."});
-						Swal.queue(modals)
-			modals = [];
+						await Queue.fire({text: "Huh, maybe I should press x to build my house where I am."});
+						
 						house = true;
 					}
 				}
@@ -558,7 +530,7 @@ function load() {
 			}
 				
 			if (e.key == "x" && house == true) {
-				modals.push({text: "House built!"});
+				await Queue.fire({text: "House built!"});
 				house = false;
 				shelter = document.createElement("img");
 				shelter.style.position = "absolute";
@@ -569,11 +541,10 @@ function load() {
 				shelter.style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 				document.getElementById("universe").appendChild(shelter);
 				sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(shelter).transform);
-				modals.push({text: "Hint: If you ENTER your house, you have double your health."});
+				await Queue.fire({text: "Hint: If you ENTER your house, you have double your health."});
 				tasks.innerHTML = "Find food";
-				modals.push({text: "Go bring some food back home. Go hunting for food in a space by pressing 'h'."});
-				Swal.queue(modals)
-			modals = [];
+				await Queue.fire({text: "Go bring some food back home. Go hunting for food in a space by pressing 'h'."});
+				
 				socket.emit("house", sheltermatrix);
 			}
 			if(e.key == "h"){
@@ -582,15 +553,13 @@ function load() {
 
 
 			if(e.key == "Enter" && daynumber > 5 && -matrix4.m41 === 2000 && matrix4.m43 === 700){
-				modals.push({text: "House Entered! Find the clues to discover what happened."});
-				Swal.queue(modals)
-			modals = [];
+				await Queue.fire({text: "House Entered! Find the clues to discover what happened."});
+				
 				var popup = window.open("room.html");
-				popup.window.addEventListener('load', () => {
-  					popup.window.addEventListener('unload', () => {
-						modals.push({text: "find the hunter and get him to avenge the remaining deer"});
-						Swal.queue(modals)
-			modals = [];
+				popup.window.addEventListener('load', async () => {
+  					popup.window.addEventListener('unload', async () => {
+						await Queue.fire({text: "find the hunter and get him to avenge the remaining deer"});
+						
 						document.getElementById("hunter").style.display = "block";
 						battle();
     					});
@@ -619,9 +588,8 @@ function load() {
 
 			}
 			if(e.key == "d" && daynumber > 3 && a === 0 && b === 0){
-				modals.push({text: "Your thirst went down by 5."});
-				Swal.queue(modals)
-			modals = [];
+				await Queue.fire({text: "Your thirst went down by 5."});
+				
 				thirst -= 5;
 			}
 			move();
@@ -678,7 +646,7 @@ function load() {
 }
 var message, p2, p, newmessage;
 
-document.getElementById("message").onkeydown = (e) => {
+document.getElementById("message").onkeydown = async (e) => {
 	if (e.key == "Enter") {
 		message = document.getElementById("message").value;
 		document.getElementById("message").value = "";
@@ -695,7 +663,7 @@ document.getElementById("message").onkeydown = (e) => {
 		document.getElementById("messages").appendChild(p);
 	}
 };
-socket.on('newmessage', messagenew => {
+socket.on('newmessage', async (messagenew) => {
 	p = document.createElement("p");
 	newmessage = messagenew.user + ": " + messagenew.message;
 	p.innerHTML = newmessage;
@@ -710,26 +678,25 @@ socket.on('newmessage', messagenew => {
 
 });
 
-socket.on("firemade", (player)=>{
-	modals.push({text: "Someone made a fire. It is at X: " + -player.m41 + ", Z: " + -player.m43});
+socket.on("firemade",async (player)=>{
+	await Queue.fire({text: "Someone made a fire. It is at X: " + -player.m41 + ", Z: " + -player.m43});
 	fire.style.position = "absolute";
 				fire.style.transform = "translate3d(" + player.m41 + "px, " + player.m42 + "px, " + player.m43 + "px) perspective(" + (player.m43 + 5000) + "px)";
 				document.getElementById("universe").appendChild(fire);
 				firematrix = new WebKitCSSMatrix(getComputedStyle(fire).transform);
-				modals.push({text: "The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food."});
-	Swal.queue(modals)
-			modals = [];
+				await Queue.fire({text: "The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food."});
+	
 				task.value = 5;
 				task.max = 5;
-				setTimeout(()=> {
+				setTimeout(async () => {
 					fire.remove();
 				}, 60000);
 })
 var cx, cy;
 
 
-socket.on("housemade", (player)=>{
-	modals.push({text: "Someone made a house. It is at X: " + -player.m41 + ", Z: " + -player.m43});
+socket.on("housemade", async(player)=>{
+	await Queue.fire({text: "Someone made a house. It is at X: " + -player.m41 + ", Z: " + -player.m43});
 	
 	house = false;
 				shelter = document.createElement("img");
@@ -741,13 +708,12 @@ socket.on("housemade", (player)=>{
 				shelter.style.transform = "translate3d(" + player.m41 + "px, " + player.m42 + "px, " + player.m43 + "px) perspective(" + (player.m43 + 5000) + "px)";
 				document.getElementById("universe").appendChild(shelter);
 				sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(shelter).transform);
-				modals.push({text: "Hint: If you ENTER your house, you have double your health."});
+				await Queue.fire({text: "Hint: If you ENTER your house, you have double your health."});
 				tasks.innerHTML = "Find food";
-				modals.push({text: "Go bring some food back home. Go hunting for food in a space by pressing 'h'."});
-	Swal.queue(modals)
-			modals = [];
+				await Queue.fire({text: "Go bring some food back home. Go hunting for food in a space by pressing 'h'."});
+	
 })
- function notifyMe() {
+ async function notifyMe() {
   if (!("Notification" in window)) {
   } else if (Notification.permission !== "denied") {
     // We need to ask the user for permission
@@ -763,8 +729,7 @@ socket.on("housemade", (player)=>{
   // want to be respectful there is no need to bother them anymore.
 }
 	  notifyMe();
-socket.on("escaped", p=> {
-	modals.push({text: p + " escaped!"})
-	Swal.queue(modals)
-			modals = [];
+socket.on("escaped", async (p)=> {
+	await Queue.fire({text: p + " escaped!"})
+	
 })
