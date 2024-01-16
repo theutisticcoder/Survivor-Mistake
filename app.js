@@ -9,7 +9,7 @@ var timeout;
 var fire;
 var ss;
 var thirst = 0;
-const steps = ['1', '2', '3']
+const steps = ['1', '2', '3', "4"]
 const Queue = Swal.mixin({
   progressSteps: steps,
   confirmButtonText: 'Next >',
@@ -164,8 +164,7 @@ async function hunt() {
 		}
 	}
 async function choose() {
-	var {value: username} = await Queue.fire({currentProgressStep: 0,input: "text", text:"Choose an username!"});
-	socket.emit("username", username);
+	
 	ss = new SpeechSynthesisUtterance("Hello "+ username +". Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!");
 }
 document.getElementById("dialog").hidden = false;
@@ -178,12 +177,12 @@ document.getElementById("ok").onclick = async () => {
 
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
-	choose();
 	var {value: room} = await Queue.fire({currentProgressStep: 0,input: "text", text:"Choose a private room name."});
 	if(room){
 	var {value: password} = await Queue.fire({currentProgressStep: 1,input: "text", text:"Choose a password."});
 	}
-	
+	var {value: username} = await Queue.fire({currentProgressStep: 2,input: "text", text:"Choose an username!"});
+	socket.emit("username", username);
 	socket.emit("roomname", room);
 	socket.emit("password", password);
 		document.getElementById("heli").play();
@@ -214,11 +213,12 @@ document.getElementById("neither").onclick = async () => {
 document.getElementById("no").onclick = async () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
-	choose();
 	var {value:roomname} = await Queue.fire({currentProgressStep: 0,input: "text", text:"Enter the room name."});
 	if(roomname){
 	var {value: pass} = await Queue.fire({currentProgressStep: 1,input: "text", text:"Enter the room's password."});
 	}
+	var {value: username} = await Queue.fire({currentProgressStep: 2,input: "text", text:"Choose an username!"});
+	socket.emit("username", username);
 	
 	socket.emit("room", roomname);
 	socket.emit("pass", pass);
