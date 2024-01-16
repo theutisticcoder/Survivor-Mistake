@@ -64,7 +64,7 @@ async function lose(){
 async function battle(){
 	await Swal.fire({text: "Click the hunter to do damage. Quick!"});
 	
-	document.getElementById("hunter").onclick = ()=> {
+	document.getElementById("hunter").onclick = async () => {
 		clicks++;
 		if(clicks === 50){
 			await Swal.fire({text: "Press 'e' to call in a ride and escape!"})
@@ -73,7 +73,7 @@ async function battle(){
 				if(e.key == "e"){
 					e.preventDefault();
 					document.getElementById("heli").play();
-					setTimeout(()=> {
+					setTimeout(async () => {
 					await Swal.fire({text: "You escaped!"});
 						socket.emit("escape", username)
 						await Swal.fire({text: "credits to Marine hunter (https://skfb.ly/6UtoZ) by ill_drakon is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/) and Table Fancy Small (https://skfb.ly/oLSwo) by GameDevMoot is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/) for 3d models."})
@@ -121,7 +121,7 @@ var otherplayer;
 async function rotate(){
 	document.getElementById("room").style.transform = `scale3d(3 3 3) translateZ(1000px) rotateY(${cy}deg) rotateX(${cx}deg)`;
 }
-socket.on("roomnotjoined", ()=>{
+socket.on("roomnotjoined", async () =>{
 	await Swal.fire({text: "Room not found, please try again..."});
 	
 	location.reload();
@@ -141,7 +141,7 @@ async function hunt() {
 			deer.hidden = false;
 			deer.addEventListener("click", foodget);
 		
-		setTimeout(() => {
+		setTimeout(async () => {
 			deer.removeEventListener("click", foodget);
 			await Swal.fire({text: "You have " + food + " food. Every day, ten food will be used."});
 			deer.hidden = true;
@@ -166,7 +166,7 @@ document.getElementById("text").hidden = true;
 document.body.style.background = "black";
 document.getElementById("option").innerHTML = "Do You Want To Create A Room?";
 
-document.getElementById("ok").onclick = () => {
+document.getElementById("ok").onclick = async () => {
 
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
@@ -179,18 +179,18 @@ document.getElementById("ok").onclick = () => {
 	socket.emit("roomname", room);
 	socket.emit("password", password);
 		document.getElementById("heli").play();
-	document.getElementById("heli").onended = ()=> {
+	document.getElementById("heli").onended = async () => {
 		load();
 	}
 };
 
-document.getElementById("neither").onclick = () => {
+document.getElementById("neither").onclick = async () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	choose();
 	
 	document.getElementById("heli").play();
-	document.getElementById("heli").onended = ()=> {
+	document.getElementById("heli").onended = async () => {
 		const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
 	link = "";
 	for (var i = 0; i < 40; i++) {
@@ -203,7 +203,7 @@ document.getElementById("neither").onclick = () => {
 
 	
 };
-document.getElementById("no").onclick = () => {
+document.getElementById("no").onclick = async () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	choose();
@@ -216,18 +216,18 @@ document.getElementById("no").onclick = () => {
 	socket.emit("pass", pass);
 
 	document.getElementById("heli").play();
-	document.getElementById("heli").onended = ()=> {
+	document.getElementById("heli").onended = async () => {
 		load();
 	}
 	
 }
-socket.on("usernotadded", () => {
+socket.on("usernotadded", async () => {
 	const {value: person} = await Swal.fire({input: "text", text:
 		"Choose a new username. Your old one was either taken, inappropriate, or blank!"
 			   });
 	socket.emit("username", person);
 });
-socket.on("roomclosed", (data) => {
+socket.on("roomclosed", async (data) => {
 	if (
 		typeof users[0 + data.number] != "undefined" &&
 		typeof users[1 + data.number] != "undefined" &&
@@ -252,11 +252,11 @@ socket.on("roomclosed", (data) => {
 socket.on("useradded", (u) => {
 	users = u;
 });
-socket.on("left", (leaving) => {
+socket.on("left", async (leaving) => {
 	await Swal.fire({text:leaving + " left."});
 
 });
-socket.on("joinedroom", (per) => {
+socket.on("joinedroom", async (per) => {
 	await Swal.fire({text:per + " joined."});
 	const player = document.getElementById("player").cloneNode(true);
 	player.id = per;
@@ -272,7 +272,7 @@ socket.on("joinedroom", (per) => {
 socket.on("leave", (u) => {
 	users = u;
 });
-socket.on("gameover", (killed) => {
+socket.on("gameover", async (killed) => {
 	await Swal.fire({text: killed + " died."});
 });
 var t;
@@ -339,7 +339,7 @@ clearTimeout(timeout)
 		
 		
 		night = false;
-												 setTimeout(()=> {
+												 setTimeout(async () => {
 													
 													 day.hidden = true;
 													 universe.hidden = false;
@@ -384,7 +384,7 @@ async function load() {
 	day.style.top = "50%";
 	day.style.left = "50%";
 	document.body.appendChild(day);
-	setTimeout(() => {
+	setTimeout(async () => {
 		for (var i = 0; i < 5; i++) {
 			wood = document.createElement("div");
 			wood.setAttribute("id", i);
@@ -401,7 +401,7 @@ async function load() {
 		wood3 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("2")).transform);
 		wood4 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("3")).transform);
 		wood5 = new WebKitCSSMatrix(window.getComputedStyle(document.getElementById("4")).transform); 
-		document.onkeydown = (e) =>{
+		document.onkeydown = async (e) =>{
 		if(document.activeElement != document.getElementById("message")){
 			
 
@@ -449,7 +449,7 @@ async function load() {
 				
 				task.value = 5;
 				task.max = 5;
-				setTimeout(()=> {
+				setTimeout(async () => {
 					fire.remove();
 				}, 60000);
 			socket.emit("fire", firematrix);
@@ -548,8 +548,8 @@ async function load() {
 				await Swal.fire({text: "House Entered! Find the clues to discover what happened."});
 				
 				var popup = window.open("room.html");
-				popup.window.addEventListener('load', () => {
-  					popup.window.addEventListener('unload', () => {
+				popup.window.addEventListener('load', async () => {
+  					popup.window.addEventListener('unload', async () => {
 						await Swal.fire({text: "find the hunter and get him to avenge the remaining deer"});
 						
 						document.getElementById("hunter").style.display = "block";
@@ -638,7 +638,7 @@ async function load() {
 }
 var message, p2, p, newmessage;
 
-document.getElementById("message").onkeydown = (e) => {
+document.getElementById("message").onkeydown = async (e) => {
 	if (e.key == "Enter") {
 		message = document.getElementById("message").value;
 		document.getElementById("message").value = "";
@@ -655,7 +655,7 @@ document.getElementById("message").onkeydown = (e) => {
 		document.getElementById("messages").appendChild(p);
 	}
 };
-socket.on('newmessage', messagenew => {
+socket.on('newmessage', async (messagenew) => {
 	p = document.createElement("p");
 	newmessage = messagenew.user + ": " + messagenew.message;
 	p.innerHTML = newmessage;
@@ -670,7 +670,7 @@ socket.on('newmessage', messagenew => {
 
 });
 
-socket.on("firemade", (player)=>{
+socket.on("firemade",async (player)=>{
 	await Swal.fire({text: "Someone made a fire. It is at X: " + -player.m41 + ", Z: " + -player.m43});
 	fire.style.position = "absolute";
 				fire.style.transform = "translate3d(" + player.m41 + "px, " + player.m42 + "px, " + player.m43 + "px) perspective(" + (player.m43 + 5000) + "px)";
@@ -680,14 +680,14 @@ socket.on("firemade", (player)=>{
 	
 				task.value = 5;
 				task.max = 5;
-				setTimeout(()=> {
+				setTimeout(async () => {
 					fire.remove();
 				}, 60000);
 })
 var cx, cy;
 
 
-socket.on("housemade", (player)=>{
+socket.on("housemade", async(player)=>{
 	await Swal.fire({text: "Someone made a house. It is at X: " + -player.m41 + ", Z: " + -player.m43});
 	
 	house = false;
@@ -721,7 +721,7 @@ socket.on("housemade", (player)=>{
   // want to be respectful there is no need to bother them anymore.
 }
 	  notifyMe();
-socket.on("escaped", p=> {
+socket.on("escaped", async (p)=> {
 	await Swal.fire({text: p + " escaped!"})
 	
 })
