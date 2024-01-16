@@ -64,27 +64,27 @@ async function lose(){
 	setTimeout(lose, 4000)
 		}
 		else{
-			await Queue.fire({text: "You died, better luck next time."});
+			await Queue.fire({currentProgressStep: 0,text: "You died, better luck next time."});
 			
 		}
 	}
 }
 async function battle(){
-	await Queue.fire({text: "Click the hunter to do damage. Quick!"});
+	await Queue.fire({currentProgressStep: 0,text: "Click the hunter to do damage. Quick!"});
 	
 	document.getElementById("hunter").onclick = async () => {
 		clicks++;
 		if(clicks === 50){
-			await Queue.fire({text: "Press 'e' to call in a ride and escape!"})
+			await Queue.fire({currentProgressStep: 0,text: "Press 'e' to call in a ride and escape!"})
 			
 			document.onkeydown = (e)=> {
 				if(e.key == "e"){
 					e.preventDefault();
 					document.getElementById("heli").play();
 					setTimeout(async () => {
-					await Queue.fire({text: "You escaped!"});
+					await Queue.fire({currentProgressStep: 0,text: "You escaped!"});
 						socket.emit("escape", username)
-						await Queue.fire({text: "credits to Marine hunter (https://skfb.ly/6UtoZ) by ill_drakon is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/) and Table Fancy Small (https://skfb.ly/oLSwo) by GameDevMoot is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/) for 3d models."})
+						await Queue.fire({currentProgressStep: 1,text: "credits to Marine hunter (https://skfb.ly/6UtoZ) by ill_drakon is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/) and Table Fancy Small (https://skfb.ly/oLSwo) by GameDevMoot is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/) for 3d models."})
 						
 						location.reload();
 					}, 7000)
@@ -130,7 +130,7 @@ async function rotate(){
 	document.getElementById("room").style.transform = `scale3d(3 3 3) translateZ(1000px) rotateY(${cy}deg) rotateX(${cx}deg)`;
 }
 socket.on("roomnotjoined", async () =>{
-	await Queue.fire({text: "Room not found, please try again..."});
+	await Queue.fire({currentProgressStep: 0,text: "Room not found, please try again..."});
 	
 	location.reload();
 });
@@ -145,26 +145,26 @@ deer.hidden = true;
 			document.body.appendChild(deer);
 async function hunt() {
 		if(daynumber < 3){
-		await Queue.fire({text: "Click to get the deer in time."});
+		await Queue.fire({currentProgressStep: 0,text: "Click to get the deer in time."});
 			deer.hidden = false;
 			deer.addEventListener("click", foodget);
 		
 		setTimeout(async () => {
 			deer.removeEventListener("click", foodget);
-			await Queue.fire({text: "You have " + food + " food. Every day, ten food will be used."});
+			await Queue.fire({currentProgressStep: 0,text: "You have " + food + " food. Every day, ten food will be used."});
 			deer.hidden = true;
 		}, 5000);
 	}
 		else{
 			if(Math.floor(Math.random() * 5) === 2){
-						await Queue.fire({text: "Edible mushroom found! Each one will count as 4 food."});
+						await Queue.fire({currentProgressStep: 0,text: "Edible mushroom found! Each one will count as 4 food."});
 				
 						food += 4;
 					}
 		}
 	}
 async function choose() {
-	var {value: username} = await Queue.fire({input: "text", text:"Choose an username!"});
+	var {value: username} = await Queue.fire({currentProgressStep: 0,input: "text", text:"Choose an username!"});
 	socket.emit("username", username);
 	ss = new SpeechSynthesisUtterance("Hello "+ username +". Welcome to Survivor. We will pick you up in a month. OH NO WHAT IS THAT!!!!!!");
 }
@@ -179,9 +179,9 @@ document.getElementById("ok").onclick = async () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	choose();
-	var {value: room} = await Queue.fire({input: "text", text:"Choose a private room name."});
+	var {value: room} = await Queue.fire({currentProgressStep: 0,input: "text", text:"Choose a private room name."});
 	if(room){
-	var {value: password} = await Queue.fire({input: "text", text:"Choose a password."});
+	var {value: password} = await Queue.fire({currentProgressStep: 1,input: "text", text:"Choose a password."});
 	}
 	
 	socket.emit("roomname", room);
@@ -215,9 +215,9 @@ document.getElementById("no").onclick = async () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	choose();
-	var {value:roomname} = await Queue.fire({input: "text", text:"Enter the room name."});
+	var {value:roomname} = await Queue.fire({currentProgressStep: 0,input: "text", text:"Enter the room name."});
 	if(roomname){
-	var {value: pass} = await Queue.fire({input: "text", text:"Enter the room's password."});
+	var {value: pass} = await Queue.fire({currentProgressStep: 1,input: "text", text:"Enter the room's password."});
 	}
 	
 	socket.emit("room", roomname);
@@ -230,7 +230,7 @@ document.getElementById("no").onclick = async () => {
 	
 }
 socket.on("usernotadded", async () => {
-	const {value: person} = await Queue.fire({input: "text", text:
+	const {value: person} = await Queue.fire({currentProgressStep: 0,input: "text", text:
 		"Choose a new username. Your old one was either taken, inappropriate, or blank!"
 			   });
 	socket.emit("username", person);
@@ -261,11 +261,11 @@ socket.on("useradded", (u) => {
 	users = u;
 });
 socket.on("left", async (leaving) => {
-	await Queue.fire({text:leaving + " left."});
+	await Queue.fire({currentProgressStep: 0,text:leaving + " left."});
 
 });
 socket.on("joinedroom", async (per) => {
-	await Queue.fire({text:per + " joined."});
+	await Queue.fire({currentProgressStep: 0,text:per + " joined."});
 	const player = document.getElementById("player").cloneNode(true);
 	player.id = per;
 	Array.from(player.children)[0].innerHTML = per;
@@ -281,7 +281,7 @@ socket.on("leave", (u) => {
 	users = u;
 });
 socket.on("gameover", async (killed) => {
-	await Queue.fire({text: killed + " died."});
+	await Queue.fire({currentProgressStep: 0,text: killed + " died."});
 });
 var t;
 var day = document.createElement("h1");
@@ -297,7 +297,7 @@ async function time(){
 clearTimeout(timeout)
 	if(night == false){
 		document.getElementById("night").style.opacity = "60%";
-			await Queue.fire({text: "It is night time. Go run around riskingly, or sleep safely in your shelter"});
+			await Queue.fire({currentProgressStep: 0,text: "It is night time. Go run around riskingly, or sleep safely in your shelter"});
 		night = true;
 	}
 	else if(night == true){
@@ -310,7 +310,7 @@ clearTimeout(timeout)
 								 day.style.position = "relative";
 												 food -= 10;
 												 if(food < 0){
-													 await Queue.fire({text: "You do not have enough food. Game Over."});
+													 await Queue.fire({currentProgressStep: 0,text: "You do not have enough food. Game Over."});
 												
 														 location.reload();
 													 
@@ -338,12 +338,12 @@ clearTimeout(timeout)
 		if(daynumber > 4){
 			thirst += 10;
 			if(thirst >=30){
-				 await Queue.fire({text: "You did not drink enough. Game Over."});
+				 await Queue.fire({currentProgressStep: 0,text: "You did not drink enough. Game Over."});
 				
 													location.reload
 			}
 		}
-		await Queue.fire({text: "Wake up sleepyhead! You must go live today!"});
+		await Queue.fire({currentProgressStep: 0,text: "Wake up sleepyhead! You must go live today!"});
 		
 		
 		night = false;
@@ -453,7 +453,7 @@ async function load() {
 				fire.style.transform = "translate3d(" + b + "px, " + y + "px,"+ a +"px) perspective(" + 5000 + "px)";
 				document.getElementById("universe").appendChild(fire);
 				firematrix = new WebKitCSSMatrix(getComputedStyle(fire).transform);
-				await Queue.fire({text: "The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food."});
+				await Queue.fire({currentProgressStep: 0,text: "The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food."});
 				
 				task.value = 5;
 				task.max = 5;
@@ -464,7 +464,7 @@ async function load() {
 			}
 			if(e.key == "x" && fire.style.position ==="absolute" && daynumber >= 2){
 				if(firematrix.m41 === matrix4.m41 && firematrix.m43 === matrix4.m43 ){
-				await Queue.fire({text: "Food cooked. It will now fill you twice as much."});
+				await Queue.fire({currentProgressStep: 0,text: "Food cooked. It will now fill you twice as much."});
 					
 				food = food * 2;
 				}
@@ -472,56 +472,56 @@ async function load() {
 			if (e.key == " ") {
 				
 				if (-matrix4.m41 === wood1.m41 && matrix4.m43 === wood1.m43) {
-					await Queue.fire({text: "Wood found!"});
+					await Queue.fire({currentProgressStep: 0,text: "Wood found!"});
 					
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						await Queue.fire({text: "Huh, maybe I should press x to build my house."});
+						await Queue.fire({currentProgressStep: 0,text: "Huh, maybe I should press x to build my house."});
 						
 						house = true;
 					}
 				}
 				if (-matrix4.m41 === wood2.m41 && matrix4.m43 === wood2.m43) {
-					await Queue.fire({text: "Wood found!"});
+					await Queue.fire({currentProgressStep: 0,text: "Wood found!"});
 					
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						await Queue.fire({text: "Huh, maybe I should press x to build my house."});
+						await Queue.fire({currentProgressStep: 0,text: "Huh, maybe I should press x to build my house."});
 						
 						house = true;
 					}
 				}
 				if (-matrix4.m41 === wood3.m41 && matrix4.m43 === wood3.m43) {
-					await Queue.fire({text: "Wood found!"});
+					await Queue.fire({currentProgressStep: 0,text: "Wood found!"});
 					
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						await Queue.fire({text: "Huh, maybe I should press x to build my house."});
+						await Queue.fire({currentProgressStep: 0,text: "Huh, maybe I should press x to build my house."});
 						
 						house = true;
 					}
 				}
 				if (-matrix4.m41 === wood4.m41 && matrix4.m43 === wood4.m43) {
-					await Queue.fire({text: "Wood found!"});
+					await Queue.fire({currentProgressStep: 0,text: "Wood found!"});
 					
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						await Queue.fire({text: "Huh, maybe I should press x to build my house."});
+						await Queue.fire({currentProgressStep: 0,text: "Huh, maybe I should press x to build my house."});
 						
 						house = true;
 					}
 				}
 				if (-matrix4.m41 === wood5.m41 && matrix4.m43 === wood5.m43) {
-					await Queue.fire({text: "Wood found!"});
+					await Queue.fire({currentProgressStep: 0,text: "Wood found!"});
 					
 					task.value--;
 					if (task.value === 0 && daynumber < 2) {
 						task.value = 5;
-						await Queue.fire({text: "Huh, maybe I should press x to build my house where I am."});
+						await Queue.fire({currentProgressStep: 0,text: "Huh, maybe I should press x to build my house where I am."});
 						
 						house = true;
 					}
@@ -530,7 +530,7 @@ async function load() {
 			}
 				
 			if (e.key == "x" && house == true) {
-				await Queue.fire({text: "House built!"});
+				await Queue.fire({currentProgressStep: 0,text: "House built!"});
 				house = false;
 				shelter = document.createElement("img");
 				shelter.style.position = "absolute";
@@ -541,9 +541,9 @@ async function load() {
 				shelter.style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + 5000 + "px)";
 				document.getElementById("universe").appendChild(shelter);
 				sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(shelter).transform);
-				await Queue.fire({text: "Hint: If you ENTER your house, you have double your health."});
+				await Queue.fire({currentProgressStep: 1,text: "Hint: If you ENTER your house, you have double your health."});
 				tasks.innerHTML = "Find food";
-				await Queue.fire({text: "Go bring some food back home. Go hunting for food in a space by pressing 'h'."});
+				await Queue.fire({currentProgressStep: 2,text: "Go bring some food back home. Go hunting for food in a space by pressing 'h'."});
 				
 				socket.emit("house", sheltermatrix);
 			}
@@ -553,12 +553,12 @@ async function load() {
 
 
 			if(e.key == "Enter" && daynumber > 5 && -matrix4.m41 === 2000 && matrix4.m43 === 700){
-				await Queue.fire({text: "House Entered! Find the clues to discover what happened."});
+				await Queue.fire({currentProgressStep: 0,text: "House Entered! Find the clues to discover what happened."});
 				
 				var popup = window.open("room.html");
 				popup.window.addEventListener('load', async () => {
   					popup.window.addEventListener('unload', async () => {
-						await Queue.fire({text: "find the hunter and get him to avenge the remaining deer"});
+						await Queue.fire({currentProgressStep: 0,text: "find the hunter and get him to avenge the remaining deer"});
 						
 						document.getElementById("hunter").style.display = "block";
 						battle();
@@ -588,7 +588,7 @@ async function load() {
 
 			}
 			if(e.key == "d" && daynumber > 3 && a === 0 && b === 0){
-				await Queue.fire({text: "Your thirst went down by 5."});
+				await Queue.fire({currentProgressStep: 0,text: "Your thirst went down by 5."});
 				
 				thirst -= 5;
 			}
@@ -679,12 +679,12 @@ socket.on('newmessage', async (messagenew) => {
 });
 
 socket.on("firemade",async (player)=>{
-	await Queue.fire({text: "Someone made a fire. It is at X: " + -player.m41 + ", Z: " + -player.m43});
+	await Queue.fire({currentProgressStep: 0,text: "Someone made a fire. It is at X: " + -player.m41 + ", Z: " + -player.m43});
 	fire.style.position = "absolute";
 				fire.style.transform = "translate3d(" + player.m41 + "px, " + player.m42 + "px, " + player.m43 + "px) perspective(" + (player.m43 + 5000) + "px)";
 				document.getElementById("universe").appendChild(fire);
 				firematrix = new WebKitCSSMatrix(getComputedStyle(fire).transform);
-				await Queue.fire({text: "The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food."});
+				await Queue.fire({currentProgressStep: 1,text: "The fire will burn for half the day. Press x whenever you have enough wood and need to cook your food."});
 	
 				task.value = 5;
 				task.max = 5;
@@ -696,7 +696,7 @@ var cx, cy;
 
 
 socket.on("housemade", async(player)=>{
-	await Queue.fire({text: "Someone made a house. It is at X: " + -player.m41 + ", Z: " + -player.m43});
+	await Queue.fire({currentProgressStep: 0,text: "Someone made a house. It is at X: " + -player.m41 + ", Z: " + -player.m43});
 	
 	house = false;
 				shelter = document.createElement("img");
@@ -708,9 +708,9 @@ socket.on("housemade", async(player)=>{
 				shelter.style.transform = "translate3d(" + player.m41 + "px, " + player.m42 + "px, " + player.m43 + "px) perspective(" + (player.m43 + 5000) + "px)";
 				document.getElementById("universe").appendChild(shelter);
 				sheltermatrix = new WebKitCSSMatrix(window.getComputedStyle(shelter).transform);
-				await Queue.fire({text: "Hint: If you ENTER your house, you have double your health."});
+				await Queue.fire({currentProgressStep: 1,text: "Hint: If you ENTER your house, you have double your health."});
 				tasks.innerHTML = "Find food";
-				await Queue.fire({text: "Go bring some food back home. Go hunting for food in a space by pressing 'h'."});
+				await Queue.fire({currentProgressStep: 2,text: "Go bring some food back home. Go hunting for food in a space by pressing 'h'."});
 	
 })
  async function notifyMe() {
@@ -730,6 +730,6 @@ socket.on("housemade", async(player)=>{
 }
 	  notifyMe();
 socket.on("escaped", async (p)=> {
-	await Queue.fire({text: p + " escaped!"})
+	await Queue.fire({currentProgressStep: 0,text: p + " escaped!"})
 	
 })
