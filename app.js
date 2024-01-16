@@ -49,7 +49,7 @@ var b = 0;
 var c = 0;
 var y = 0;
 var clicks = 0;
-function lose(){
+async function lose(){
 	health.value--;
 	if(clicks <50){
 		if(health.value > 0){
@@ -62,7 +62,7 @@ function lose(){
 		}
 	}
 }
-function battle(){
+async function battle(){
 	modals.push({text: "Click the hunter to do damage. Quick!"});
 	Swal.queue(modals)
 			modals = [];
@@ -102,7 +102,7 @@ var you;
 var matrix2;
 var health = document.getElementById("health");
 var matrix4;
-function ended(audio) {
+async function ended(audio) {
 	if (audio.ended == true) {
 		load();
 	}
@@ -122,7 +122,7 @@ var p = 0;
 var person;
 var roomnumber = 0;
 var otherplayer;
-function rotate(){
+async function rotate(){
 	document.getElementById("room").style.transform = `scale3d(3 3 3) translateZ(1000px) rotateY(${cy}deg) rotateX(${cx}deg)`;
 }
 socket.on("roomnotjoined", ()=>{
@@ -131,7 +131,7 @@ socket.on("roomnotjoined", ()=>{
 			modals = [];
 	location.reload();
 });
-function foodget(){
+async function foodget(){
 	food++;
 }
 var deer = new Image(200, 200);
@@ -140,7 +140,7 @@ var deer = new Image(200, 200);
 			deer.style.position = "absolute";
 deer.hidden = true;
 			document.body.appendChild(deer);
-function hunt() {
+async function hunt() {
 		if(daynumber < 3){
 		modals.push({text: "Click to get the deer in time."});
 		Swal.queue(modals)
@@ -165,8 +165,8 @@ function hunt() {
 					}
 		}
 	}
-function choose() {
-	var {value: username} = Swal.fire({input: "text", text:"Choose an username!"});
+async function choose() {
+	var {value: username} = await Swal.fire({input: "text", text:"Choose an username!"});
 	Swal.queue(modals)
 			modals = [];
 	socket.emit("username", username);
@@ -183,9 +183,9 @@ document.getElementById("ok").onclick = () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	choose();
-	var {value: room} = Swal.fire({input: "text", text:"Choose a private room name."});
+	var {value: room} = await Swal.fire({input: "text", text:"Choose a private room name."});
 	if(room){
-	var {value: password} = Swal.fire({input: "text", text:"Choose a password."});
+	var {value: password} = await Swal.fire({input: "text", text:"Choose a password."});
 	}
 	Swal.queue(modals)
 			modals = [];
@@ -220,9 +220,9 @@ document.getElementById("no").onclick = () => {
 	document.getElementById("dialog").hidden = true;
 	document.body.style.background = "url(sky.jpg)";
 	choose();
-	var {value:roomname} = Swal.fire({input: "text", text:"Enter the room name."});
+	var {value:roomname} = await Swal.fire({input: "text", text:"Enter the room name."});
 	if(roomname){
-	var {value: pass} = Swal.fire({input: "text", text:"Enter the room's password."});
+	var {value: pass} = await Swal.fire({input: "text", text:"Enter the room's password."});
 	}
 	Swal.queue(modals)
 			modals = [];
@@ -236,7 +236,7 @@ document.getElementById("no").onclick = () => {
 	
 }
 socket.on("usernotadded", () => {
-	const {value: person} = Swal.fire({input: "text", text:
+	const {value: person} = await Swal.fire({input: "text", text:
 		"Choose a new username. Your old one was either taken, inappropriate, or blank!"
 			   });
 	socket.emit("username", person);
@@ -304,7 +304,7 @@ var wood3;
 var wood4;
 var wood5;
 var model = document.getElementById("model");
-function time(){
+async function time(){
 clearTimeout(timeout)
 	if(night == false){
 		document.getElementById("night").style.opacity = "60%";
@@ -390,10 +390,10 @@ clearTimeout(timeout)
 			room.style.position = "absolute";
 
 
-function move(){
+async function move(){
 	document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + ( a +5000) + "px)";
 }
-function load() {
+async function load() {
 	document.getElementById("universe").style.position = "absolute";
 	document.getElementById("universe").style.zIndex = "1";
 	timeout = setTimeout(time, 90000);
@@ -747,7 +747,7 @@ socket.on("housemade", (player)=>{
 	Swal.queue(modals)
 			modals = [];
 })
- function notifyMe() {
+ async function notifyMe() {
   if (!("Notification" in window)) {
   } else if (Notification.permission !== "denied") {
     // We need to ask the user for permission
