@@ -354,13 +354,16 @@ clearTimeout(timeout)
 												 }, 5000)
 		if(daynumber === 6){
 			day.innerHTML = "Day " + daynumber + ". look for an abandoned building near (2000, 700).";
+			model = new Image(400, 400);
+			
 			model.style.scale = "3 3 3";
+			
 			task.max = 1;
 			model.style.scale = "3 3 3";
+			model.src = "abandoned.png"
 			model.style.position = "absolute";
-			model.style.height = "1000px";
-			model.style.width = "1000px";
 			model.style.transform = "translate3d(-2000px, 0px, -700px) perspective(800px)";
+			document.getElementById("universe").appendChild(model);
 			task.max = 1;
 													 task.value = 1;
 													 tasks.innerHTML = "Find Building";
