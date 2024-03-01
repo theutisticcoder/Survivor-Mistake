@@ -361,7 +361,7 @@ clearTimeout(timeout)
 			task.max = 1;
 			model.style.scale = "3 3 3";
 			model.style.position = "absolute";
-			model.style.transform = "translate3d(-2000px, 0px, 700px) perspective(5000px)";
+			model.style.transform = "translate3d(2000px, 0px, -700px)";
 			task.max = 1;
 													 task.value = 1;
 													 tasks.innerHTML = "Find Building";
