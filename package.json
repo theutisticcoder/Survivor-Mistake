@@ -21,7 +21,8 @@
   },
   "scripts": {
     "tauri": "tauri",
-    "test": "node ."
+    "test": "node .",
+	"build":"npm i",
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.2.3"
