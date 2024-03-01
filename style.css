@@ -197,7 +197,6 @@
 		transform: translateY(-400px);
 		transform-origin: -2500px 0px;
 		position: absolute;
-		perspective: 1000px;
 	}
 	mark{
 		color: yellow;
