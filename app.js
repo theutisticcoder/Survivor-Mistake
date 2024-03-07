@@ -605,43 +605,9 @@ async function load() {
 		var dirt = document.getElementById("boxDiv");
 		var rows = document.getElementById("mainDiv");
 		var dirtnew;
-		for (var i = 0; i < 3000; i += 50) {
-			dirtnew = dirt.cloneNode(true);
-			dirtnew.style.transform =
-				"translateY(" + -i + "px) translateX(" + (i - 1000) + "px)";
-			dirtnew.style.height = "50px";
-			dirtnew.style.width = "50px";
-			dirtnew.style.transformStyle = "preserve-3d";
-			rows.appendChild(dirtnew);
-		}
-		var newrow;
-		var z = 0;
-		while (z < 60) {
-			z++;
-			newrow = rows.cloneNode(true);
-			newrow.style.top = "100px";
-			newrow.style.height = "1000px";
-			newrow.style.width = "1000px";
-			newrow.style.transformStyle = "preserve-3d";
-			newrow.style.perspective = "800px";
-			newrow.style.position = "absolute";
-			newrow.style.transform =
-				"rotateX(180deg) translateY(1000px) perspective(3000px) translateZ(" +
-				(z * 50 + 1000) +
-				"px)";
+	
 
-			document.getElementById("world").appendChild(newrow);
-		}
-
-		for (let i = 0; i < document.getElementsByClassName("tree").length; i++) {
-			t = Math.floor(Math.random() * 3);
-			if (t === 2) {
-				document.getElementsByClassName("tree")[i].hidden = false;
-			}
-		}
-	}, 5000);
-
-
+	})();
 }
 var message, p2, p, newmessage;
 
