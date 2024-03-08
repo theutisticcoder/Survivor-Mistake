@@ -83,9 +83,7 @@ async function battle(){
 					document.getElementById("heli").play();
 					setTimeout(async () => {
 					await Queue.fire({currentProgressStep: 0,text: "You escaped!"});
-						socket.emit("escape", username)
-						await Queue.fire({currentProgressStep: 1,text: "credits to Marine hunter (https://skfb.ly/6UtoZ) by ill_drakon is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/) and Table Fancy Small (https://skfb.ly/oLSwo) by GameDevMoot is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/) for 3d models."})
-						
+						socket.emit("escape", username)						
 						location.reload();
 					}, 7000)
 				}
