@@ -358,6 +358,7 @@ clearTimeout(timeout)
 			model.style.width = "1500px"
 			document.getElementById("modeldiv").style.transform = "translate3d(2000px, 0px, 700px) ";
 			document.getElementById("modeldiv").style.zIndex = "100000";
+			document.getElementById("modeldiv").style.top = "-300px";
 			document.getElementById("modeldiv").style.position = "absolute";
 			document.getElementById("modeldiv").style.transformStyle = "preserve-3d";
 			task.max = 1;
