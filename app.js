@@ -98,7 +98,7 @@ async function battle(){
 	
 		setTimeout(lose, 4000)
 }
-var intro = document.getElementById("intro");
+var intro = document.getElementById("introvid");
 var range = 200;
 var ammo = 20;
 let keysPressed = {};
@@ -185,10 +185,10 @@ document.getElementById("ok").onclick = async () => {
 	socket.emit("username", username);
 	socket.emit("roomname", room);
 	socket.emit("password", password);
-		document.getElementById("heli").play();
+	intro.hidden = false;
 		intro.play();
 		intro.onended = ()=> {
-	
+			intro.hidden = true;
 			document.getElementById("heli").pause();
 			load();
 		};
@@ -199,9 +199,10 @@ document.getElementById("neither").onclick = async () => {
 	document.body.style.background = "url(sky.jpg)";
 	choose();
 	
-	document.getElementById("heli").play();
+	intro.hidden = false;
 	intro.play();
 	intro.onended = ()=> {
+		intro.hidden = true;
 
 		document.getElementById("heli").pause();
 		load();
@@ -230,10 +231,10 @@ document.getElementById("no").onclick = async () => {
 	socket.emit("room", roomname);
 	socket.emit("pass", pass);
 
-	document.getElementById("heli").play();
+	intro.hidden = false;
 	intro.play();
 	intro.onended = ()=> {
-
+		intro.hidden = true;
 		document.getElementById("heli").pause();
 		load();
 	};
