@@ -389,6 +389,7 @@ async function move(){
 	document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + ( a +5000) + "px)";
 }
 async function load() {
+	intro.remove();
 	document.getElementById("universe").style.position = "absolute";
 	document.getElementById("universe").style.zIndex = "1";
 	timeout = setTimeout(time, 90000);
