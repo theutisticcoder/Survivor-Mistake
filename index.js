@@ -2,7 +2,6 @@ const express = require("express");
 const socketio = require("socket.io");
 const http = require("http");
 const fs = require("fs");
-const { addWords, isBad } = require("adults");
 var roomname;
 var users = [];
 var rooms = [];
@@ -70,7 +69,7 @@ io.on("connection", (socket) => {
 		});
 	});
 			socket.on("username", (user) => {
-    if (users.includes(user) || user === null || user === "" || isBad(user)) {
+    if (users.includes(user) || user === null || user === "") {
       socket.emit("usernotadded");
     } else {
       socket.nickname = user;
