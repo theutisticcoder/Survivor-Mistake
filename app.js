@@ -385,9 +385,6 @@ clearTimeout(timeout)
 			room.style.position = "absolute";
 
 
-async function move(){
-	document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + ( a +5000) + "px)";
-}
 async function load() {
 	intro.remove();
 	document.getElementById("universe").style.position = "absolute";
@@ -604,12 +601,13 @@ async function load() {
 				
 				thirst -= 5;
 			}
-			move();
 			matrix4 = new WebKitCSSMatrix(
 				window.getComputedStyle(document.getElementById("universe")).transform
 			);
 			sol1 = document.getElementById("panther");
 			socket.emit("move", matrix4);
+			document.getElementById("universe").style.transform = "translate3d(" + b + "px, " + y + "px, " + a + "px) perspective(" + ( a +5000) + "px)";
+
 			document.getElementById("coordinates").innerHTML = `You are at X: ${-matrix4.m41} Z: ${matrix4.m43}`;
 		}
 		};
@@ -647,7 +645,7 @@ async function load() {
 		}
 
 		for (let i = 0; i < document.getElementsByClassName("tree").length; i++) {
-			t = Math.floor(Math.random() * 3);
+			t = Math.floor(Math.random() * 7);
 			if (t === 2) {
 				document.getElementsByClassName("tree")[i].hidden = false;
 			}
